@@ -18,3 +18,6 @@ alias ll='ls -l'
 alias la='ls -a'
 alias l='ls -CF'
 alias lt='ls -ltr'
+
+# Open everything with MacVim
+alias vi='mvim'
