@@ -16,3 +16,5 @@ Music/
 Pictures/
 Public/
 Sites/
+.Xauthority
+.fontconfig
