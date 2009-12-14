@@ -32,3 +32,7 @@ set mouse=a
 set guioptions-=T
 set guioptions-=L
 set guioptions-=r
+
+" highlight long lines
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.*/
