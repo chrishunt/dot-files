@@ -18,3 +18,5 @@ Public/
 Sites/
 .Xauthority
 .fontconfig
+Sandbox
+.irb_history

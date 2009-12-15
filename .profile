@@ -20,4 +20,4 @@ alias l='ls -CF'
 alias lt='ls -ltr'
 
 # Open everything with MacVim
-alias vi='mvim'
+alias vim='mvim'
