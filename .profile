@@ -7,6 +7,9 @@ export PS1='\[\033[0;35m\]\h\[\033[0;33m\] \w\[\033[00m\]: '
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
+# PATH variable for use with MacPorts
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
 # Aliases
 alias vi='vim'
 alias grep='grep --color=auto'
@@ -21,3 +24,4 @@ alias lt='ls -ltr'
 
 # Open everything with MacVim
 alias vim='mvim'
+
