@@ -10,6 +10,9 @@ export LSCOLORS=gxfxcxdxbxegedabagacad
 # PATH variable for use with MacPorts
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
+# PATH for JRuby binaries
+export PATH=$PATH:/Applications/jruby-1.4.0/bin
+
 # Aliases
 alias vi='vim'
 alias grep='grep --color=auto'

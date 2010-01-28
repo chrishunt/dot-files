@@ -39,3 +39,7 @@ set vb
 " highlight long lines
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.*/
+
+" LaTeX options
+set grepprg=grep\ -nH\ $*
+let g:tex_flavor='latex'
