@@ -22,3 +22,5 @@ Sandbox
 .irb_history
 .adobe
 .heroku
+.gemrc
+.terminfo
