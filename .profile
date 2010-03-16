@@ -25,6 +25,8 @@ alias la='ls -a'
 alias l='ls -CF'
 alias lt='ls -ltr'
 
+alias dunnet='emacs -batch -l dunnet'
+
 # Open everything with MacVim
 alias vim='mvim'
 
