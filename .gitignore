@@ -26,3 +26,6 @@ Sandbox
 .terminfo
 .SmileOnMyMac-PDFpen
 .vinevncauth
+.cvspass
+.sqlite_history
+.subversion
