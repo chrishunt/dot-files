@@ -6,6 +6,9 @@ set nocompatible
 " show line numbers
 set nu
 
+" disable code folding
+set nofoldenable
+
 " we have a dark background
 colorscheme vividchalk
 set background=dark
