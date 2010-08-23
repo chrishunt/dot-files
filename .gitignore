@@ -34,3 +34,7 @@ Sandbox
 .dvdcss
 .smb
 *.swp
+.rvm
+.ri
+.gitk
+.gem
