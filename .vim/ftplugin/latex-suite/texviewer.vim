@@ -5,7 +5,7 @@
 " Description: make a viewer for various purposes: \cite{, \ref{
 "     License: Vim Charityware License
 "              Part of vim-latexSuite: http://vim-latex.sourceforge.net
-"         CVS: $Id: texviewer.vim 1074 2009-10-02 21:17:29Z tmaas $
+"         CVS: $Id: texviewer.vim 1104 2010-01-29 00:38:56Z tmaas $
 " ============================================================================
 " Tex_SetTexViewerMaps: sets maps for this ftplugin {{{
 function! Tex_SetTexViewerMaps()
@@ -58,7 +58,6 @@ function! Tex_Complete(what, where)
 
 	if a:where == "text"
 		" What to do after <F9> depending on context
-		let s:curfile = expand("%:p")
 		let s:curline = strpart(getline('.'), 0, col('.'))
 		let s:prefix = matchstr(s:curline, '.*{\zs.\{-}\(}\|$\)')
 		" a command is of the type
@@ -69,7 +68,7 @@ function! Tex_Complete(what, where)
 		" from which we need to extract
 		" 	s:type = 'psfig'
 		" 	s:typeoption = '[option=value]'
-		let pattern = '.*\\\(\w\{-}\)\(\[.\{-}\]\)\?{\(\S\+\)\?$'
+		let pattern = '.*\\\(\w\{-}\)\(\[.\{-}\]\)*{\([^ [\]\t]\+\)\?$'
 		if s:curline =~ pattern
 			let s:type = substitute(s:curline, pattern, '\1', 'e')
 			let s:typeoption = substitute(s:curline, pattern, '\2', 'e')
@@ -119,7 +118,7 @@ function! Tex_Complete(what, where)
 				let g:Remote_WaitingForCite = 1
 				let citation = input('Enter citation from jabref (<enter> to leave blank): ')
 				let g:Remote_WaitingForCite = 0
-				call Tex_CompleteWord(citation)
+				call Tex_CompleteWord(citation, strlen(s:prefix))
 			
 			else
 				" grep! nothing % 
@@ -181,14 +180,8 @@ function! Tex_Complete(what, where)
 		else
 			let s:word = expand('<cword>')
 			if s:word == ''
-				if col('.') == strlen(getline('.'))
-					startinsert!
-					return
-				else
-					normal! l
-					startinsert
-					return
-				endif
+				call Tex_SwitchToInsertMode()
+				return
 			endif
 			call Tex_Debug("silent! grep! ".Tex_EscapeForGrep('\<'.s:word.'\>')." *.tex", 'view')
 			call Tex_Grep('\<'.s:word.'\>', '*.tex')
@@ -219,23 +212,26 @@ endfunction
 " Description: This function is meant to be called when the user press
 " 	``<enter>`` in one of the [Error List] windows which shows the list of
 " 	matches. completeword is the rest of the word which needs to be inserted.
-function! Tex_CompleteWord(completeword)
+" 	prefixlength characters are deleted before completeword is inserted
+function! Tex_CompleteWord(completeword, prefixlength)
 	call Tex_SetPos(s:pos)
 
 	" Complete word, check if add closing }
-	exe 'normal! a'.a:completeword."\<Esc>"
+	if a:prefixlength > 0
+		if a:prefixlength > 1
+			exe 'normal! '.(a:prefixlength-1).'h'
+		endif
+		exe 'normal! '.a:prefixlength.'s'.a:completeword."\<Esc>"
+	else
+		exe 'normal! a'.a:completeword."\<Esc>"
+	endif
 
 	if getline('.')[col('.')-1] !~ '{' && getline('.')[col('.')] !~ '}'
 		exe "normal! a}\<Esc>"
 	endif
 	
 	" Return to Insert mode
-	if col('.') == strlen(getline('.'))
-		startinsert!
-	else
-		normal! l
-		startinsert
-	endif
+	call Tex_SwitchToInsertMode()
 endfunction " }}}
 
 " ==============================================================================
@@ -266,7 +262,7 @@ function! Tex_CompleteFileName(filename, ext, root)
 	let completeword = Tex_RelPath(completeword, root)
 
 	call Tex_Debug(":Tex_CompleteFileName: completing with ".completeword, "view")
-	call Tex_CompleteWord(completeword)
+	call Tex_CompleteWord(completeword, strlen(s:prefix))
 endfunction " }}}
 " Tex_Common: common part of strings {{{
 function! s:Tex_Common(path1, path2)
@@ -381,27 +377,30 @@ endfunction " }}}
 "
 function! s:Tex_CompleteRefCiteCustom(type)
 
+	let prefixlength=strlen(s:prefix)
 	if a:type =~ 'cite'
 		if getline('.') =~ '\\bibitem\s*{'
 			let bibkey = matchstr(getline('.'), '\\bibitem\s*{\zs.\{-}\ze}')
 		else
 			let bibkey = matchstr(getline('.'), '\\bibitem\s*\[.\{-}\]\s*{\zs.\{-}\ze}')
 		endif
-		let completeword = strpart(bibkey, strlen(s:prefix))
+		let completeword = bibkey
 
 	elseif a:type =~ 'ref'
 		let label = matchstr(getline('.'), '\\label{\zs.\{-}\ze}')
-		let completeword = strpart(label, strlen(s:prefix))
+		let completeword = label
 
 	elseif a:type =~ '^plugin_'
 		let type = substitute(a:type, '^plugin_', '', '')
 		let completeword = <SID>Tex_DoCompletion(type)
+		" use old behaviour for plugins because of backward compatibility
+		let prefixlength=0
 		
 	endif
 
 	call Tex_CloseSmallWindows()
 	call Tex_Debug(":Tex_CompleteRefCiteCustom: completing with ".completeword, "view")
-	call Tex_CompleteWord(completeword)
+	call Tex_CompleteWord(completeword, prefixlength)
 endfunction " }}}
 " Tex_SyncPreviewWindow: synchronize quickfix and preview window {{{
 " Description: Usually quickfix engine takes care about most of these things
@@ -439,12 +438,7 @@ function! s:Tex_SyncPreviewWindow()
 		if exists("s:prefix")
 			echomsg 'No bibkey, label or word beginning with "'.s:prefix.'"'
 		endif
-		if col('.') == strlen(getline('.'))
-			startinsert!
-		else
-			normal! l
-			startinsert
-		endif
+		call Tex_SwitchToInsertMode()
 		let v:errmsg = ''
 		call Tex_Debug('Tex_SyncPreviewWindow: got error E32, no matches found, quitting', 'view')
 		return 0
@@ -516,7 +510,7 @@ function! Tex_GrepHelper(prefix, what)
 	if mainfname == expand('%:p')
 		split
 	else
-		exec 'split '.Tex_EscapeSpaces(mainfname)
+		exec 'split '.fnameescape(mainfname)
 	endif
 
 	let pos = Tex_GetPos()
@@ -760,7 +754,7 @@ function! Tex_StartOutlineCompletion()
 
 	if has('python') && Tex_GetVarValue('Tex_UsePython')
 		exec 'python retval = outline.main('
-			\. 'r"' . fnamemodify(mainfname, ':p') . '", '
+			\. 'r"' . fnameescape(fnamemodify(mainfname, ':p')) . '", '
 			\. 'r"' . s:prefix . '")'
 
 		" transfer variable from python to a local variable.
@@ -768,7 +762,7 @@ function! Tex_StartOutlineCompletion()
 
 		0put!=retval
 	else
-		exec '0r!'.shellescape(s:path.'/outline.py').' '.mainfname.' '.s:prefix
+		exec '0r!'.shellescape(s:path.'/outline.py').' '.fnameescape(mainfname).' '.s:prefix
 	endif
 
 	0
@@ -781,6 +775,7 @@ function! Tex_StartOutlineCompletion()
 	exec 'nnoremap <buffer> q '
 		\ .':cd '.s:origdir.'<CR>'
 		\ .':close<CR>'
+		\ .':call Tex_SwitchToInsertMode()<CR>'
 
 	" once the buffer is initialized, go back to the original settings.
 	setlocal nomodifiable
@@ -823,9 +818,8 @@ function! Tex_FinishOutlineCompletion()
 		let ref_complete = matchstr(getline(line('.')-1), '^>\s\+\zs\S\+\ze')
 	endif
 
-	let ref_remaining = strpart(ref_complete, strlen(s:prefix))
 	close
-	call Tex_CompleteWord(ref_remaining)
+	call Tex_CompleteWord(ref_complete, strlen(s:prefix))
 endfunction " }}}
 
 " ==============================================================================
@@ -834,10 +828,11 @@ endfunction " }}}
 " Tex_FindBibFiles: finds all .bib files used by the main file {{{
 " Description: 
 function! Tex_FindBibFiles()
+	call Tex_Debug(":Tex_FindBibFiles: ", "view")
 
 	let mainfname = Tex_GetMainFileName(':p')
 	wincmd n
-	exec 'silent! e '.mainfname
+	exec 'silent! e '.fnameescape(mainfname)
 
 	if search('\\\(no\)\?bibliography{', 'w')
 
@@ -886,6 +881,7 @@ endif
 function! Tex_StartCiteCompletion()
 	let bibfiles = Tex_FindBibFiles()
 	if bibfiles !~ '\S'
+		call Tex_SwitchToInsertMode()
 		echohl WarningMsg
 		echomsg 'No bibfiles found! Sorry'
 		echohl None
@@ -911,7 +907,7 @@ function! Tex_StartCiteCompletion()
 	nmap <buffer> <silent> f		<Plug>Tex_FilterBibEntries
 	nmap <buffer> <silent> s		<Plug>Tex_SortBibEntries
 	nmap <buffer> <silent> a		<Plug>Tex_RemoveBibFilters
-	nmap <buffer> <silent> q		:close<CR>
+	nmap <buffer> <silent> q		:close<CR>:call Tex_SwitchToInsertMode()<CR>
 	nmap <buffer> <silent> <CR>		<Plug>Tex_CompleteCiteEntry
 
 endfunction " }}}
@@ -1056,7 +1052,19 @@ function! Tex_CompleteCiteEntry()
 	let ref = matchstr(getline('.'), '\[\zs\S\+\ze\]$')
 	close
 	call Tex_Debug(":Tex_CompleteCiteEntry: completing with ".ref, "view")
-	call Tex_CompleteWord(strpart(ref, strlen(s:prefix)))
+	call Tex_CompleteWord(ref, strlen(s:prefix))
+endfunction " }}}
+
+" Tex_SwitchToInsertMode: Switch to insert mode {{{
+" Description: This is usually called when completion is finished
+function! Tex_SwitchToInsertMode()
+	call Tex_Debug(":Tex_SwitchToInsertMode: ", "view")
+	if col('.') == strlen(getline('.'))
+		startinsert!
+	else
+		normal! l
+		startinsert
+	endif
 endfunction " }}}
 
 com! -nargs=0 TClearCiteHist unlet! s:citeSearchHistory

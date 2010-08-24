@@ -2,7 +2,7 @@
 " 	     File: envmacros.vim
 "      Author: Mikolaj Machowski
 "     Created: Tue Apr 23 08:00 PM 2002 PST
-"  CVS Header: $Id: envmacros.vim 1051 2009-06-02 18:33:54Z tmaas $
+"  CVS Header: $Id: envmacros.vim 1101 2010-01-28 23:30:56Z tmaas $
 "  Description: mappings/menus for environments. 
 "=============================================================================
 
@@ -946,7 +946,7 @@ inoremap <script> <silent> <Plug>Tex_InsertItemOnThisLine <C-r>=Tex_InsertItem()
 inoremap <script> <silent> <Plug>Tex_InsertItemOnNextLine <ESC>o<C-R>=Tex_InsertItem()<CR>
 
 function! Tex_SetItemMaps()
-	if !hasmapto("<Plug>Tex_InsertItem", "i")
+	if !hasmapto("<Plug>Tex_InsertItemOnThisLine", "i")
 		imap <buffer> <M-i> <Plug>Tex_InsertItemOnThisLine
 	endif
 	if !hasmapto("<Plug>Tex_InsertItemOnNextLine", "i")

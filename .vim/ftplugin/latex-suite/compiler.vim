@@ -4,7 +4,7 @@
 "     Created: Tue Apr 23 05:00 PM 2002 PST
 " 
 "  Description: functions for compiling/viewing/searching latex documents
-"          CVS: $Id: compiler.vim 1068 2009-08-16 19:47:15Z tmaas $
+"          CVS: $Id: compiler.vim 1102 2010-01-28 23:49:04Z tmaas $
 "=============================================================================
 
 " Tex_SetTeXCompilerTarget: sets the 'target' for the next call to Tex_RunLaTeX() {{{
@@ -379,7 +379,7 @@ function! Tex_ForwardSearchLaTeX()
 						\ exists('v:servername') &&
 						\ (viewer == "xdvi" || viewer == "xdvik") 
 
-				let execString = 'silent! !'.viewer.' -name xdvi -sourceposition '.line('.').expand("%").
+				let execString = 'silent! !'.viewer.' -name xdvi -sourceposition "'.line('.').' '.expand("%").'"'.
 							\ ' -editor "gvim --servername '.v:servername.' --remote-silent +\%l \%f" '.
 							\ mainfnameRoot.'.dvi'
 
@@ -389,7 +389,7 @@ function! Tex_ForwardSearchLaTeX()
 
 			elseif (viewer == "xdvi" || viewer == "xdvik" )
 
-				let execString = 'silent! !'.viewer.' -name xdvi -sourceposition '.line('.').expand("%").' '.mainfnameRoot.'.dvi'
+				let execString = 'silent! !'.viewer.' -name xdvi -sourceposition "'.line('.').' '.expand("%").'" '.mainfnameRoot.'.dvi'
 
 			endif
 
@@ -593,6 +593,7 @@ function! Tex_CompileMultipleTimes()
 		let runCount = runCount + 1
 	endwhile
 
+	redraw!
 	call Tex_Debug("Tex_CompileMultipleTimes: Ran latex ".runCount." time(s)", "comp")
 	echomsg "Ran latex ".runCount." time(s)"
 

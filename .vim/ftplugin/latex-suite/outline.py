@@ -41,7 +41,8 @@ def getFileContents(fname):
 def stripComments(contents):
     # remove all comments except those of the form
     # %%==== FILENAME: <filename.tex>
-    uncomm = [re.sub('%(?!==== FILENAME: ).*', '', line) for line in contents.splitlines()]
+    # BUG: This comment right after a new paragraph is not recognized: foo\\%comment
+    uncomm = [re.sub('(?<!\\\\)%(?!==== FILENAME: ).*', '', line) for line in contents.splitlines()]
     # also remove all only-whitespace lines.
     nonempty = [line for line in uncomm if line.strip()]
 
