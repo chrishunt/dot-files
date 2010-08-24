@@ -13,6 +13,9 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 # PATH for JRuby binaries
 export PATH=$PATH:/Applications/jruby-1.5.0/bin
 
+# Load RVM environment
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+
 # Aliases
 alias vi='vim'
 alias grep='grep --color=auto'

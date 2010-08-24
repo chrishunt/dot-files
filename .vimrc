@@ -1,5 +1,8 @@
 " .vimrc
 
+" set default font
+set guifont=Inconsolata:h14
+
 " don't need to be compatible with old vim
 set nocompatible
 
