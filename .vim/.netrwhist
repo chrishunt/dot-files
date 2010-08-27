@@ -1,3 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/Users/huntca/.vim'
+let g:netrw_dirhist_2='/Users/huntca/Dropbox/Sandbox/policy-server/build'
+let g:netrw_dirhist_3='/Users/huntca/Dropbox/Sandbox/flash-policy-server/build'
+let g:netrw_dirhist_4='/Users/huntca/Dropbox/Source/flash-policy-server/build'
+let g:netrw_dirhist_5='/Users/huntca/.vim'

@@ -9,8 +9,18 @@ set nocompatible
 " show line numbers
 set nu
 
+" show row and column in footer
+set ruler
+
+" minimum lines above/below cursor
+set scrolloff=2
+
 " disable code folding
 set nofoldenable
+
+" toggle spellcheck with <F5>
+:map <F5> :setlocal spell! spelllang=en_au<cr>
+:imap <F5> <ESC>:setlocal spell! spelllang=en_au<cr>
 
 " we have a dark background
 colorscheme vividchalk
@@ -30,6 +40,9 @@ set expandtab
 
 " show bracket matches
 set showmatch
+
+" ignore case in search
+set ignorecase
 
 " enable mouse support
 set mouse=a
