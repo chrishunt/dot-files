@@ -44,6 +44,12 @@ set showmatch
 " ignore case in search
 set ignorecase
 
+" pay attention to case when caps are used
+set smartcase
+
+" show search results as I type
+set incsearch
+
 " enable mouse support
 set mouse=a
 
