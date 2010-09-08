@@ -50,3 +50,5 @@ alias dunnet='emacs -batch -l dunnet'
 # Open everything with MacVim
 alias vim='mvim'
 
+# Show color with rspec
+alias rspec='rspec --color'
