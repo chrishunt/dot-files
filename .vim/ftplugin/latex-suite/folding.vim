@@ -2,7 +2,7 @@
 " 	     File: folding.vim
 "      Author: Srinath Avadhanula
 "      		   modifications/additions by Zhang Linbo
-" 	      CVS: $Id: folding.vim 1031 2008-05-29 22:16:45Z tmaas $
+" 	      CVS: $Id: folding.vim 1109 2010-10-07 20:19:23Z tmaas $
 "     Created: Tue Apr 23 05:00 PM 2002 PST
 " 
 "  Description: functions to interact with Syntaxfolds.vim
@@ -30,7 +30,7 @@ function! Tex_SetFoldOptions()
 		call MakeTexFolds(0)
 	endif
 
-	let s:ml = exists('g:mapleader') ? g:mapleader : "\\"
+	let s:ml = '<Leader>'
 
 	call Tex_MakeMap(s:ml."rf", "<Plug>Tex_RefreshFolds", 'n', '<silent> <buffer>')
 
@@ -54,7 +54,7 @@ function! Tex_FoldSections(lst, endpat)
 	if s =~ '%%fakesection'
 		let s = '^\s*' . s
 	else
-		let s = '^\s*\\' . s . '\W'
+		let s = '^\s*\\' . s . '\W\|^\s*%%fake' . s
 	endif
 	let endpat = s . '\|' . a:endpat
 	if i > 0
@@ -119,7 +119,7 @@ function! MakeTexFolds(force)
 	endif
 	
     if !exists('g:Tex_FoldedSections')
-		let g:Tex_FoldedSections = 'part,chapter,section,%%fakesection,'
+		let g:Tex_FoldedSections = 'part,chapter,section,'
 								\. 'subsection,subsubsection,paragraph'
 	endif
 

@@ -5,7 +5,7 @@
 " Description: make a viewer for various purposes: \cite{, \ref{
 "     License: Vim Charityware License
 "              Part of vim-latexSuite: http://vim-latex.sourceforge.net
-"         CVS: $Id: texviewer.vim 1104 2010-01-29 00:38:56Z tmaas $
+"         CVS: $Id: texviewer.vim 1112 2010-10-27 21:27:11Z tmaas $
 " ============================================================================
 " Tex_SetTexViewerMaps: sets maps for this ftplugin {{{
 function! Tex_SetTexViewerMaps()
@@ -610,7 +610,7 @@ function! Tex_ScanFileForCite(prefix)
 		let foundCiteFile = 1
 
 		split
-		lcd fnameescape(expand('%:p:h'))
+		exec 'lcd'.fnameescape(expand('%:p:h'))
 		call Tex_Debug("silent! grepadd! ".Tex_EscapeForGrep('\\bibitem{'.a:prefix)." %", 'view')
 		call Tex_Grepadd('\\bibitem\s*[\[|{]'.a:prefix, "%")
 		q
@@ -653,7 +653,7 @@ endfunction " }}}
 function! Tex_ScanFileForLabels(prefix)
 	call Tex_Debug("+Tex_ScanFileForLabels: grepping in file [".bufname('%')."]", "view")
 
-	lcd fnameescape(expand('%:p:h'))
+	exec 'lcd'.fnameescape(expand('%:p:h'))
 	call Tex_Grepadd('\\label{'.a:prefix, "%")
 
 	" Then recursively grep for all \include'd or \input'ed files.
@@ -738,6 +738,15 @@ function! Tex_StartOutlineCompletion()
     set cmdheight=1
     set lazyredraw
 
+	if has('python') && Tex_GetVarValue('Tex_UsePython')
+		python retval = outline.main(vim.eval("Tex_GetMainFileName(':p')"), vim.eval("s:prefix"))
+
+		" transfer variable from python to a local variable.
+		python vim.command("""let retval = "%s" """ % re.sub(r'"|\\', r'\\\g<0>', retval))
+	else
+		let retval = system(shellescape(s:path.'/outline.py').' '.shellescape(mainfname).' '.shellescape(s:prefix))
+	endif
+
     bot split __OUTLINE__
 	exec Tex_GetVarValue('Tex_OutlineWindowHeight', 15).' wincmd _'
 
@@ -751,19 +760,7 @@ function! Tex_StartOutlineCompletion()
 
 	" delete everything in it to the blackhole
 	% d _
-
-	if has('python') && Tex_GetVarValue('Tex_UsePython')
-		exec 'python retval = outline.main('
-			\. 'r"' . fnameescape(fnamemodify(mainfname, ':p')) . '", '
-			\. 'r"' . s:prefix . '")'
-
-		" transfer variable from python to a local variable.
-		python vim.command("""let retval = "%s" """ % re.sub(r'"|\\', r'\\\g<0>', retval))
-
-		0put!=retval
-	else
-		exec '0r!'.shellescape(s:path.'/outline.py').' '.fnameescape(mainfname).' '.s:prefix
-	endif
+	0put!=retval
 
 	0
 

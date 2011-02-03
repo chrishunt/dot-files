@@ -85,11 +85,12 @@ function GetTeXIndent()
   endif
 
   " Add a 'shiftwidth' after beginning of environments.
-  " Don't add it for \begin{document} and \begin{verbatim}
+  " Don't add it for \begin{document}, \begin{verbatim} and \begin{comment}
   ""if line =~ '^\s*\\begin{\(.*\)}'  && line !~ 'verbatim' 
   " LH modification : \begin does not always start a line
   if line =~ '\\begin{\(.*\)}'  && line !~ 'verbatim' 
         \ && line !~ 'document'
+        \ && line !~ 'comment'
 
     let ind = ind + &sw
 
@@ -105,6 +106,7 @@ function GetTeXIndent()
   " Subtract a 'shiftwidth' when an environment ends
   if cline =~ '^\s*\\end' && cline !~ 'verbatim' 
         \&& cline !~ 'document'
+        \&& cline !~ 'comment'
 
     if g:tex_indent_items == 1
       " Remove another sw for item-environments
