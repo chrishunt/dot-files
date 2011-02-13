@@ -37,7 +37,6 @@ export PATH=$PATH:/Applications/flex_sdk_4.1/bin
 [[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
 
 # Aliases
-alias vi='vim'
 alias grep='grep --color=auto'
 alias dus='du -hs'
 alias df='df -h'
@@ -51,7 +50,7 @@ alias lt='ls -ltr'
 alias dunnet='emacs -batch -l dunnet'
 
 # Open everything with MacVim
-alias vim='mvim'
+alias vi='mvim'
 
 # Show color with rspec
 alias rspec='rspec --color'
