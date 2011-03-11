@@ -24,12 +24,6 @@ export PS1="\[\033[0;35m\]\h\[\033[0;33m\] \w\[\033[0;37m\]\$(parse_git_branch)\
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
-# PATH variable for use with MacPorts
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
-
-# PATH for JRuby binaries
-export PATH=$PATH:/Applications/jruby-1.5.0/bin
-
 # PATH for FLEX SDK
 export PATH=$PATH:/Applications/flex_sdk_4.1/bin
 
