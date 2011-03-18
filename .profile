@@ -24,6 +24,9 @@ export PS1="\[\033[0;35m\]\h\[\033[0;33m\] \w\[\033[0;37m\]\$(parse_git_branch)\
 export CLICOLOR=1
 export LSCOLORS=gxfxcxdxbxegedabagacad
 
+# Load correct libraries for MySQL
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
+
 # PATH for FLEX SDK
 export PATH=$PATH:/Applications/flex_sdk_4.1/bin
 
