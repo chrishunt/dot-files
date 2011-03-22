@@ -25,7 +25,7 @@ set nofoldenable
 " we have a dark background
 colorscheme vividchalk
 set background=dark
-set transparency=25
+set transparency=15
 
 " show syntax highlighting
 syntax on
