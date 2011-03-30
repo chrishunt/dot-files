@@ -1,3 +1,6 @@
+.cabal
+.ghc
+.m2
 .python-eggs
 .mysql_history
 .davmail.properties
