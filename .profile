@@ -51,6 +51,10 @@ alias dunnet='emacs -batch -l dunnet'
 
 # Open everything with MacVim
 alias vi='mvim'
+alias vim=vi
+
+# Special VIM alias for ssh sessions
+alias cvi=/usr/bin/vim
 
 # Show color with rspec
 alias rspec='rspec --color'
