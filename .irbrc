@@ -2,10 +2,12 @@ require 'bundler'
 begin
   Bundler.require :console
 rescue Bundler::GemfileNotFound
-  require 'wirble'
+  require 'wirb'
   require 'hirb'
   require 'interactive_editor'
+  require 'fancy_irb'
 end
-Wirble.init
-Wirble.colorize
+
 Hirb.enable
+Wirb.start
+FancyIrb.start
