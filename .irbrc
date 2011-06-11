@@ -4,6 +4,6 @@ require 'wirb'
 require 'interactive_editor'
 require 'fancy_irb'
 
-Hirb.enable
 Wirb.start
 FancyIrb.start
+Hirb.enable
