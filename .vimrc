@@ -1,8 +1,5 @@
 " .vimrc
 
-" set default font
-set guifont=Inconsolata:h14
-
 " don't need to be compatible with old vim
 set nocompatible
 
@@ -25,7 +22,6 @@ set nofoldenable
 " we have a dark background
 colorscheme vividchalk
 set background=dark
-set transparency=15
 
 " show syntax highlighting
 syntax on
@@ -53,11 +49,6 @@ set incsearch
 
 " enable mouse support
 set mouse=a
-
-" remove toolbar and scrollbars from macvim
-set guioptions-=T
-set guioptions-=L
-set guioptions-=r
 
 " enable visual bell (disable audio bell)
 set vb
