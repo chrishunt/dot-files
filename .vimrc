@@ -15,6 +15,15 @@ set scrolloff=2
 " disable code folding
 set nofoldenable
 
+" put useful info in status bar
+set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [LEN=%L]\ [%p%%]
+
+" always show status bar
+set laststatus=2
+
+" show extra space characters
+set list listchars=tab:»·,trail:·
+
 " toggle spellcheck with <F5>
 :map <F5> :setlocal spell! spelllang=en_au<cr>
 :imap <F5> <ESC>:setlocal spell! spelllang=en_au<cr>

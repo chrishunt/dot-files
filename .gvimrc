@@ -10,3 +10,6 @@ set transparency=15
 set guioptions-=T
 set guioptions-=L
 set guioptions-=r
+
+" show console dialogs
+set guioptions+=c
