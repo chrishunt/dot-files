@@ -1,5 +1,8 @@
 " .vimrc
 
+" load up pathogen
+call pathogen#infect()
+
 " don't need to be compatible with old vim
 set nocompatible
 
