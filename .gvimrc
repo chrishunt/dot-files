@@ -4,7 +4,7 @@
 set guifont=Inconsolata:h14
 
 " set transparency
-set transparency=15
+" set transparency=15
 
 " remove toolbar and scrollbars from macvim
 set guioptions-=T
