@@ -31,12 +31,12 @@ set list listchars=tab:»·,trail:·
 :map <F5> :setlocal spell! spelllang=en_au<cr>
 :imap <F5> <ESC>:setlocal spell! spelllang=en_au<cr>
 
-" we have a dark background
-colorscheme vividchalk
-set background=dark
-
 " show syntax highlighting
 syntax on
+
+" we have a dark background
+set background=dark
+colorscheme solarized
 
 " set auto indent
 set autoindent
