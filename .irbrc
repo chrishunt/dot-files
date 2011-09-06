@@ -4,9 +4,6 @@ require 'wirb'
 require 'interactive_editor'
 require 'fancy_irb'
 
-Wirb.start
-Hirb.enable
-
 FancyIrb.start :colorize => {
   :rocket_prompt => [:blue],
   :result_prompt => [:blue],
@@ -17,3 +14,6 @@ FancyIrb.start :colorize => {
   :input         => nil,
   :output        => true,
 }
+
+Wirb.start
+Hirb.enable
