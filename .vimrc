@@ -68,6 +68,9 @@ set mouse=a
 " enable visual bell (disable audio bell)
 set vb
 
+" enable bash style tab completion
+set wildmode=longest,list
+
 " highlight long lines
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.*/
