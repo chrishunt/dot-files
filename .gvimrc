@@ -13,3 +13,9 @@ set guioptions-=r
 
 " show console dialogs
 set guioptions+=c
+
+" bind Command-T to cmd+t
+if has("gui_macvim")
+  macmenu &File.New\ Tab key=<nop>
+  map <D-t> :CommandT<CR>
+endif

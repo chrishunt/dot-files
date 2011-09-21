@@ -3,6 +3,9 @@
 " load up pathogen
 call pathogen#infect()
 
+" command-t options
+let g:CommandTMaxHeight=20
+
 " don't need to be compatible with old vim
 set nocompatible
 
