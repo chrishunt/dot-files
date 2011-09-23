@@ -3,8 +3,11 @@
 " load up pathogen
 call pathogen#infect()
 
+" set leader key to comma
+let mapleader = ","
+
 " command-t options
-let g:CommandTMaxHeight=20
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 
 " don't need to be compatible with old vim
 set nocompatible
@@ -69,12 +72,9 @@ set mouse=a
 set vb
 
 " enable bash style tab completion
-set wildmode=longest,list
+set wildmenu
+set wildmode=list:longest,full
 
 " highlight long lines
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.*/
-
-" LaTeX options
-set grepprg=grep\ -nH\ $*
-let g:tex_flavor='latex'
