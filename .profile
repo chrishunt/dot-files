@@ -30,6 +30,9 @@ export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
 # PATH for FLEX SDK
 export PATH=$PATH:/Applications/flex_sdk_4.1/bin
 
+# PATH for MySQL
+export PATH=/usr/local/mysql/bin:$PATH
+
 # Helpful paths
 export SVN=~/Dropbox/Progeny/coffee-svn/Development
 
