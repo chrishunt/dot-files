@@ -33,7 +33,7 @@
 
 [alias]
   d = diff
-  l = log
+  l = log --decorate
   s = status -sb
   c = commit
   co = checkout
