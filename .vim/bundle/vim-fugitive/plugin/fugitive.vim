@@ -128,7 +128,7 @@ function! s:ExtractGitDir(path) abort
 endfunction
 
 function! s:Detect(path)
-  if exists('b:git_dir') && b:git_dir ==# ''
+  if exists('b:git_dir') && (b:git_dir ==# '' || b:git_dir =~# '/$')
     unlet b:git_dir
   endif
   if !exists('b:git_dir')
@@ -158,7 +158,7 @@ augroup fugitive
   autocmd BufNewFile,BufReadPost * call s:Detect(expand('<amatch>:p'))
   autocmd FileType           netrw call s:Detect(expand('<afile>:p'))
   autocmd VimEnter * if expand('<amatch>')==''|call s:Detect(getcwd())|endif
-  autocmd BufWinLeave * execute getwinvar(+winnr(), 'fugitive_leave')
+  autocmd BufWinLeave * execute getwinvar(+bufwinnr(+expand('<abuf>')), 'fugitive_leave')
 augroup END
 
 " }}}1
@@ -179,6 +179,10 @@ function! s:repo(...) abort
     return extend(extend(repo,s:repo_prototype,'keep'),s:abstract_prototype,'keep')
   endif
   call s:throw('not a git repository: '.expand('%:p'))
+endfunction
+
+function! fugitive#repo(...)
+  return call('s:repo', a:000)
 endfunction
 
 function! s:repo_dir(...) dict abort
@@ -1456,6 +1460,12 @@ function! s:Blame(bang,line1,line2,count,args) abort
         if v:shell_error
           call s:throw(join(readfile(error),"\n"))
         endif
+        for winnr in range(winnr('$'),1,-1)
+          call setwinvar(winnr, '&scrollbind', 0)
+          if getbufvar(winbufnr(winnr), 'fugitive_blamed_bufnr')
+            execute winbufnr(winnr).'bdelete'
+          endif
+        endfor
         let bufnr = bufnr('')
         let restore = 'call setwinvar(bufwinnr('.bufnr.'),"&scrollbind",0)'
         if &l:wrap
@@ -1464,9 +1474,6 @@ function! s:Blame(bang,line1,line2,count,args) abort
         if &l:foldenable
           let restore .= '|call setwinvar(bufwinnr('.bufnr.'),"&foldenable",1)'
         endif
-        let winnr = winnr()
-        windo set noscrollbind
-        exe winnr.'wincmd w'
         setlocal scrollbind nowrap nofoldenable
         let top = line('w0') + &scrolloff
         let current = line('.')
@@ -1483,11 +1490,15 @@ function! s:Blame(bang,line1,line2,count,args) abort
         if exists('+relativenumber')
           setlocal norelativenumber
         endif
+        nnoremap <buffer> <silent> q    :exe substitute('bdelete<Bar>'.bufwinnr(b:fugitive_blamed_bufnr).' wincmd w','<Bar>-1','','')<CR>
+        nnoremap <buffer> <silent> gq   :exe substitute('bdelete<Bar>'.bufwinnr(b:fugitive_blamed_bufnr).' wincmd w<Bar>if expand("%:p") =~# "^fugitive:[\\/][\\/]"<Bar>Gedit<Bar>endif','<Bar>-1','','')<CR>
         nnoremap <buffer> <silent> <CR> :<C-U>exe <SID>BlameJump('')<CR>
         nnoremap <buffer> <silent> P    :<C-U>exe <SID>BlameJump('^'.v:count1)<CR>
         nnoremap <buffer> <silent> ~    :<C-U>exe <SID>BlameJump('~'.v:count1)<CR>
-        nnoremap <buffer> <silent> o    :<C-U>exe <SID>Edit((&splitbelow ? "botright" : "topleft")." split", 0, matchstr(getline('.'),'\x\+'))<CR>
-        nnoremap <buffer> <silent> O    :<C-U>exe <SID>Edit("tabedit", 0, matchstr(getline('.'),'\x\+'))<CR>
+        nnoremap <buffer> <silent> i    :<C-U>exe <SID>BlameCommit("exe 'norm q'<Bar>edit")<CR>
+        nnoremap <buffer> <silent> o    :<C-U>exe <SID>BlameCommit((&splitbelow ? "botright" : "topleft")." split")<CR>
+        nnoremap <buffer> <silent> O    :<C-U>exe <SID>BlameCommit("tabedit")<CR>
+        redraw
         syncbind
       endif
     finally
@@ -1501,13 +1512,54 @@ function! s:Blame(bang,line1,line2,count,args) abort
   endtry
 endfunction
 
+function! s:BlameCommit(cmd) abort
+  let cmd = s:Edit(a:cmd, 0, matchstr(getline('.'),'\x\+'))
+  if cmd =~# '^echoerr'
+    return cmd
+  endif
+  let lnum = matchstr(getline('.'),' \zs\d\+\ze\s\+[([:digit:]]')
+  let path = matchstr(getline('.'),'^\^\=\x\+\s\+\zs.\{-\}\ze\s*\d\+ ')
+  if path ==# ''
+    let path = s:buffer(b:fugitive_blamed_bufnr).path()
+  endif
+  execute cmd
+  if search('^diff .* b/\M'.escape(path,'\').'$','W')
+    call search('^+++')
+    let head = line('.')
+    while search('^@@ \|^diff ') && getline('.') =~# '^@@ '
+      let top = +matchstr(getline('.'),' +\zs\d\+')
+      let len = +matchstr(getline('.'),' +\d\+,\zs\d\+')
+      if lnum >= top && lnum <= top + len
+        let offset = lnum - top
+        if &scrolloff
+          +
+          normal! zt
+        else
+          normal! zt
+          +
+        endif
+        while offset > 0 && line('.') < line('$')
+          +
+          if getline('.') =~# '^[ +]'
+            let offset -= 1
+          endif
+        endwhile
+        return ''
+      endif
+    endwhile
+    execute head
+    normal! zt
+  endif
+  return ''
+endfunction
+
 function! s:BlameJump(suffix) abort
   let commit = matchstr(getline('.'),'^\^\=\zs\x\+')
   if commit =~# '^0\+$'
     let commit = ':0'
   endif
-  let lnum = matchstr(getline('.'),'\d\+\ze\s\+[([:digit:]]')
-  let path = matchstr(getline('.'),'^\^\=\zs\x\+\s\+\zs.\{-\}\ze\s*\d\+ ')
+  let lnum = matchstr(getline('.'),' \zs\d\+\ze\s\+[([:digit:]]')
+  let path = matchstr(getline('.'),'^\^\=\x\+\s\+\zs.\{-\}\ze\s*\d\+ ')
   if path ==# ''
     let path = s:buffer(b:fugitive_blamed_bufnr).path()
   endif
@@ -1519,6 +1571,7 @@ function! s:BlameJump(suffix) abort
     exe winnr.'wincmd w'
   endif
   execute s:Edit('edit', 0, commit.a:suffix.':'.path)
+  execute lnum
   if winnr > 0
     exe bufnr.'bdelete'
   endif
@@ -1526,9 +1579,9 @@ function! s:BlameJump(suffix) abort
   execute lnum
   let delta = line('.') - line('w0') - offset
   if delta > 0
-    execute 'norm! 'delta."\<C-E>"
+    execute 'normal! '.delta."\<C-E>"
   elseif delta < 0
-    execute 'norm! '(-delta)."\<C-Y>"
+    execute 'normal! '.(-delta)."\<C-Y>"
   endif
   syncbind
   return ''
@@ -2010,7 +2063,7 @@ augroup fugitive_temp
         \   let b:git_type = 'temp' |
         \   call s:Detect(expand('<amatch>:p')) |
         \   setlocal bufhidden=delete |
-        \   nnoremap <buffer> <silent> q    :<C-U>bdelete<CR> |
+        \   nnoremap <buffer> <silent> q    :<C-U>bdelete<CR>|
         \ endif
 augroup END
 
@@ -2130,6 +2183,21 @@ function! s:GF(mode) abort
 
       elseif getline('.') =~# '^[+-]\{3\} [ab/]'
         let ref = getline('.')[4:]
+
+      elseif getline('.') =~# '^[+-]' && search('^@@ -\d\+,\d\+ +\d\+,','bnW')
+        let type = getline('.')[0]
+        let lnum = line('.') - 1
+        let offset = -1
+        while getline(lnum) !~# '^@@ -\d\+,\d\+ +\d\+,'
+          if getline(lnum) =~# '^[ '.type.']'
+            let offset += 1
+          endif
+          let lnum -= 1
+        endwhile
+        let offset += matchstr(getline(lnum), type.'\zs\d\+')
+        let ref = getline(search('^'.type.'\{3\} [ab]/','bnW'))[4:-1]
+        let dcmd = '+'.offset.'|foldopen'
+        let dref = ''
 
       elseif getline('.') =~# '^rename from '
         let ref = 'a/'.getline('.')[12:]
