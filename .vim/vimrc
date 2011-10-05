@@ -2,6 +2,7 @@
 
 " load up pathogen
 call pathogen#infect()
+call pathogen#helptags()
 
 " don't need to be compatible with old vim
 set nocompatible
