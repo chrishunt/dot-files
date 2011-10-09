@@ -39,6 +39,10 @@ set winheight=999
 map <C-J> <C-W>w
 map <C-K> <C-W>W
 
+" save when focus is lost
+set autowriteall
+autocmd FocusLost * silent! wall
+
 " show line numbers
 set nu
 
