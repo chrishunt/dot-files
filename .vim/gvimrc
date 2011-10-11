@@ -1,7 +1,7 @@
 " .gvimrc
 
 " set default font
-set guifont=Inconsolata:h14
+set guifont=Inconsolata-g:h12
 
 " set transparency
 " set transparency=15
