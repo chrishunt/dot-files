@@ -33,6 +33,9 @@ export PATH=$PATH:/Applications/flex_sdk_4.1/bin
 # PATH for MySQL
 export PATH=/usr/local/mysql/bin:$PATH
 
+# PATH for MongoDB
+export PATH=/Applications/mongodb-osx-x86_64-2.0.0/bin:$PATH
+
 # Set /usr/local/bin before /usr/bin for Homebrew
 export PATH=/usr/local/bin:$PATH
 
