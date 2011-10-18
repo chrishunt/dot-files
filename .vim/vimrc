@@ -29,12 +29,6 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 " switch between the last two files
 nnoremap <leader><leader> <c-^>
 
-" make the current window big, but leave others context
-set winwidth=84
-set winheight=5
-set winminheight=5
-set winheight=999
-
 " move between splits more easily
 map <C-J> <C-W>w
 map <C-K> <C-W>W
