@@ -10,7 +10,7 @@ set nocompatible
 " set leader key to comma
 let mapleader = ","
 
-" command-t options
+" command-t mappings
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>gf :CommandTFlush<cr>\|:CommandT %%<cr>
 map <leader>gv :CommandTFlush<cr>\|:CommandT app/views<cr>
@@ -22,6 +22,9 @@ map <leader>gl :CommandTFlush<cr>\|:CommandT lib<cr>
 map <leader>gp :CommandTFlush<cr>\|:CommandT public<cr>
 map <leader>gs :CommandTFlush<cr>\|:CommandT app/assets/stylesheets<cr>
 map <leader>gj :CommandTFlush<cr>\|:CommandT app/assets/javascripts<cr>
+
+" map Ack
+map <leader>a :Ack<space>
 
 " map %% to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
