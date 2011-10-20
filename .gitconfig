@@ -40,3 +40,4 @@
   w = whatchanged
   a = add -u
   aa = add -A
+  sm = submodule
