@@ -49,7 +49,7 @@ set scrolloff=2
 set nofoldenable
 
 " put useful info in status bar
-set statusline=%F%m%r%h%w\ [TYPE=%Y]\ [LEN=%L]\ [%p%%]
+set statusline=%F%m%r%h%w\ [%l,%c]\ [%L,%p%%]
 
 " always show status bar
 set laststatus=2
