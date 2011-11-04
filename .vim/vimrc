@@ -1,49 +1,11 @@
-" use pathogen for plugins
+" .vimrc
+
+" load up pathogen
 call pathogen#infect()
 call pathogen#helptags()
 
 " don't need to be compatible with old vim
 set nocompatible
-
-" set auto indent
-set autoindent
-filetype plugin indent on
-
-" show syntax highlighting
-syntax on
-
-" highlight all search matches
-set hlsearch
-" ignore case in search
-set ignorecase
-" pay attention to case only when caps are used
-set smartcase
-" show search results as I type
-set incsearch
-
-" don't allow bindings starting with escape in insert mode
-set noesckeys
-
-" show useful info in the lower right info bar
-set showcmd
-
-" minimum lines above/below cursor
-set scrolloff=3
-
-" enable visual bell (disable audio bell)
-set vb
-
-" always show status bar
-set laststatus
-
-" show line numbers
-set number
-
-" show row and column in footer
-set ruler
-
-" show bracket matches
-set showmatch
 
 " set leader key to comma
 let mapleader = ","
@@ -61,11 +23,23 @@ cnoremap %% <C-R>=expand('%:h').'/'<cr>
 map <C-J> <C-W>w
 map <C-K> <C-W>W
 
+" show line numbers
+set nu
+
+" show row and column in footer
+set ruler
+
+" minimum lines above/below cursor
+set scrolloff=2
+
 " disable code folding
 set nofoldenable
 
 " put useful info in status bar
 set statusline=%F%m%r%h%w\ [%l,%c]\ [%L,%p%%]
+
+" always show status bar
+set laststatus=2
 
 " show extra space characters
 set list listchars=tab:»·,trail:·
@@ -74,17 +48,42 @@ set list listchars=tab:»·,trail:·
 :map <F5> :setlocal spell! spelllang=en_au<cr>
 :imap <F5> <ESC>:setlocal spell! spelllang=en_au<cr>
 
+" show syntax highlighting
+syntax on
+
 " we have a dark background
 set background=dark
 colorscheme solarized
+
+" set auto indent
+set autoindent
+filetype plugin indent on
 
 " set indent to 2 spaces and expand
 set ts=2
 set shiftwidth=2
 set expandtab
 
+" show bracket matches
+set showmatch
+
+" ignore case in search
+set ignorecase
+
+" highlight all search matches
+set hlsearch
+
+" pay attention to case when caps are used
+set smartcase
+
+" show search results as I type
+set incsearch
+
 " enable mouse support
 set mouse=a
+
+" enable visual bell (disable audio bell)
+set vb
 
 " enable bash style tab completion
 set wildmenu
