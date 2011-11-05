@@ -16,6 +16,14 @@ map <D-N> :CommandTFlush<cr>\|:CommandT<cr>
 " map Ack
 map <D-F> :Ack<space>
 
+" map Tabular
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+
 " map NERDTree
 map ` :NERDTreeToggle<CR>
 
