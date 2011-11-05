@@ -30,6 +30,10 @@ set wildmode=list:longest
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR><C-l>
 
+" regenerate tags, with or without gemhome included
+map <leader>rt :!ctags -R --exclude=.git --exclude=log *<CR>
+map <leader>rT :!ctags -R --exclude=.git --exclude=log * `rvm gemhome`/*<CR>
+
 " map autocomplete
 inoremap <C-Space> <C-n>
 inoremap <M-Space> <C-p>
