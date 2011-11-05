@@ -32,14 +32,15 @@
   editor = mvim -f
 
 [alias]
-  d  = diff
-  ds = diff --staged
-  l  = log --decorate
-  s  = status
-  c  = commit
-  co = checkout
-  w  = whatchanged --decorate
-  wp = whatchanged --decorate -p
-  a  = add -u
-  aa = add -A
-  sm = submodule
+  d   = diff
+  ds  = diff --staged
+  l   = log --decorate
+  s   = status
+  c   = commit
+  co  = checkout
+  w   = whatchanged --decorate
+  wp  = whatchanged --decorate -p
+  a   = add -u
+  aa  = add -A
+  sm  = submodule
+  smu = submodule foreach git pull
