@@ -17,7 +17,7 @@ map <D-N> :CommandTFlush<cr>\|:CommandT<cr>
 map <D-F> :Ack<space>
 
 " map NERDTree
-map \ :NERDTreeToggle<CR>
+map ` :NERDTreeToggle<CR>
 
 " autocomplete (insert mode)
 set complete=.,w,b
