@@ -16,6 +16,24 @@ map <D-N> :CommandTFlush<cr>\|:CommandT<cr>
 " map Ack
 map <D-F> :Ack<space>
 
+" map NERDTree
+map \ :NERDTreeToggle<CR>
+
+" autocomplete (insert mode)
+set complete=.,w,b
+set pumheight=10
+set completeopt=menu
+
+" autocomplete (command line mode)
+set wildmode=list:longest
+
+" clear the command line and search highlighting
+noremap <C-l> :nohlsearch<CR><C-l>
+
+" map autocomplete
+inoremap <C-Space> <C-n>
+inoremap <M-Space> <C-p>
+
 " map %% to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
