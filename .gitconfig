@@ -32,12 +32,14 @@
   editor = mvim -f
 
 [alias]
-  d = diff
-  l = log --decorate
-  s = status -sb
-  c = commit
+  d  = diff
+  ds = diff --staged
+  l  = log --decorate
+  s  = status
+  c  = commit
   co = checkout
-  w = whatchanged
-  a = add -u
+  w  = whatchanged --decorate
+  wp = whatchanged --decorate -p
+  a  = add -u
   aa = add -A
   sm = submodule
