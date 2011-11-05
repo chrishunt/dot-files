@@ -35,7 +35,7 @@
   d   = diff
   ds  = diff --staged
   l   = log --decorate
-  s   = status
+  s   = status -s -b
   c   = commit
   co  = checkout
   w   = whatchanged --decorate
