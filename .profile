@@ -58,6 +58,8 @@ alias lt='ls -ltr'
 
 alias dunnet='emacs -batch -l dunnet'
 
+alias be='bundle exec'
+
 # Open everything with MacVim
 alias vi='mvim'
 alias vim=vi
