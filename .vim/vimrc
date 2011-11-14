@@ -11,9 +11,11 @@ set nocompatible
 let mapleader = ","
 
 " map command-t
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <D-N> :CommandTFlush<cr>\|:CommandT<cr>
 
 " map Ack
+map <leader>a :Ack<space>
 map <D-F> :Ack<space>
 
 " map Tabular
