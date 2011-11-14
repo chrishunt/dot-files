@@ -84,6 +84,7 @@ set list listchars=tab:»·,trail:·
 syntax on
 
 " we have a dark background
+let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
 
