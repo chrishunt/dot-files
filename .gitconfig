@@ -29,7 +29,7 @@
 [core]
   pager = less -FRSX
   whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
-  editor = mvim -f
+  editor = vim -f
 
 [alias]
   d   = diff
