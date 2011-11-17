@@ -62,6 +62,7 @@ alias l='ls -CF'
 alias lt='ls -ltr'
 
 alias dunnet='emacs -batch -l dunnet'
+alias vim='mvim -v'
 alias vi=vim
 alias tmux="TERM=screen-256color-bce tmux"
 
