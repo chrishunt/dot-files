@@ -24,6 +24,9 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1$(parse_git_dirty))/"
 }
 
+# Set 256 color term
+export TERM=xterm-256color
+
 # Make prompt pretty, showing current Git branch
 export PS1="\[\033[0;35m\]\\$\[\033[0;33m\] \w\[\033[0;38m\]\$(parse_git_branch)\[\033[00m\]: "
 
