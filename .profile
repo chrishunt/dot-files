@@ -1,5 +1,12 @@
 # .profile
 
+# Print all colors
+function print_colors {
+  for i in {0..255} ; do
+    printf "\x1b[38;5;${i}mcolour${i}\n"
+  done
+}
+
 # Used to show status of current Git repository
 function parse_git_deleted {
   [[ $(git status 2> /dev/null | grep deleted:) != "" ]] && echo "-"
@@ -42,10 +49,8 @@ export PATH=/usr/local/bin:$PATH
 # Helpful paths
 export SVN=~/Dropbox/Progeny/coffee-svn/Development
 
-# Load RVM environment
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-
 # Aliases
+alias colors=print_colors
 alias grep='grep --color=auto'
 alias dus='du -hs'
 alias df='df -h'
@@ -57,15 +62,13 @@ alias l='ls -CF'
 alias lt='ls -ltr'
 
 alias dunnet='emacs -batch -l dunnet'
+alias vi=vim
+alias tmux="TERM=screen-256color-bce tmux"
 
+# Rails helpers
 alias be='bundle exec'
-
-# Open everything with MacVim
-alias vi='mvim'
-alias vim=vi
-
-# Special VIM alias for ssh sessions
-alias cvi=/usr/bin/vim
-
-# Show color with rspec
 alias rspec='rspec --color'
+alias openoffice="/Applications/OpenOffice.org.app/Contents/MacOS/soffice.bin -headless -nofirststartwizard -accept='socket,host=localhost,port=8100;urp;StarOffice.Service'"
+
+# Load RVM environment
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
