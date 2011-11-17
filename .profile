@@ -25,7 +25,7 @@ function parse_git_branch {
 }
 
 # Make prompt pretty, showing current Git branch
-export PS1="\[\033[0;35m\]\h\[\033[0;33m\] \w\[\033[0;38m\]\$(parse_git_branch)\[\033[00m\]: "
+export PS1="\[\033[0;35m\]\\$\[\033[0;33m\] \w\[\033[0;38m\]\$(parse_git_branch)\[\033[00m\]: "
 
 # Add color to terminal
 export CLICOLOR=1
