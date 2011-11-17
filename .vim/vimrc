@@ -15,8 +15,8 @@ map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <D-N> :CommandTFlush<cr>\|:CommandT<cr>
 
 " map Ack
-map <leader>a :Ack<space>
-map <D-F> :Ack<space>
+map <leader>a :Ack!<space>
+map <D-F> :Ack!<space>
 
 " map Tabular
 nmap <Leader>a= :Tabularize /=<CR>
