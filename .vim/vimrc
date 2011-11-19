@@ -123,5 +123,5 @@ set wildmenu
 set wildmode=list:longest,full
 
 " highlight long lines
-highlight OverLength ctermbg=red ctermfg=black guibg=#592929
-match OverLength /\%81v.*/
+" highlight OverLength ctermbg=red ctermfg=black guibg=#592929
+" match OverLength /\%81v.*/
