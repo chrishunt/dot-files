@@ -34,7 +34,7 @@
 [alias]
   d   = diff
   ds  = diff --staged
-  l   = log --decorate
+  l   = log --graph --pretty='format:%C(yellow)%h%C(red bold)%d%Creset %s %C(black bold) %an, %ar%Creset'
   s   = status -s -b
   c   = commit
   co  = checkout
