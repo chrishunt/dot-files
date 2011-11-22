@@ -69,6 +69,8 @@ alias vim='mvim -v'
 alias vi=vim
 alias tmux="TERM=screen-256color-bce tmux"
 
+alias wbgo='/Users/huntca/workspace/weatherbill/tools/wbgo'
+
 # Rails helpers
 alias be='bundle exec'
 alias rspec='rspec --color'
