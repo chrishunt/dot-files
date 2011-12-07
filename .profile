@@ -24,6 +24,21 @@ function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1$(parse_git_dirty))/"
 }
 
+# Post gerrit code reviews
+postgreview () {
+  if [ -z "$1" -o -z "$2" ]; then
+    echo "usage: postgreview <repository> <branch>"
+  else
+    if [ -z "$3" ]; then
+      SHA=HEAD
+    else
+      SHA="$3"
+    fi
+    echo "submitting review for branch $2 ($SHA) in repo $1"
+    git push ssh://chunt@zeus:29418/$1 $SHA:refs/for/$2;
+  fi
+}
+
 # Set 256 color term
 export TERM=xterm-256color
 
