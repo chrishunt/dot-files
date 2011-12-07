@@ -63,7 +63,8 @@ set ruler
 " minimum lines above/below cursor
 set scrolloff=2
 
-" disable code folding
+" set code folding
+set foldmethod=indent
 set nofoldenable
 
 " put useful info in status bar
