@@ -25,9 +25,6 @@ vmap <Leader>a: :Tabularize /:\zs<CR>
 nmap <Leader>a, :Tabularize /,<CR>
 vmap <Leader>a, :Tabularize /,<CR>
 
-" map NERDTree
-map ` :NERDTreeToggle<CR>
-
 " autocomplete (insert mode)
 set complete=.,w,b
 set pumheight=10
