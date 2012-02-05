@@ -1,5 +1,5 @@
 [user]
-  name = Chris Hunt
+  name  = Chris Hunt
   email = huntca@gmail.com
 
 [color]
@@ -12,14 +12,14 @@
 
 [color "branch"]
   current = yellow reverse
-  local = yellow
-  remote = green
+  local   = yellow
+  remote  = green
 
 [color "diff"]
   meta = yellow bold
   frag = magenta bold
-  old = red bold
-  new = green
+  old  = red bold
+  new  = green
 
 [color "status"]
   added = yellow
@@ -28,7 +28,7 @@
 
 [core]
   pager = less -FRSX
-  whitespace=fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   editor = vim -f
 
 [alias]
