@@ -17,14 +17,6 @@ let g:CommandTCancelMap='<C-x>'
 " map Ack
 map <leader>a :Ack!<space>
 
-" map Tabular
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:\zs<CR>
-vmap <Leader>a: :Tabularize /:\zs<CR>
-nmap <Leader>a, :Tabularize /,<CR>
-vmap <Leader>a, :Tabularize /,<CR>
-
 " autocomplete (insert mode)
 set complete=.,w,b
 set pumheight=10
@@ -46,10 +38,6 @@ inoremap <M-Space> <C-p>
 
 " map %% to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
-" move between splits more easily
-map <C-J> <C-W>w
-map <C-K> <C-W>W
 
 " show line numbers
 set nu
