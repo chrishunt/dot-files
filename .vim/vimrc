@@ -62,8 +62,8 @@ set laststatus=2
 set list listchars=tab:»·,trail:·
 
 " toggle spellcheck with <F5>
-:map <F5> :setlocal spell! spelllang=en_au<cr>
-:imap <F5> <ESC>:setlocal spell! spelllang=en_au<cr>
+:map <F5> :setlocal spell! spelllang=en_us<cr>
+:imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
 
 " show syntax highlighting
 syntax on
