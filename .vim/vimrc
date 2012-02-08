@@ -2,6 +2,7 @@
 
 " load up pathogen
 call pathogen#infect()
+" create helptags
 call pathogen#helptags()
 
 " don't need to be compatible with old vim
@@ -68,7 +69,7 @@ set list listchars=tab:»·,trail:·
 " show syntax highlighting
 syntax on
 
-" we have a dark background
+" set dark background and colorscheme
 " let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
