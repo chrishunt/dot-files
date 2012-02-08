@@ -13,29 +13,17 @@ let mapleader = ","
 
 " map command-t
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+" close command-t with C-x
 let g:CommandTCancelMap='<C-x>'
 
 " map Ack
 map <leader>a :Ack!<space>
 
-" autocomplete (insert mode)
-set complete=.,w,b
-set pumheight=10
-set completeopt=menu
-
-" autocomplete (command line mode)
-set wildmode=list:longest
-
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
 
-" regenerate tags, with or without gemhome included
+" regenerate ctags
 map <leader>rt :!ctags -R --exclude=.git --exclude=log *<CR>
-map <leader>rT :!ctags -R --exclude=.git --exclude=log * `rvm gemhome`/*<CR>
-
-" map autocomplete
-inoremap <C-Space> <C-n>
-inoremap <M-Space> <C-p>
 
 " map %% to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -48,10 +36,6 @@ set ruler
 
 " minimum lines above/below cursor
 set scrolloff=2
-
-" set code folding
-set foldmethod=indent
-set nofoldenable
 
 " put useful info in status bar
 set statusline=%F%m%r%h%w\ [%l,%c]\ [%L,%p%%]
