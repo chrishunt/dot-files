@@ -13,9 +13,9 @@ let mapleader = ","
 
 " map command-t
 " with flush
-" map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 " without flush
-map <leader>f :CommandT<cr>
+" map <leader>f :CommandT<cr>
 " close command-t with C-x
 let g:CommandTCancelMap='<C-x>'
 
