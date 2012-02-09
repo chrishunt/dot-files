@@ -12,9 +12,15 @@ set nocompatible
 let mapleader = ","
 
 " map command-t
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+" with flush
+" map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+" without flush
+map <leader>f :CommandT<cr>
 " close command-t with C-x
 let g:CommandTCancelMap='<C-x>'
+
+" clojure: turn on rainbow parens
+let g:vimclojure#ParenRainbow=1
 
 " map Ack
 map <leader>a :Ack!<space>
