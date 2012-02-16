@@ -45,3 +45,4 @@
   aa  = add -A
   sm  = submodule
   smu = submodule foreach git pull origin master
+  g   = log --pretty='format:%C(yellow)%h%C(red bold)%d%Creset %s %C(black bold) %an, %ar%Creset' --graph
