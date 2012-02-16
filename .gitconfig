@@ -30,11 +30,13 @@
   pager = less -FRSX
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   editor = vim -f
+  autocrlf = input
+  safecrlf = true
 
 [alias]
   d   = diff
   ds  = diff --staged
-  l   = log --pretty='format:%C(yellow)%h%C(red bold)%d%Creset %s %C(black bold) %an, %ar%Creset'
+  l   = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short
   ls  = log --pretty='format:%C(yellow)%h%C(red bold)%d%Creset %s %C(black bold) %an, %ar%Creset' --stat
   s   = status -s -b
   c   = commit
@@ -45,4 +47,3 @@
   aa  = add -A
   sm  = submodule
   smu = submodule foreach git pull origin master
-  g   = log --pretty='format:%C(yellow)%h%C(red bold)%d%Creset %s %C(black bold) %an, %ar%Creset' --graph
