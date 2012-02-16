@@ -33,7 +33,7 @@ map <leader>a :Ack!<space>
 noremap <C-l> :nohlsearch<CR>
 
 " regenerate ctags
-map <leader>rt :!ctags -R --exclude=.git --exclude=log *<CR>
+" map <leader>rt :!ctags -R --exclude=.git --exclude=log *<CR>
 
 " map %% to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
