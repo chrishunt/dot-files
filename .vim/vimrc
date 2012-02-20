@@ -16,12 +16,13 @@ let mapleader = ","
 :imap <F1> <C-o>:echo<CR>
 
 " map command-t
-" with flush
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
-" without flush
-" map <leader>f :CommandT<cr>
 " close command-t with C-x
 let g:CommandTCancelMap='<C-x>'
+
+" map fugitive git commands
+map <leader>gs :Gstatus<cr>
+map <leader>gb :Gblam<cr>
 
 " clojure: turn on rainbow parens
 let g:vimclojure#ParenRainbow=1
@@ -48,7 +49,7 @@ set ruler
 set scrolloff=2
 
 " put useful info in status bar
-set statusline=%F%m%r%h%w\ [%l,%c]\ [%L,%p%%]
+set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
 " always show status bar
 set laststatus=2
