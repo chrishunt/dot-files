@@ -87,6 +87,9 @@ set ignorecase
 " highlight all search matches
 set hlsearch
 
+" higlight current line
+set cursorline
+
 " pay attention to case when caps are used
 set smartcase
 
