@@ -12,8 +12,11 @@ set nocompatible
 let mapleader = ","
 
 " disable F1 help
-:nmap <F1> :echo<CR>
-:imap <F1> <C-o>:echo<CR>
+nmap <F1> :echo<CR>
+imap <F1> <C-o>:echo<CR>
+
+" always show tab bar
+set showtabline=2
 
 " map command-t
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
