@@ -37,7 +37,7 @@
   d   = diff
   ds  = diff --staged
   l   = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short
-  ls  = log --pretty='format:%C(yellow)%h%C(red bold)%d%Creset %s %C(black bold) %an, %ar%Creset' --stat
+  ls   = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short --stat
   s   = status -s -b
   c   = commit
   co  = checkout
