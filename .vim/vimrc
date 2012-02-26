@@ -16,7 +16,7 @@ nmap <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
 
 " always show tab bar
-set showtabline=2
+" set showtabline=2
 
 " map command-t
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
