@@ -61,8 +61,8 @@ set laststatus=2
 set list listchars=tab:»·,trail:·
 
 " toggle spellcheck with <F5>
-:map <F5> :setlocal spell! spelllang=en_us<cr>
-:imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
+map <F5> :setlocal spell! spelllang=en_us<cr>
+imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
 
 " show syntax highlighting
 syntax on
@@ -71,6 +71,9 @@ syntax on
 " let g:solarized_termcolors=256
 set background=dark
 colorscheme solarized
+
+" highlight currently searched word
+hi! IncSearch cterm=inverse
 
 " set auto indent
 set autoindent
