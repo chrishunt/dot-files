@@ -1,3 +1,4 @@
+.zcompdump
 .zsh-update
 .zsh_history
 .mitmproxy
@@ -71,3 +72,21 @@ Sandbox
 .gitk
 .gem
 VirtualBoxVMs
+.zcompdump
+.account
+.ackrc
+.aliases
+.bash_profile
+.bashrc
+.fidelius/
+.git-completion.bash
+.git_template/
+.gnupg/
+.hostname_suffix
+.inputrc
+.nginx/
+.secpay_gnupg/
+.topsoilrc
+.zlogin
+Development/
+bin/
