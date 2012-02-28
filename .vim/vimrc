@@ -19,7 +19,8 @@ imap <F1> <C-o>:echo<CR>
 " set showtabline=2
 
 " map command-t
-map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+" map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
+map <leader>f :CommandT<cr>
 " close command-t with C-x
 let g:CommandTCancelMap='<C-x>'
 
