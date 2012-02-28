@@ -40,3 +40,6 @@
 [submodule ".vim/bundle/vim-liquid"]
 	path = .vim/bundle/vim-liquid
 	url = https://github.com/tpope/vim-liquid.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = git@github.com:huntca/oh-my-zsh.git
