@@ -1,7 +1,19 @@
 [user]
   name  = Chris Hunt
   email = huntca@gmail.com
-
+[core]
+  pager = less -FRSX
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  editor = vim -f
+  autocrlf = input
+  safecrlf = true
+[push]
+  config = default
+  default = tracking
+[rebase]
+  autosquash = true
+[merge]
+  summary = true
 [color]
   diff = auto
   status = auto
@@ -9,35 +21,24 @@
   interactive = auto
   ui = true
   pager = true
-
 [color "branch"]
   current = yellow reverse
   local   = yellow
   remote  = green
-
 [color "diff"]
   meta = yellow bold
   frag = magenta bold
   old  = red bold
   new  = green
-
 [color "status"]
   added = yellow
   changed = green
   untracked = cyan
-
-[core]
-  pager = less -FRSX
-  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-  editor = vim -f
-  autocrlf = input
-  safecrlf = true
-
 [alias]
   d   = diff
   ds  = diff --staged
   l   = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short
-  ls   = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short --stat
+  ls  = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short --stat
   s   = status -s -b
   c   = commit
   co  = checkout
@@ -45,5 +46,6 @@
   wp  = whatchanged --decorate -p
   a   = add -u
   aa  = add -A
+  td  = merge --no-ff
   sm  = submodule
   smu = submodule foreach git pull origin master
