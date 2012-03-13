@@ -2,34 +2,62 @@
 
 " load up pathogen
 call pathogen#infect()
-" create helptags
 call pathogen#helptags()
 
-" don't need to be compatible with old vim
-set nocompatible
+syntax on " show syntax highlighting
+filetype plugin indent on
+set autoindent " set auto indent
+set ts=2 " set indent to 2 spaces
+set shiftwidth=2
+set expandtab
+set nocompatible " don't need to be compatible with old vim
+set showtabline=2 " always show tab bar
+set nu " show line numbers
+set showmatch " show bracket matches
+set ignorecase " ignore case in search
+set hlsearch " highlight all search matches
+set cursorline " higlight current line
+set smartcase " pay attention to case when caps are used
+set incsearch " show search results as I type
+set mouse=a " enable mouse support
+set vb " enable visual bell (disable audio bell)
+set ruler " show row and column in footer
+set scrolloff=2 " minimum lines above/below cursor
+set laststatus=2 " always show status bar
+set list listchars=tab:»·,trail:· " show extra space characters
+set wildmenu " enable bash style tab completion
+set wildmode=list:longest,full
+
+" put useful info in status bar
+set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
+
+" set dark background and colorscheme
+set background=dark
+colorscheme solarized
+" let g:solarized_termcolors=256
+
+" highlight currently searched word
+hi! IncSearch cterm=inverse
+
+" clojure: turn on rainbow parens
+let g:vimclojure#ParenRainbow=1
 
 " set leader key to comma
 let mapleader = ","
 
-" disable F1 help
+" unmap F1 help
 nmap <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
 
-" always show tab bar
-set showtabline=2
-
 " map command-t
-" map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>f :CommandT<cr>
+
 " close command-t with C-x
 let g:CommandTCancelMap='<C-x>'
 
 " map fugitive git commands
 map <leader>gs :Gstatus<cr>
 map <leader>gb :Gblam<cr>
-
-" clojure: turn on rainbow parens
-let g:vimclojure#ParenRainbow=1
 
 " map Ack
 map <leader>a :Ack!<space>
@@ -43,76 +71,11 @@ noremap <C-l> :nohlsearch<CR>
 " map %% to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-" show line numbers
-set nu
-
-" show row and column in footer
-set ruler
-
-" minimum lines above/below cursor
-set scrolloff=2
-
-" put useful info in status bar
-set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
-
-" always show status bar
-set laststatus=2
-
-" show extra space characters
-set list listchars=tab:»·,trail:·
-
 " toggle spellcheck with <F5>
 map <F5> :setlocal spell! spelllang=en_us<cr>
 imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
 
-" show syntax highlighting
-syntax on
-
-" set dark background and colorscheme
-" let g:solarized_termcolors=256
-set background=dark
-colorscheme solarized
-
-" highlight currently searched word
-hi! IncSearch cterm=inverse
-
-" set auto indent
-set autoindent
-filetype plugin indent on
-
-" set indent to 2 spaces and expand
-set ts=2
-set shiftwidth=2
-set expandtab
-
-" show bracket matches
-set showmatch
-
-" ignore case in search
-set ignorecase
-
-" highlight all search matches
-set hlsearch
-
-" higlight current line
-set cursorline
-
-" pay attention to case when caps are used
-set smartcase
-
-" show search results as I type
-set incsearch
-
-" enable mouse support
-set mouse=a
-
-" enable visual bell (disable audio bell)
-set vb
-
-" enable bash style tab completion
-set wildmenu
-set wildmode=list:longest,full
-
-" highlight long lines
-" highlight OverLength ctermbg=red ctermfg=black guibg=#592929
-" match OverLength /\%81v.*/
+" hint to keep lines short
+if exists('+colorcolumn')
+  set colorcolumn=80
+endif
