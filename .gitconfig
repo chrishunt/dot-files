@@ -40,7 +40,7 @@
   l   = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short
   ls  = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short --stat
   s   = status -s -b
-  c   = commit
+  c   = commit -v
   co  = checkout
   w   = whatchanged --decorate
   wp  = whatchanged --decorate -p
