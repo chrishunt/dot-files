@@ -49,3 +49,4 @@
   td  = merge --no-ff
   sm  = submodule
   smu = submodule foreach git pull origin master
+  ap  = add -u -p
