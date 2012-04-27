@@ -1,0 +1,16 @@
+#!/bin/bash
+
+HASH="%C(yellow)%h%C(reset)"
+DATE="%C(black)%ad%C(reset)"
+AUTHOR="%C(green)%an%C(reset)"
+SUMMARY="%C(reset)%s%C(reset)"
+REFS="%C(bold red)%d%C(reset)"
+RELATIVE_TIME="%C(black)%ar%C(reset)"
+
+FORMAT="$HASH{$AUTHOR{$DATE{$SUMMARY $REFS $RELATIVE_TIME"
+
+function pretty_git_log() {
+  git log --pretty="tformat:$FORMAT" --date=short $* |
+  column -t -s '{' |
+  less -FXRS
+}

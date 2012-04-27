@@ -37,8 +37,8 @@
 [alias]
   d   = diff
   ds  = diff --staged
-  l   = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short
-  ls  = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short --stat
+  l   = "!source ~/.githelpers && pretty_git_log"
+  ls  = log --pretty='format:%C(yellow)%h %C(black)%ad%Creset %Creset%s%C(red bold)%d %C(black bold)%an, %ar %Creset' --date=short
   s   = status -s -b
   c   = commit -v
   co  = checkout
