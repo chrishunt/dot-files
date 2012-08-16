@@ -11,7 +11,7 @@ set ts=2 " set indent to 2 spaces
 set shiftwidth=2
 set expandtab
 set nocompatible " don't need to be compatible with old vim
-set showtabline=2 " always show tab bar
+" set showtabline=2 " always show tab bar
 set nu " show line numbers
 set showmatch " show bracket matches
 set ignorecase " ignore case in search
