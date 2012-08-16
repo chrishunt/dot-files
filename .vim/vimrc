@@ -52,6 +52,9 @@ imap <F1> <C-o>:echo<CR>
 " map command-t
 map <leader>f :CommandT<cr>
 
+" map markdown preview
+map <leader>m :!open -a Marked %<cr><cr>
+
 " close command-t with C-x
 let g:CommandTCancelMap='<C-x>'
 
