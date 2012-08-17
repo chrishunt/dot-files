@@ -34,4 +34,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/Users/huntca/.rvm/gems/ruby-1.9.3-p0/bin:/Users/huntca/.rvm/gems/ruby-1.9.3-p0@global/bin:/Users/huntca/.rvm/rubies/ruby-1.9.3-p0/bin:/Users/huntca/.rvm/bin:/usr/local/bin:/Applications/mongodb-osx-x86_64-2.0.0/bin:/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+export PATH=/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin
+
+# Load RVM
+source /Users/c/.rvm/scripts/rvm
