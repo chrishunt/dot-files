@@ -1,6 +1,6 @@
 [user]
   name  = Chris Hunt
-  email = huntca@gmail.com
+  email = c@squareup.com
 [core]
   pager = less -FRSX
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -37,6 +37,8 @@
 [alias]
   d   = diff
   ds  = diff --staged
+  dw  = diff --color-words
+  bam = branch --merged origin/master
   l   = log --pretty='format:%C(yellow)%h%C(reset) %C(black)%ad%C(reset) %s%C(red bold)%d%C(reset) %C(green)%an%C(reset), %C(cyan)%ar%C(reset)' --date=short
   lp  = "!source ~/.githelpers && pretty_git_log"
   s   = status -s -b
