@@ -38,3 +38,10 @@ export PATH=/usr/local/mysql/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/u
 
 # Load RVM
 source /Users/c/.rvm/scripts/rvm
+
+# Load hitch authors
+hitch() {
+  command hitch "$@"
+  if [[ -s "$HOME/.hitch_export_authors" ]] ; then source "$HOME/.hitch_export_authors" ; fi
+}
+alias unhitch='hitch -u'
