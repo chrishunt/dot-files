@@ -93,3 +93,6 @@ VirtualBoxVMs
 .zlogin
 Development/
 bin/
+.aspell.en.prepl
+.aspell.en.pws
+.psql_history
