@@ -39,7 +39,7 @@
 	url = https://github.com/tpope/vim-liquid.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
-	url = git@github.com:huntca/oh-my-zsh.git
+	url = git@github.com:chrishunt/oh-my-zsh.git
 [submodule ".vim/bundle/vim-clojure"]
 	path = .vim/bundle/vim-clojure
 	url = https://github.com/vim-scripts/VimClojure.git
