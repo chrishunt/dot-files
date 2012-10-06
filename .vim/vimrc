@@ -51,6 +51,9 @@ imap <F1> <C-o>:echo<CR>
 " map command-t
 map <leader>f :CommandT<cr>
 
+" refresh command-t
+map <leader>r :CommandTFlush<cr>
+
 " map markdown preview
 map <leader>m :!open -a Marked %<cr><cr>
 
