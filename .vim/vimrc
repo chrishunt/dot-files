@@ -33,7 +33,7 @@ set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
 " set dark background and colorscheme
 set background=dark
-colorscheme vimbrant
+colorscheme base16-railscasts
 
 " highlight currently searched word
 hi! IncSearch cterm=inverse
@@ -81,8 +81,8 @@ map <F5> :setlocal spell! spelllang=en_us<cr>
 imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
 
 " hint to keep lines short
-highlight ColorColumn ctermbg=8
-highlight ColorColumn guibg=Gray
+" highlight ColorColumn ctermbg=7
+" highlight ColorColumn guibg=Gray
 if exists('+colorcolumn')
   set colorcolumn=80
 endif

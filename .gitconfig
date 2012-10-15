@@ -26,20 +26,20 @@
   local   = yellow
   remote  = green
 [color "diff"]
-  meta = yellow bold
-  frag = magenta bold
-  old  = red bold
+  meta = blue
+  frag = magenta
+  old  = red
   new  = green
 [color "status"]
   added = yellow
   changed = green
-  untracked = cyan
+  untracked = blue
 [alias]
   d   = diff
   ds  = diff --staged
   dw  = diff --color-words
   bam = branch --merged origin/master
-  l   = log --pretty='format:%C(yellow)%h%C(reset) %C(black)%ad%C(reset) %s%C(red bold)%d%C(reset) %C(green)%an%C(reset), %C(cyan)%ar%C(reset)' --date=short
+  l   = log --pretty='format:%C(yellow)%h%C(reset) %C(blue)%ad%C(reset) %s%C(red)%d%C(reset) %C(green)%an%C(reset), %C(cyan)%ar%C(reset)' --date=short
   lp  = "!source ~/.githelpers && pretty_git_log"
   s   = status -s -b
   c   = commit -v
