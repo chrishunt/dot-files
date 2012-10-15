@@ -7,6 +7,8 @@
   editor = vim -f
   autocrlf = input
   safecrlf = true
+[advice]
+  statusHints = false
 [push]
   config = default
   default = tracking
