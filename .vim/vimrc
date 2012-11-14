@@ -58,8 +58,7 @@ imap <F1> <C-o>:echo<CR>
 map <leader>m :!open -a Marked %<cr><cr>
 
 " map fugitive git commands
-map <leader>gs :Gstatus<cr>
-map <leader>gb :Gblam<cr>
+map <leader>b :Gblame<cr>
 
 " map Ack
 map <leader>a :Ack!<space>
