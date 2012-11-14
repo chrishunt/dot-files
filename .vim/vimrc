@@ -44,21 +44,18 @@ let g:vimclojure#ParenRainbow=1
 " set leader key to comma
 let mapleader = ","
 
+" ctrlp config
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_max_height = 30
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_match_window_reversed = 0
+
 " unmap F1 help
 nmap <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
 
-" map command-t
-map <leader>f :CommandT<cr>
-
-" refresh command-t
-map <leader>r :CommandTFlush<cr>
-
 " map markdown preview
 map <leader>m :!open -a Marked %<cr><cr>
-
-" close command-t with C-x
-let g:CommandTCancelMap='<C-x>'
 
 " map fugitive git commands
 map <leader>gs :Gstatus<cr>
