@@ -49,3 +49,6 @@
 [submodule ".vim/bundle/colors-base16"]
 	path = .vim/bundle/colors-base16
 	url = https://github.com/chriskempson/base16-vim.git
+[submodule ".vim/bundle/ctrlp"]
+	path = .vim/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim.git
