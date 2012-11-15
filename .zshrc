@@ -43,5 +43,8 @@ hitch() {
 }
 alias unhitch='hitch -u'
 
+# Disable auto-correct
+unsetopt correct_all
+
 # Load RVM
 source /Users/c/.rvm/scripts/rvm
