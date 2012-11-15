@@ -22,9 +22,6 @@
 [submodule ".vim/bundle/vim-vividchalk"]
   path = .vim/bundle/vim-vividchalk
   url = https://github.com/tpope/vim-vividchalk.git
-[submodule ".vim/bundle/vim-ack"]
-	path = .vim/bundle/vim-ack
-	url = https://github.com/mileszs/ack.vim.git
 [submodule ".vim/bundle/vim-surround"]
 	path = .vim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
