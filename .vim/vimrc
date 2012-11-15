@@ -60,8 +60,8 @@ map <leader>m :!open -a Marked %<cr><cr>
 " map fugitive git commands
 map <leader>b :Gblame<cr>
 
-" map Ack
-map <leader>a :Ack!<space>
+" map Ag
+map <leader>a :Ag!<space>
 
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
