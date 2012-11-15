@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/ctrlp"]
 	path = .vim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
+[submodule ".vim/bundle/ag-vim"]
+	path = .vim/bundle/ag-vim
+	url = git://github.com/epmatsw/ag.vim.git
