@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/ag-vim"]
 	path = .vim/bundle/ag-vim
 	url = git://github.com/epmatsw/ag.vim.git
+[submodule ".vim/bundle/vim-javascript"]
+	path = .vim/bundle/vim-javascript
+	url = git://github.com/jelera/vim-javascript-syntax.git
