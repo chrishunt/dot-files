@@ -1,33 +1,32 @@
 " .vimrc
 
-" load up pathogen
+" load up pathogen and all bundles
 call pathogen#infect()
 call pathogen#helptags()
 
-syntax on " show syntax highlighting
+syntax on                         " show syntax highlighting
 filetype plugin indent on
-set autoindent " set auto indent
-set ts=2 " set indent to 2 spaces
+set autoindent                    " set auto indent
+set ts=2                          " set indent to 2 spaces
 set shiftwidth=2
-set expandtab
-set nocompatible " don't need to be compatible with old vim
-" set showtabline=2 " always show tab bar
-set nu " show line numbers
-set showmatch " show bracket matches
-set ignorecase " ignore case in search
-set hlsearch " highlight all search matches
-set cursorline " higlight current line
-set smartcase " pay attention to case when caps are used
-set incsearch " show search results as I type
-set mouse=a " enable mouse support
-set vb " enable visual bell (disable audio bell)
-set ruler " show row and column in footer
-set scrolloff=2 " minimum lines above/below cursor
-set laststatus=2 " always show status bar
+set expandtab                     " use spaces, not tab characters
+set nocompatible                  " don't need to be compatible with old vim
+set nu                            " show line numbers
+set showmatch                     " show bracket matches
+set ignorecase                    " ignore case in search
+set hlsearch                      " highlight all search matches
+set cursorline                    " higlight current line
+set smartcase                     " pay attention to case when caps are used
+set incsearch                     " show search results as I type
+set mouse=a                       " enable mouse support
+set vb                            " enable visual bell (disable audio bell)
+set ruler                         " show row and column in footer
+set scrolloff=2                   " minimum lines above/below cursor
+set laststatus=2                  " always show status bar
 set list listchars=tab:»·,trail:· " show extra space characters
-set wildmenu " enable bash style tab completion
+set nofoldenable                  " disable code folding
+set wildmenu                      " enable bash style tab completion
 set wildmode=list:longest,full
-set nofoldenable " disable code folding
 
 " put useful info in status bar
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
@@ -36,8 +35,22 @@ set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 set background=dark
 colorscheme base16-railscasts
 
-" highlight currently searched word
-hi! IncSearch cterm=inverse
+" set up some custom colors
+highlight VertSplit    ctermbg=236
+highlight ColorColumn  ctermbg=236
+highlight LineNr       ctermbg=236 ctermfg=240
+highlight CursorLine   ctermbg=236
+highlight StatusLineNC ctermbg=238 ctermfg=0
+highlight StatusLine   ctermbg=240 ctermfg=12
+highlight IncSearch    ctermbg=0   ctermfg=3
+highlight Search       ctermbg=0   ctermfg=9
+highlight Visual       ctermbg=3   ctermfg=0
+
+" change status bar based on current mode
+if version >= 700
+  au InsertEnter * hi StatusLine ctermfg=235 ctermbg=2
+  au InsertLeave * hi StatusLine ctermbg=240 ctermfg=12
+endif
 
 " clojure: turn on rainbow parens
 let g:vimclojure#ParenRainbow=1
@@ -58,7 +71,7 @@ imap <F1> <C-o>:echo<CR>
 " map markdown preview
 map <leader>m :!open -a Marked %<cr><cr>
 
-" map fugitive git commands
+" map fugitive git blame
 map <leader>b :Gblame<cr>
 
 " map Ag
@@ -66,9 +79,6 @@ map <leader>a :Ag!<space>
 
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
-
-" regenerate ctags
-" map <leader>rt :!ctags -R --exclude=.git --exclude=log *<CR>
 
 " map %% to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
@@ -78,8 +88,6 @@ map <F5> :setlocal spell! spelllang=en_us<cr>
 imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
 
 " hint to keep lines short
-" highlight ColorColumn ctermbg=7
-" highlight ColorColumn guibg=Gray
 if exists('+colorcolumn')
   set colorcolumn=80
 endif
