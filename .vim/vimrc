@@ -27,6 +27,7 @@ set laststatus=2 " always show status bar
 set list listchars=tab:»·,trail:· " show extra space characters
 set wildmenu " enable bash style tab completion
 set wildmode=list:longest,full
+set nofoldenable " disable code folding
 
 " put useful info in status bar
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
