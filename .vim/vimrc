@@ -48,6 +48,7 @@ highlight Search       ctermbg=0   ctermfg=9
 highlight Visual       ctermbg=3   ctermfg=0
 highlight Pmenu        ctermbg=240 ctermfg=12
 highlight PmenuSel     ctermbg=0   ctermfg=3
+highlight SpellBad     ctermbg=0   ctermfg=1
 
 " change status bar based on current mode
 if version >= 700
