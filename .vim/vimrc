@@ -38,7 +38,7 @@ colorscheme base16-railscasts
 
 " set up some custom colors
 highlight VertSplit    ctermbg=236
-highlight ColorColumn  ctermbg=236
+highlight ColorColumn  ctermbg=237
 highlight LineNr       ctermbg=236 ctermfg=240
 highlight CursorLine   ctermbg=236
 highlight StatusLineNC ctermbg=238 ctermfg=0
