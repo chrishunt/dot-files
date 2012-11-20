@@ -75,8 +75,13 @@ imap <F1> <C-o>:echo<CR>
 " map markdown preview
 map <leader>m :!open -a Marked %<cr><cr>
 
-" map fugitive git blame
+" map fugitive commands
 map <leader>b :Gblame<cr>
+map <leader>l :Glog<cr>
+
+" shortcuts for going next/previous in quickfix (for git log splunking)
+nmap [q :cprevious<cr>
+nmap ]q :cnext<cr>
 
 " map Ag
 map <leader>a :Ag!<space>
