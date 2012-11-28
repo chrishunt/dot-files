@@ -72,6 +72,9 @@ let g:ctrlp_match_window_reversed = 0
 nmap <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
 
+" map . in visual mode
+vnoremap . :norm.<cr>
+
 " map markdown preview
 map <leader>m :!open -a Marked %<cr><cr>
 
