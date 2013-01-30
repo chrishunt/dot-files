@@ -99,3 +99,6 @@ bin/
 .aspell.en.prepl
 .aspell.en.pws
 .psql_history
+.mutt_certificates
+.muttrc
+.sec
