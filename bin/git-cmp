@@ -1,0 +1,21 @@
+#!/bin/sh
+current_branch=$(git branch | grep '* ' | awk '{print $2}')
+compare_to=${1:-"master"}
+repo_path=$(git config -l | grep 'remote.origin.url' | awk 'BEGIN { FS=":" } ; {print $2}' | sed -e "s/\(.*\).git$/\1/")
+user=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $1 }')
+repo=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $2 }')
+
+url="https://github.com/$user/$repo/compare/$compare_to...$current_branch#files_bucket"
+if [ "$1" == "-h" ]; then
+echo "USAGE: By default compares the current branch with master.\n If you pass a branch name as an argument it will compare\n the current branch versus the specified branch."
+else
+
+cat - <<COPY_TEXT | pbcopy
+BRANCH: *${current_branch}*
+
+$url
+COPY_TEXT
+
+open $url
+
+fi
