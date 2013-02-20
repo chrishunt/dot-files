@@ -1,6 +1,6 @@
 [user]
   name  = Chris Hunt
-  email = c@squareup.com
+  email = c@chrishunt.co
 [core]
   pager = less -FRSX
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
