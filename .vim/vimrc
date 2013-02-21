@@ -82,6 +82,9 @@ map <leader>m :!open -a Marked %<cr><cr>
 map <leader>b :Gblame<cr>
 map <leader>l :Glog<cr>
 
+" open gist after it's been created
+let g:gist_open_browser_after_post = 1
+
 " shortcuts for going next/previous in quickfix (for git log splunking)
 nmap [q :cprevious<cr>
 nmap ]q :cnext<cr>
