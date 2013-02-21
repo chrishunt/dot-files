@@ -47,4 +47,6 @@ alias unhitch='hitch -u'
 unsetopt correct_all
 
 # Load RVM
-source /Users/c/.rvm/scripts/rvm
+source /Users/chris/.rvm/scripts/rvm
+
+PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
