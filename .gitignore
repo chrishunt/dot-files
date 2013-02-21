@@ -113,3 +113,4 @@ bin/ship
 bin/tellme
 bin/tracker-stories-owned-by-me
 bin/under-indent
+.gist-vim
