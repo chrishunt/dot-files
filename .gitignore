@@ -116,3 +116,4 @@ bin/tracker-stories-owned-by-me
 bin/under-indent
 .gist-vim
 VirtualBox VMs
+.pgpass
