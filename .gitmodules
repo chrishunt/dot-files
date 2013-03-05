@@ -64,3 +64,6 @@
 [submodule ".vim/bundle/webapi-vim"]
 	path = .vim/bundle/webapi-vim
 	url = git@github.com:mattn/webapi-vim.git
+[submodule ".vim/bundle/gitgutter"]
+	path = .vim/bundle/gitgutter
+	url = git@github.com:airblade/vim-gitgutter.git
