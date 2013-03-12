@@ -81,9 +81,10 @@ vnoremap . :norm.<cr>
 " map markdown preview
 map <leader>m :!open -a Marked %<cr><cr>
 
-" map fugitive commands
+" map git commands
 map <leader>b :Gblame<cr>
-map <leader>l :Glog<cr>
+map <leader>l :!clear && git log %<cr>
+map <leader>d :!clear && git diff %<cr>
 
 " open gist after it's been created
 let g:gist_open_browser_after_post = 1
