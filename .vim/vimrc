@@ -15,7 +15,7 @@ set nu                            " show line numbers
 set showmatch                     " show bracket matches
 set ignorecase                    " ignore case in search
 set hlsearch                      " highlight all search matches
-set cursorline                    " higlight current line
+set cursorline                    " highlight current line
 set smartcase                     " pay attention to case when caps are used
 set incsearch                     " show search results as I type
 set mouse=a                       " enable mouse support
@@ -33,7 +33,7 @@ set wildmode=list:longest,full
 " put useful info in status bar
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
-" set dark background and colorscheme
+" set dark background and color scheme
 set background=dark
 colorscheme base16-railscasts
 
@@ -59,7 +59,7 @@ if version >= 700
   au InsertLeave * hi StatusLine ctermbg=240 ctermfg=12
 endif
 
-" clojure: turn on rainbow parens
+" clojure: turn on rainbow parenthesis
 let g:vimclojure#ParenRainbow=1
 
 " set leader key to comma
@@ -88,7 +88,7 @@ map <leader>l :Glog<cr>
 " open gist after it's been created
 let g:gist_open_browser_after_post = 1
 
-" shortcuts for going next/previous in quickfix (for git log splunking)
+" shortcuts for going next/previous in quickfix (for git log spelunking)
 nmap [q :cprevious<cr>
 nmap ]q :cnext<cr>
 
@@ -101,7 +101,7 @@ noremap <C-l> :nohlsearch<CR>
 " map %% to current directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
 
-" toggle spellcheck with <F5>
+" toggle spell check with <F5>
 map <F5> :setlocal spell! spelllang=en_us<cr>
 imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
 
