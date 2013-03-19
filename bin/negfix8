@@ -1,0 +1,161 @@
+#!/bin/bash
+# negfix8 ver 1.2
+# GNU General Public License v2
+# (C) 2011-2012 JaZ99 - http://www.flickr.com/photos/jaz99/
+
+# This little script converts negative (scanned as 16-bit _linear_
+# positive, i.e. gamma=1.0), either C-41 color negative or B&W negative,
+# into the posivite image. Output image might require some
+# minor tweaking (gamma, contrast, exposition, etc.).
+# Reguires ImageMagick Q16 version (http://www.imagemagick.org/).
+
+# IMPORTANT: For best result, scanned image MUST NOT contain holder fragments!
+
+# You may wish to fine-tune the default settings:
+COMMENT="Processed with negfix8"
+GAMMA=2.15
+PROF_DIR=$HOME/.negfix8
+MEM="-quiet -limit memory 512M" # max phisical memory used
+ZIP="-compress zip"
+CS=""
+BINNING=""
+PROF_NAME=""
+SEPARATE=""
+MIRROR=""
+
+# Uncomment below, if you want 20% saturation boost
+#SATURATION="-modulate 100,120"
+
+# Additional speeding up is possible:
+# Locate and delete all occurances of "-evaluate Add 1".
+# Those are the safeguards against divide by zero error.
+# If you do scan properly, they are not needed at all.
+
+# End of fine-tune section
+
+CSPACE="-set colorspace RGB -strip"
+
+PROF_CMD="convert $MEM \"\${F}\" $CSPACE \$SEPARATE \$BINNING -shave 10x10 -blur 3x3 -format \""\
+"%[fx: minima.r] "\
+"%[fx: minima.g] "\
+"%[fx: minima.b] "\
+"%[fx: ((minima.r/maxima.r)^(1/\$GAMMA))*QuantumRange*0.95] "\
+"%[fx: log(maxima.g/minima.g)/log(maxima.r/minima.r)] "\
+"%[fx: log(maxima.b/minima.b)/log(maxima.r/minima.r)] "\
+"\" info:"
+
+MAKE_PROF=0
+
+if [ $# -eq 0 ]; then
+    # ugly hack to avoid using the function...
+    set -- `/bin/echo "-h"`
+fi
+
+while [ $# -gt 0 ]; do
+    case $1 in
+	-m)	MIRROR="-flop"; shift;;
+	-s)	SEPARATE="-channel $2 -separate"; shift; shift;;
+	-cs)	CS="-contrast-stretch 0"; shift;;
+	-r)	BINNING=$2; shift; shift;;
+	-g)     GAMMA=$2; shift; shift;;
+	-c)     MAKE_PROF=1
+		PROF_NAME="$2"
+		shift; shift;;
+	-u|+u)  PROF_NAME="$2"; 
+		HALF_PROF=0
+		if [ ! -r "$PROF_DIR"/"$PROF_NAME" ]; then
+		    echo "The profile $PROF_DIR/$PROF_NAME does not exist!"
+		    exit 98
+		fi
+		shift; shift;;
+	-h|-?)	cat << EOF
+Usage: negfix8 [-m] [-g G] [-cs] [-r {2|3|4}] [-u prof] [-s {R|G|B}] input_file [output_file]
+       negfix8 [-g G] [-r {2|3|4}] [-s {R|G|B}] -c prof input_file
+
+where: -g    - set image gamma to specified value (default: $GAMMA)
+       -cs   - perform contrast stretch operation
+       -r    - perform X-fold image size reduction, with binning*
+       -c    - create profile from input file
+       -u    - use created profile
+       -s    - separate given channel to make B&W image
+       -m    - mirror image horizontally
+
+* Binning: http://www.imagemagick.org/Usage/photos/binning/sample3.html
+
+Examples:
+	negfix8 -c test_profile scan001.tif
+	negfix8 -u test_profile -cs -r 3 -m scan002.tif scan002.jpg
+	negfix8 -cs scan003.tif
+	negfig8 -s G scan004.tif
+EOF
+		exit 0;;
+	*)      break;;
+    esac
+done
+
+if [ ! -f "${1}" ]; then
+    echo "Cannot open: ${1}"
+    exit 99
+fi
+
+F=_t_`basename "$1"`
+F2=`basename "$1"`
+OUTF=P_`basename "$1"`
+OUTF="${2:-$OUTF}"
+
+# IM bug workaround: create a copy without warnings
+convert $MEM "$1[0]" "$F" 2> /dev/null || echo "Not enough disk space."
+
+if [ ! -z $BINNING ]; then
+    set -- `convert $MEM "$F" -format "%[fx: $BINNING*floor(w/$BINNING)] %[fx: $BINNING*floor(h/$BINNING)] %[fx: floor(w/$BINNING)] %[fx: floor(h/$BINNING)]" info:`
+    BINNING="-crop ${1}x${2}+0+0 +repage -scale ${3}x${4}"
+fi
+
+if [ $MAKE_PROF -eq 1 ]; then
+    mkdir -p "$PROF_DIR"
+    echo "Creating profile $PROF_NAME..."
+    eval $PROF_CMD > "$PROF_DIR"/"$PROF_NAME"
+    EX=$?
+    cat "$PROF_DIR"/"$PROF_NAME"
+    rm -f "$F"
+    exit $EX
+fi
+
+# Create temporary profile or read existing profile...
+if [ -f "$PROF_DIR"/"$PROF_NAME" ]; then
+    echo "$F2: Profile: $PROF_NAME"
+    set -- `cat "$PROF_DIR"/"$PROF_NAME"`
+else
+    echo -n "$F2: "
+    set -- `eval $PROF_CMD`
+    echo $*
+fi
+
+echo -n "Writing $OUTF... "
+
+# Real work is done below
+if [ "$5" = "1" -a "$6" = "1" -o ! -z "$SEPARATE" ]; then
+echo -n "(B&W) "
+    convert $MEM "${F}" $CSPACE $SEPARATE $BINNING $MIRROR \
+        -evaluate Add 1 -poly "$1,-1" -gamma $GAMMA -evaluate Subtract $4 \
+        $CS -comment "$COMMENT" $ZIP $SEPARATE "$OUTF"
+    EX=$?
+else
+    convert $MEM "${F}" $CSPACE $BINNING $MIRROR -separate -delete 3-5 \
+        \( -clone 0 -evaluate Add 1 -poly "$1,-1" \) \
+        \( -clone 1 -evaluate Add 1 -poly "$2,-1" -gamma $5 \) \
+        \( -clone 2 -evaluate Add 1 -poly "$3,-1" -gamma $6 \) \
+        -delete 0-2 -channel RGB,sync -combine -gamma $GAMMA \
+        -evaluate Subtract $4 $CS $SATURATION -comment "$COMMENT" $ZIP "$OUTF"
+    EX=$?
+fi
+
+if [ $EX -eq 0 ]; then
+  echo "Done."
+else
+  echo "Error!"
+fi
+
+rm -f "$F"
+
+exit $EX
