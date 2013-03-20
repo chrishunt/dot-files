@@ -1,1 +1,3 @@
+#!/bin/sh
+
 exiftool -OwnerName="Chris Hunt" -Creator="Chris Hunt" -Owner="Chris Hunt" -Make="Rollei" -Model="Rolleiflex 2.8E" -FocalLength=80mm -MaxApertureValue=2.8 -LensInfo="80mm f/2.8" -ISO=400 .
