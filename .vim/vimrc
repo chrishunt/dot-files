@@ -93,7 +93,7 @@ let g:gist_open_browser_after_post = 1
 nmap [q :cprevious<cr>
 nmap ]q :cnext<cr>
 
-" map Ag
+" map Silver Searcher
 map <leader>a :Ag!<space>
 
 " clear the command line and search highlighting
