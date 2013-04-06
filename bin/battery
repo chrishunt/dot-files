@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Bash script for getting battery usage
+# Usage: battery [charging | discharging]
+
 echo_usage ()
 {
   echo 'usage: battery [charging | discharging]'
