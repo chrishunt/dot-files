@@ -1,4 +1,8 @@
 #!/bin/sh
+
+# Compares current git branch with master on GitHub.
+# Used for making pull requests.
+
 current_branch=$(git branch | grep '* ' | awk '{print $2}')
 compare_to=${1:-"master"}
 repo_path=$(git config -l | grep 'remote.origin.url' | awk 'BEGIN { FS=":" } ; {print $2}' | sed -e "s/\(.*\).git$/\1/")
