@@ -1,3 +1,12 @@
 #!/bin/sh
 
-exiftool -OwnerName="Chris Hunt" -Creator="Chris Hunt" -Owner="Chris Hunt" -Make="Leica" -Model="Leica M6" -FocalLength=50mm -MaxApertureValue=2.0 -LensInfo="50mm f/2.0" -ISO=400 .
+# Updates exif for all images in the current directory
+#
+#   Camera: Leica M6
+#   Lens:   Leica 50mm f/2.0
+#   ISO:    400
+
+exiftool -OwnerName="Chris Hunt" -Creator="Chris Hunt" -Owner="Chris Hunt" \
+         -Make="Leica" -Model="Leica M6" \
+         -FocalLength=50mm -MaxApertureValue=2.0 -LensInfo="50mm f/2.0" \
+         -ISO=400 .
