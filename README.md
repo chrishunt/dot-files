@@ -1,5 +1,3 @@
-# Dot-Files
-
 ## Installation
 
 ```bash
