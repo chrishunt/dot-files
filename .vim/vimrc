@@ -141,7 +141,7 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-" run rspec tests, via Gary Bernhardt
+" Run specs with ',t' via Gary Bernhardt
 function! RunTests(filename)
   " Write the file and run tests for the given filename
   :w
