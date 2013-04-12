@@ -37,9 +37,6 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = git@github.com:chrishunt/oh-my-zsh.git
-[submodule ".vim/bundle/vim-clojure"]
-	path = .vim/bundle/vim-clojure
-	url = https://github.com/vim-scripts/VimClojure.git
 [submodule ".vim/bundle/vim-mustache"]
 	path = .vim/bundle/vim-mustache
 	url = https://github.com/juvenn/mustache.vim.git
