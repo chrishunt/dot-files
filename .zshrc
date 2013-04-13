@@ -46,9 +46,11 @@ unsetopt correct_all
 # Load RVM
 source /Users/chris/.rvm/scripts/rvm
 
-# Always work in a tmux session
-if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
-  tmux attach -t hack || tmux new -s hack; exit
+# Always work in a tmux session if tmux is installed
+if which tmux 2>&1 >/dev/null; then
+  if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
+    tmux attach -t hack || tmux new -s hack; exit
+  fi
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
