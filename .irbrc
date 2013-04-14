@@ -2,6 +2,7 @@ require 'rubygems' unless defined? Gem
 require 'hirb'
 require 'interactive_editor'
 require 'fancy_irb'
+require "awesome_print"
 
 FancyIrb.start :colorize => {
   :rocket_prompt => [:blue],
@@ -15,3 +16,4 @@ FancyIrb.start :colorize => {
 }
 
 Hirb.enable
+AwesomePrint.irb!
