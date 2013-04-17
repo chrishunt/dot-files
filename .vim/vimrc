@@ -59,9 +59,6 @@ if version >= 700
   au InsertLeave * hi StatusLine ctermbg=240 ctermfg=12
 endif
 
-" clojure: turn on rainbow parenthesis
-let g:vimclojure#ParenRainbow=1
-
 " set leader key to comma
 let mapleader = ","
 
