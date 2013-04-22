@@ -56,3 +56,4 @@
   sm  = submodule
   smu = submodule foreach git pull origin master
   ap  = add -u -p
+  pr  = "!f() { git fetch origin refs/pull/$1/head:pr/$1; } ; f"
