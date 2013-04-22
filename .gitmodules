@@ -73,3 +73,6 @@
 [submodule ".vim/bundle/vim-abolish"]
 	path = .vim/bundle/vim-abolish
 	url = git@github.com:tpope/vim-abolish.git
+[submodule ".vim/bundle/vim-slurper"]
+	path = .vim/bundle/vim-slurper
+	url = git@github.com:adamlowe/vim-slurper.git
