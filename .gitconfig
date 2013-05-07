@@ -43,6 +43,7 @@
   ds  = diff --staged
   dw  = diff --color-words
   bam = "!source ~/.githelpers && delete_local_merged_branches"
+  bamr = "!source ~/.githelpers && delete_remote_merged_branches"
   l   = log --pretty='format:%C(yellow)%h%C(reset) %C(blue)%ad%C(reset) %s%C(red)%d%C(reset) %C(green)%an%C(reset), %C(cyan)%ar%C(reset)' --date=short
   lp  = "!source ~/.githelpers && pretty_git_log"
   s   = status -s -b
