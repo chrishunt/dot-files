@@ -78,6 +78,12 @@ vnoremap . :norm.<cr>
 " die hash rockets, die!
 vnoremap <leader>h :s/:\(\w*\) *=>/\1:/g<cr>
 
+" delete all trailing whitespace in current file
+map <leader>w :%s/\s\+$//gce \| w<cr>
+
+" delete all trailing whitespace for each file in repo
+map <leader>W :args `git grep -lI .` \| argdo %s/\s\+$//gce \| w<cr>
+
 " map markdown preview
 map <leader>m :!open -a Marked %<cr><cr>
 
