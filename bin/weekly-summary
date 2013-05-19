@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # What have I done this week?
 
 LAST_WEEK=$(date -v-7d +%m/%d)
