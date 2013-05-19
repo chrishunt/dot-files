@@ -18,7 +18,8 @@ FEATURES=$(
 
 FEATURES_COUNT=$(
   echo "$FEATURES" |
-  wc -l |
+  sed '/^\s*$/d'   |
+  wc -l            |
   awk '{ print $1 }'
 )
 
