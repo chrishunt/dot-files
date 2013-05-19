@@ -57,3 +57,4 @@
   bamr = "!source ~/.githelpers && delete_remote_merged_branches"
   pr   = "!f() { git fetch origin refs/pull/$1/head:pr/$1; } ; f"
   l    = log --pretty='format:%C(yellow)%h%C(reset) %C(blue)%ad%C(reset) %s%C(red)%d%C(reset) %C(green)%an%C(reset), %C(cyan)%ar%C(reset)' --date=short
+  summary = "!source ~/.githelpers && weekly_summary"
