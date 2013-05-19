@@ -2,24 +2,30 @@
 
 # What have I done this week?
 
-echo "Stats"
-echo "-----"
+LAST_WEEK=$(date -v-7d +%m/%d)
 
-git log --since=1.week --oneline |
-  tail -n 1                      |
-  awk '{ print $1 }'             |
-  xargs git diff --shortstat
-
-echo
-
-PULL_REQUESTS=$(
+STATS=$(
   git log --since=1.week --oneline |
-   grep "Merge pull"
+  tail -n 1                        |
+  awk '{ print $1 }'               |
+  xargs git diff --shortstat
 )
 
-PULL_REQUEST_COUNT=$( echo "$PULL_REQUESTS" | wc -l | awk '{ print $1 }' )
+FEATURES=$(
+  git log --since=1.week --oneline |
+  egrep "Merge (pull|branch) "
+)
 
-echo "Pull Requests ($PULL_REQUEST_COUNT)"
-echo "------------------"
+FEATURES_COUNT=$(
+  echo "$FEATURES" |
+  wc -l |
+  awk '{ print $1 }'
+)
 
-echo "$PULL_REQUESTS"
+echo "Stats ($LAST_WEEK - Today)"
+echo "---------------------"
+echo "$STATS"
+echo
+echo "Features ($FEATURES_COUNT)"
+echo "-------------"
+echo "$FEATURES"
