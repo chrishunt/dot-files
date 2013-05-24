@@ -53,7 +53,7 @@
   sm  = submodule
   smu = submodule foreach git pull origin master
   ap  = add -u -p
-  pr  = "!f() { git fetch origin refs/pull/$1/head:pr/$1; } ; f"
+  pr  = "!f() { git fetch origin refs/pull/$1/head:pr/$1 && git co pr/$1; } ; f"
   up  = "!git fetch upstream && git rebase upstream/master"
   bam = "!source ~/.githelpers && delete_local_merged_branches"
   bamr = "!source ~/.githelpers && delete_remote_merged_branches"
