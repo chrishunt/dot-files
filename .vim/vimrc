@@ -92,8 +92,8 @@ map <leader>b :Gblame<cr>
 map <leader>l :!clear && git log -p %<cr>
 map <leader>d :!clear && git diff %<cr>
 
-" check code complexity and duplication
-map <leader>x :!clear && flog % && echo '----------' && flay %<cr>
+" check code complexity
+map <leader>x :!clear && flog %<cr>
 
 " open gist after it's been created
 let g:gist_open_browser_after_post = 1
