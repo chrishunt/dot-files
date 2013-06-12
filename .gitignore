@@ -104,18 +104,6 @@ Code
 .mutt_certificates
 .muttrc
 .sec
-bin/alias-host
-bin/g
-bin/git-last
-bin/hack
-bin/hitch-update
-bin/ical-today
-bin/jira-assigned-to-me
-bin/pull-requests-from-or-to
-bin/ship
-bin/tellme
-bin/tracker-stories-owned-by-me
-bin/under-indent
 .gist-vim
 VirtualBox VMs
 .pgpass
