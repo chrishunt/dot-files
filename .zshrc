@@ -54,3 +54,4 @@ if which tmux 2>&1 >/dev/null; then
 fi
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+source /opt/boxen/env.sh # Load up the GitHubs
