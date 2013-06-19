@@ -9,6 +9,7 @@
   editor = vim -f
   autocrlf = input
   safecrlf = true
+  excludesfile = /opt/boxen/config/git/gitignore
 [advice]
   statusHints = false
 [push]
@@ -59,3 +60,9 @@
   bamr = "!source ~/.githelpers && delete_remote_merged_branches"
   summary = "!source ~/.githelpers && weekly_summary"
   l = log --pretty='format:%C(yellow)%h%C(reset) %C(blue)%ad%C(reset) %s%C(red)%d%C(reset) %C(green)%an%C(reset), %C(cyan)%ar%C(reset)' --date=short
+
+[credential]
+helper = /opt/boxen/bin/boxen-git-credential
+
+[hub]
+protocol = https
