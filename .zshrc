@@ -43,9 +43,6 @@ alias unhitch='hitch -u'
 # Disable auto-correct
 unsetopt correct_all
 
-# Load RVM
-source /Users/chris/.rvm/scripts/rvm
-
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
   if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
@@ -53,5 +50,4 @@ if which tmux 2>&1 >/dev/null; then
   fi
 fi
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 source /opt/boxen/env.sh # Load up the GitHubs
