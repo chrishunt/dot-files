@@ -3,6 +3,10 @@
   email = chrishunt@github.com
 [github]
   user = chrishunt
+[credential]
+  helper = /opt/boxen/bin/boxen-git-credential
+[hub]
+  protocol = https
 [core]
   pager = less -FRSX
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
@@ -60,9 +64,3 @@
   bamr = "!source ~/.githelpers && delete_remote_merged_branches"
   summary = "!source ~/.githelpers && weekly_summary"
   l = log --pretty='format:%C(yellow)%h%C(reset) %C(blue)%ad%C(reset) %s%C(red)%d%C(reset) %C(green)%an%C(reset), %C(cyan)%ar%C(reset)' --date=short
-
-[credential]
-helper = /opt/boxen/bin/boxen-git-credential
-
-[hub]
-protocol = https
