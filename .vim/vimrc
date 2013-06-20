@@ -157,6 +157,8 @@ function! RunTests(filename)
   :silent !clear
   if match(a:filename, '\.feature$') != -1
     exec ":!script/features " . a:filename
+  elseif match(a:filename, '_test\.rb$') != -1
+    exec ":!ruby -Itest " . a:filename
   else
     if filereadable("script/test")
       exec ":!script/test " . a:filename
