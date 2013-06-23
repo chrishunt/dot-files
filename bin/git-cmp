@@ -5,7 +5,12 @@
 
 current_branch=$(git branch | grep '* ' | awk '{print $2}')
 compare_to=${1:-"master"}
-repo_path=$(git config -l | grep 'remote.origin.url' | awk 'BEGIN { FS=":" } ; {print $2}' | sed -e "s/\(.*\).git$/\1/")
+repo_path=$(
+  git config -l | \
+  grep 'remote.origin.url' | \
+  egrep -o '[^\/:]+\/[^\/]+$' | \
+  sed -e 's/\(.*\).git$/\1/'
+)
 user=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $1 }')
 repo=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $2 }')
 
