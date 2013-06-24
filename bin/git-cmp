@@ -14,7 +14,7 @@ repo_path=$(
 user=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $1 }')
 repo=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $2 }')
 
-url="https://github.com/$user/$repo/compare/$compare_to...$current_branch#files_bucket"
+url="https://github.com/$user/$repo/compare/$current_branch"
 if [ "$1" == "-h" ]; then
 echo "USAGE: By default compares the current branch with master.\n If you pass a branch name as an argument it will compare\n the current branch versus the specified branch."
 else
