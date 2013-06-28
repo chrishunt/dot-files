@@ -11,6 +11,7 @@ function delete_remote_merged_branches() {
   for BRANCH in `git branch -r --merged origin/master |\
                  egrep "^\s*origin/"                  |\
                  grep -v master                       |\
+                 grep chrishunt                       |\
                  cut -d/ -f2-`
   do
     git push origin :$BRANCH
