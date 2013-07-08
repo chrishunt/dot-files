@@ -1,3 +1,4 @@
+.config
 .atom
 bin/reattach-to-user-namespace
 github
