@@ -54,7 +54,7 @@
   w   = whatchanged --decorate
   wp  = whatchanged --decorate -p
   a   = add -u
-  aa  = add -A
+  aa  = add --all :/
   td  = merge --no-ff
   sm  = submodule
   smu = submodule foreach git pull origin master
