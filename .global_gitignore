@@ -1,0 +1,14 @@
+*.orig
+*.swo
+*.swp
+*~
+.DS_Store
+.DS_Store?
+.Spotlight-V100
+.Trashes
+._*
+.agignore
+Icon?
+Thumbs.db
+\#*\#
+ehthumbs.db

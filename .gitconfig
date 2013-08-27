@@ -13,7 +13,7 @@
   editor = vim -f
   autocrlf = input
   safecrlf = true
-  excludesfile = /opt/boxen/config/git/gitignore
+  excludesfile = /Users/chris/.global_gitignore
 [advice]
   statusHints = false
 [push]
