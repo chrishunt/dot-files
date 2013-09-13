@@ -104,10 +104,6 @@ map <leader>s :e /Users/chris/Dropbox/Notational\ Data/Scratchpad.txt<cr>
 " open gist after it's been created
 let g:gist_open_browser_after_post = 1
 
-" shortcuts for going next/previous in quickfix (for git log spelunking)
-nmap [q :cprevious<cr>
-nmap ]q :cnext<cr>
-
 " map Silver Searcher
 map <leader>a :Ag!<space>
 
