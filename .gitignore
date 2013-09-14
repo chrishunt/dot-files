@@ -14,7 +14,7 @@ github
 .square
 .netrc
 .hitch*
-.zcompdump
+.zcompdump*
 .zsh-update
 .zsh_history
 .mitmproxy
