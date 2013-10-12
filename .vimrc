@@ -99,9 +99,6 @@ map <leader>d :!clear && git diff %<cr>
 " check code complexity
 map <leader>x :!clear && flog %<cr>
 
-" open scratchpad
-map <leader>s :e /Users/chris/Dropbox/Notational\ Data/Scratchpad.txt<cr>
-
 " open gist after it's been created
 let g:gist_open_browser_after_post = 1
 
