@@ -16,6 +16,8 @@
   excludesfile = /Users/chris/.global_gitignore
 [advice]
   statusHints = false
+[web]
+  browser = open
 [push]
   config = default
   default = tracking
