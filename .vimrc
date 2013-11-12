@@ -79,9 +79,6 @@ imap <F1> <C-o>:echo<CR>
 " map . in visual mode
 vnoremap . :norm.<cr>
 
-" die hash rockets, die!
-vnoremap <leader>h :s/:\(\w*\) *=>/\1:/g<cr>
-
 " map markdown preview
 map <leader>m :!open -a Marked %<cr><cr>
 
