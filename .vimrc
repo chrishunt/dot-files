@@ -104,9 +104,6 @@ map <leader>A :Ag! "<C-r>=expand('<cword>')<CR>"
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
 
-" map %% to current directory
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-
 " toggle spell check with <F5>
 map <F5> :setlocal spell! spelllang=en_us<cr>
 imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
