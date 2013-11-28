@@ -143,7 +143,7 @@ function! RenameFile()
 endfunction
 map <leader>n :call RenameFile()<cr>
 
-" Run specs with ',t' via Gary Bernhardt
+" run specs with ',t' via Gary Bernhardt
 function! RunTests(filename)
   " Write the file and run tests for the given filename
   :w
@@ -164,7 +164,7 @@ function! RunTests(filename)
 endfunction
 
 function! SetTestFile()
-  " Set the spec file that tests will be run for.
+  " set the spec file that tests will be run for.
   let t:grb_test_file=@%
 endfunction
 
@@ -175,7 +175,7 @@ function! RunTestFile(...)
     let command_suffix = ""
   endif
 
-  " Run the tests for the previously-marked file.
+  " run the tests for the previously-marked file.
   let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
   if in_test_file
     call SetTestFile()
