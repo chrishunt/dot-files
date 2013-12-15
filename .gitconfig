@@ -66,4 +66,4 @@
   bam = "!source ~/.githelpers && delete_local_merged_branches"
   bamr = "!source ~/.githelpers && delete_remote_merged_branches"
   summary = "!source ~/.githelpers && weekly_summary"
-  l = log --pretty='format:%C(yellow)%h%C(reset) %C(blue)%ad%C(reset) %s%C(red)%d%C(reset) %C(green)%an%C(reset), %C(cyan)%ar%C(reset)' --date=short
+  l = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short
