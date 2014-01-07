@@ -88,3 +88,9 @@
 [submodule ".vim/bundle/vim-textobj-user"]
 	path = .vim/bundle/vim-textobj-user
 	url = https://github.com/kana/vim-textobj-user.git
+[submodule ".vim/bundle/funcoo"]
+	path = .vim/bundle/funcoo
+	url = https://github.com/rizzatti/funcoo.vim.git
+[submodule ".vim/bundle/dash"]
+	path = .vim/bundle/dash
+	url = https://github.com/rizzatti/dash.vim.git
