@@ -1,0 +1,23 @@
+#!/bin/sh
+
+set -e
+
+if command -v reattach-to-user-namespace >/dev/null 2>&1; then
+  echo "==> Skipping homebrew. Already installed."
+else
+  echo "==> Updating homebrew..."
+  brew update &> /dev/null
+
+  echo "==> Installing reattach-to-user-namespace..."
+  brew install reattach-to-user-namespace &> /dev/null
+fi
+
+echo "==> Pulling latest dot-files..."
+git pull &> /dev/null
+
+echo "==> Updating git submodules..."
+git submodule init &> /dev/null
+git submodule update &> /dev/null
+git submodule foreach git pull origin master &> /dev/null
+
+echo "==> Done!"
