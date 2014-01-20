@@ -1,15 +1,14 @@
 ## Installation
 
 ```bash
-$ brew install reattach-to-user-namespace
-$ git clone git@github.com:chrishunt/dot-files.git
-$ git submodule init
-$ git submodule update
+$ cd ~
+$ git clone git@github.com:chrishunt/dot-files.git .
+$ ./script/bootstrap
 ```
 
 ## Updating
 
 ```bash
-$ git pull
-$ git submodule foreach git pull origin master
+$ cd ~
+$ ./script/bootstrap
 ```
