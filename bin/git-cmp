@@ -1,5 +1,6 @@
 #!/bin/sh
 
+# Test
 # Compares current git branch with master on GitHub.
 # Used for making pull requests.
 
