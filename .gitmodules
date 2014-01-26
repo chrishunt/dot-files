@@ -91,3 +91,6 @@
 [submodule ".vim/bundle/dash"]
 	path = .vim/bundle/dash
 	url = https://github.com/rizzatti/dash.vim.git
+[submodule ".vim/bundle/mustache"]
+	path = .vim/bundle/mustache
+	url = git://github.com/mustache/vim-mustache-handlebars.git
