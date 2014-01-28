@@ -90,6 +90,9 @@ map <leader>b :Gblame<cr>
 map <leader>l :!clear && git log -p %<cr>
 map <leader>d :!clear && git diff %<cr>
 
+" run current file with ruby
+map <leader>r :!clear && ruby %<cr>
+
 " check code complexity and duplication for current file
 map <leader>x :!clear &&
  \ echo '----- Complexity -----' && flog % &&
