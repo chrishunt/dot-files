@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -e
+
+echo "==> Bootstrapping..."
+./script/bootstrap
+
+echo "==> Pulling master for submodules..."
+git submodule foreach git pull origin master &> /dev/null
+
+echo "==> Rebasing oh-my-zsh against upstream..."
+cd .oh-my-zsh
+git fetch upstream && git rebase upstream/master
+cd ~
+
+echo "==> Done updating!"

@@ -18,6 +18,5 @@ git pull &> /dev/null
 echo "==> Updating git submodules..."
 git submodule init &> /dev/null
 git submodule update &> /dev/null
-git submodule foreach git pull origin master &> /dev/null
 
-echo "==> Done!"
+echo "==> Done bootstrapping!"
