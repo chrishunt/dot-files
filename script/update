@@ -10,7 +10,7 @@ git submodule foreach git pull origin master &> /dev/null
 
 echo "==> Rebasing oh-my-zsh against upstream..."
 cd .oh-my-zsh
-git fetch upstream && git rebase upstream/master
+git fetch upstream && git rebase upstream/master &> /dev/null
 cd ~
 
 echo "==> Done updating!"
