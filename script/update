@@ -14,3 +14,4 @@ git fetch upstream && git rebase upstream/master &> /dev/null
 cd ~
 
 echo "==> Done updating!"
+git status -s -b
