@@ -114,6 +114,9 @@ noremap <C-l> :nohlsearch<CR>
 map <F5> :setlocal spell! spelllang=en_us<cr>
 imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
 
+" add :Plain command for converting text to plaintext
+command Plain execute "%s/’/'/g | %s/[“”]/\"/g"
+
 " hint to keep lines short
 if exists('+colorcolumn')
   set colorcolumn=80
