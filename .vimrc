@@ -90,9 +90,6 @@ map <leader>b :Gblame<cr>
 map <leader>l :!clear && git log -p %<cr>
 map <leader>d :!clear && git diff %<cr>
 
-" run current file with ruby
-map <leader>r :!clear && ruby %<cr>
-
 " check code complexity and duplication for current file
 map <leader>x :!clear &&
  \ echo '----- Complexity -----' && flog % &&
@@ -121,6 +118,24 @@ command! Plain execute "%s/’/'/ge | %s/[“”]/\"/ge | %s/—/-/ge"
 if exists('+colorcolumn')
   set colorcolumn=80
 endif
+
+" execute current file
+map <leader>e :call ExecuteFile(expand("%"))<cr>
+
+" execute file if we know how
+function! ExecuteFile(filename)
+  :w
+  :silent !clear
+  if match(a:filename, '\.rb$') != -1
+    exec ":!ruby " . a:filename
+  elseif match(a:filename, '\.js$') != -1
+    exec ":!node " . a:filename
+  elseif match(a:filename, '\.sh$') != -1
+    exec ":!bash " . a:filename
+  else
+    exec ":!echo \"Don't know how to execute: \"" . a:filename
+  end
+endfunction
 
 " jump to last position in file
 autocmd BufReadPost *
