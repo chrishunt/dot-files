@@ -1,4 +1,5 @@
 .coffee_history
+.npmrc
 src
 .boxen
 .exercism
