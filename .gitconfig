@@ -57,7 +57,7 @@
   d       = diff
   ds      = diff --staged
   dw      = diff --color-words
-  poh     = push origin head
+  po      = push origin head
   pr      = "!f() { git fetch origin refs/pull/$1/head:pr/$1 && git co pr/$1; } ; f"
   s       = status -s -b
   sm      = submodule
