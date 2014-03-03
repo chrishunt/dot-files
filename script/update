@@ -2,8 +2,8 @@
 
 set -e
 
-echo "==> Bootstrapping..."
-./script/bootstrap
+echo "==> Running setup..."
+./script/setup
 
 echo "==> Pulling master for submodules..."
 git submodule foreach git pull origin master &> /dev/null
