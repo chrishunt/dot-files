@@ -103,3 +103,6 @@
 [submodule ".vim/bundle/html5-syntax"]
 	path = .vim/bundle/html5-syntax
 	url = git://github.com/othree/html5-syntax.vim.git
+[submodule ".vim/bundle/rainbow-parentheses"]
+	path = .vim/bundle/rainbow-parentheses
+	url = https://github.com/kien/rainbow_parentheses.vim.git
