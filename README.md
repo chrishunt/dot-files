@@ -1,3 +1,5 @@
+![](.screenshot.png)
+
 ## Installation
 
 ```bash
