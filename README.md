@@ -1,4 +1,4 @@
-![](.screenshot.png)
+![](.screenshot.jpg)
 
 ## Installation
 
