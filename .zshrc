@@ -21,7 +21,7 @@ DISABLE_AUTO_TITLE="true"
 #
 # Example format:
 #   plugins=(rails git textmate ruby)
-plugins=(git rbenv)
+plugins=(git rbenv zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
