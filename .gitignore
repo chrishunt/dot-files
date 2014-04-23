@@ -29,8 +29,6 @@ github
 workspace
 .showoffrc
 .pow
-.wireshark
-.wireshark-etc
 .npm
 .rdebug_hist
 .cabal
