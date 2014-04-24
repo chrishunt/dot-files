@@ -50,6 +50,7 @@ workspace
 .bash_history
 .cups/
 .dropbox/
+.dropbox-master/
 .lesshst
 .ssh/
 .viminfo
