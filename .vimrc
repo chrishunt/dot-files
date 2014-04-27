@@ -31,7 +31,7 @@ set wildmenu                      " enable bash style tab completion
 set wildmode=list:longest,full
 runtime macros/matchit.vim        " use % to jump between start/end of methods
 
-" put useful info in status bar
+" put git status, column/row number, total lines, and percentage in status
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
 " set dark background and color scheme
