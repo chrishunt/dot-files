@@ -3,6 +3,8 @@
 src
 .boxen
 .exercism
+.keybase
+.keybase-installer
 .github
 .config
 .atom
