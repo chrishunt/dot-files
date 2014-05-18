@@ -1,4 +1,4 @@
-![](.screenshot.jpg)
+![](https://raw.githubusercontent.com/chrishunt/dot-files/master/.screenshot.jpg)
 
 ## Installation
 
