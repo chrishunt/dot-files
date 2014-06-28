@@ -1,4 +1,5 @@
 " .vimrc
+set encoding=utf-8
 
 " load up pathogen and all bundles
 call pathogen#infect()
