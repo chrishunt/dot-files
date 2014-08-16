@@ -4,7 +4,7 @@
 
 ```bash
 $ cd ~
-$ git clone git@github.com:chrishunt/dot-files.git .
+$ git clone https://github.com/chrishunt/dot-files.git .
 $ ./script/setup
 ```
 
