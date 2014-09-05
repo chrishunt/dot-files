@@ -24,7 +24,7 @@ fi
 command="ffmpeg -nostats -i $1 -filter_complex ebur128=peak=true -f null -"
 lufs=$(eval $command 2>&1 | grep -v ebur128 | grep I: | awk {'print $2'})
 
-adjust=$(echo "-1 * ($lufs + $target - $limiter)" | bc)
+adjust=$(bc <<< "-1 * ($lufs + $target)")
 
 if [ -z "$lufs" ]; then
   echo "Error reading LUFS for '$1'"
@@ -32,10 +32,31 @@ if [ -z "$lufs" ]; then
   usage
 fi
 
-echo "Target:  -$(echo $target)dB"
-echo "Current: $(echo $lufs)dB"
-echo
-echo "Make a volume adjustment of $(echo $adjust)dB and limit peaks to -$(echo $limiter)dB."
-echo
-echo "Adjust: $(echo $adjust)dB"
-echo "Limit:  -$(echo $limiter)dB"
+function results() {
+  echo "Target:  -$(echo $target)dB"
+  echo "Current: $(echo $lufs)dB"
+}
+
+if [ $(bc <<< "$adjust == 0") -eq 1 ]; then
+  echo "Your audio is already perfect!"
+  echo
+  results
+elif [ $(bc <<< "$adjust > 0") -eq 1 ]; then
+  adjust=$(bc <<< "$adjust + $limiter")
+  echo "Your audio is too quiet."
+  echo
+  results
+  echo
+  echo "Make an adjustment of $(echo $adjust)dB and limit peaks to -$(echo $limiter)dB."
+  echo
+  echo "Adjust: $(echo $adjust)dB"
+  echo "Limit:  -$(echo $limiter)dB"
+else
+  echo "Your audio is too loud."
+  echo
+  results
+  echo
+  echo "Make an adjustment of $(echo $adjust)dB."
+  echo
+  echo "Adjust: $(echo $adjust)dB"
+fi
