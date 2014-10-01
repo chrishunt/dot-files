@@ -100,3 +100,6 @@
 [submodule ".vim/bundle/unite"]
 	path = .vim/bundle/unite
 	url = https://github.com/Shougo/unite.vim.git
+[submodule ".vim/bundle/vim-rbenv"]
+	path = .vim/bundle/vim-rbenv
+	url = https://github.com/tpope/vim-rbenv.git
