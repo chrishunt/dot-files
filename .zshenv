@@ -1,2 +1,1 @@
-# Load up the GitHubs
-source /opt/boxen/env.sh
+eval "$(rbenv init - --no-rehash)"

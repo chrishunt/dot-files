@@ -28,6 +28,9 @@ source $ZSH/oh-my-zsh.sh
 # Disable auto-correct
 unsetopt correct_all
 
+# Load up the GitHubs
+source /opt/boxen/env.sh
+
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
   if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
