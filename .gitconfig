@@ -67,4 +67,5 @@
   up      = "!git fetch upstream && git rebase upstream/master"
   w       = whatchanged --decorate
   wp      = whatchanged --decorate -p
+  wtf     = "!git fetch --multiple production origin && git log production/master..origin/master"
   l = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short
