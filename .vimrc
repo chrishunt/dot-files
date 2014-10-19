@@ -85,6 +85,9 @@ let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 nmap <F1> :echo<CR>
 imap <F1> <C-o>:echo<CR>
 
+" unmap ex mode: 'Type visual to go into Normal mode.'
+nnoremap Q <nop>
+
 " map . in visual mode
 vnoremap . :norm.<cr>
 
