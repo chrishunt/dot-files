@@ -82,8 +82,8 @@ let g:ctrlp_match_window_reversed = 0
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
 " unmap F1 help
-nmap <F1> :echo<CR>
-imap <F1> <C-o>:echo<CR>
+nmap <F1> <nop>
+imap <F1> <nop>
 
 " unmap ex mode: 'Type visual to go into Normal mode.'
 nnoremap Q <nop>
