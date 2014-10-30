@@ -99,9 +99,6 @@ map <leader>b :Gblame<cr>
 map <leader>l :!clear && git log -p %<cr>
 map <leader>d :!clear && git diff %<cr>
 
-" open gist after it's been created
-let g:gist_open_browser_after_post = 1
-
 " ignore one line of diff
 " useful when editing hunks from git add --patch
 map <leader>i :normal ^r jdd<cr>
