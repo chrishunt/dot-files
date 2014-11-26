@@ -99,10 +99,6 @@ map <leader>b :Gblame<cr>
 map <leader>l :!clear && git log -p %<cr>
 map <leader>d :!clear && git diff %<cr>
 
-" ignore one line of diff
-" useful when editing hunks from git add --patch
-map <leader>i :normal ^r jdd<cr>
-
 " map Silver Searcher
 map <leader>a :Ag!<space>
 
