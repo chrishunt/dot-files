@@ -102,9 +102,6 @@ map <leader>d :!clear && git diff %<cr>
 " map Silver Searcher
 map <leader>a :Ag!<space>
 
-" search for word under cursor with Silver Searcher
-map <leader>A :Ag! "<C-r>=expand('<cword>')<CR>"
-
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
 
