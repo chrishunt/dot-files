@@ -1,7 +1,7 @@
 #!/bin/bash
-# negfix8 ver 1.2
+# negfix8 ver 1.3
 # GNU General Public License v2
-# (C) 2011-2012 JaZ99 - http://www.flickr.com/photos/jaz99/
+# (C) 2011-2013 JaZ99 - http://www.flickr.com/photos/jaz99/
 
 # This little script converts negative (scanned as 16-bit _linear_
 # positive, i.e. gamma=1.0), either C-41 color negative or B&W negative,
@@ -9,47 +9,56 @@
 # minor tweaking (gamma, contrast, exposition, etc.).
 # Reguires ImageMagick Q16 version (http://www.imagemagick.org/).
 
+# Newest version is always available here:
+#         https://sites.google.com/site/negfix/
+
 # IMPORTANT: For best result, scanned image MUST NOT contain holder fragments!
 
 # You may wish to fine-tune the default settings:
 COMMENT="Processed with negfix8"
 GAMMA=2.15
 PROF_DIR=$HOME/.negfix8
-MEM="-quiet -limit memory 512M" # max phisical memory used
+MEM="-quiet -limit memory 2048M" # max physical memory used
 ZIP="-compress zip"
 CS=""
 BINNING=""
 PROF_NAME=""
 SEPARATE=""
 MIRROR=""
+MAGICK_TEMPORARY_PATH="/var/tmp" # ImageMagick's temporary directory
 
 # Uncomment below, if you want 20% saturation boost
 #SATURATION="-modulate 100,120"
 
+# Starting with ImageMagick 6.8.0-5, there is -poly option
+# available, which speeds things up considerably.
+# If you have latest ImageMagick installed, comment out
+# the next 'convert' command to avoid unnecesary
+# testing
+HAS_POLY=1
+#convert -quiet rose: -poly "0,1" - > /dev/null 2>&1 || HAS_POLY=0
+
 # Additional speeding up is possible:
-# Locate and delete all occurances of "-evaluate Add 1".
-# Those are the safeguards against divide by zero error.
-# If you do scan properly, they are not needed at all.
+# comment out the SAFE variable.
+# It is the safeguard against divide by zero error.
+# If you do scan properly, it is not needed at all.
+#SAFE="-evaluate Add 1"
 
 # End of fine-tune section
 
-CSPACE="-set colorspace RGB -strip"
-
-PROF_CMD="convert $MEM \"\${F}\" $CSPACE \$SEPARATE \$BINNING -shave 10x10 -blur 3x3 -format \""\
-"%[fx: minima.r] "\
-"%[fx: minima.g] "\
-"%[fx: minima.b] "\
-"%[fx: ((minima.r/maxima.r)^(1/\$GAMMA))*QuantumRange*0.95] "\
-"%[fx: log(maxima.g/minima.g)/log(maxima.r/minima.r)] "\
-"%[fx: log(maxima.b/minima.b)/log(maxima.r/minima.r)] "\
-"\" info:"
-
-MAKE_PROF=0
+if [ ! -d "$MAGICK_TEMPORARY_PATH" ]; then
+    MAGICK_TEMPORARY_PATH=/tmp
+fi
+export MAGICK_TEMPORARY_PATH
 
 if [ $# -eq 0 ]; then
     # ugly hack to avoid using the function...
     set -- `/bin/echo "-h"`
 fi
+
+CSPACE="-set colorspace RGB"
+MAKE_PROF=1
+PROF_NAME="-"
 
 while [ $# -gt 0 ]; do
     case $1 in
@@ -58,25 +67,25 @@ while [ $# -gt 0 ]; do
 	-cs)	CS="-contrast-stretch 0"; shift;;
 	-r)	BINNING=$2; shift; shift;;
 	-g)     GAMMA=$2; shift; shift;;
-	-c)     MAKE_PROF=1
-		PROF_NAME="$2"
+	-c)     PROF_NAME="$2"
 		shift; shift;;
-	-u|+u)  PROF_NAME="$2"; 
-		HALF_PROF=0
+	-u)     MAKE_PROF=0
+                PROF_NAME="$2";
 		if [ ! -r "$PROF_DIR"/"$PROF_NAME" ]; then
 		    echo "The profile $PROF_DIR/$PROF_NAME does not exist!"
 		    exit 98
 		fi
 		shift; shift;;
 	-h|-?)	cat << EOF
-Usage: negfix8 [-m] [-g G] [-cs] [-r {2|3|4}] [-u prof] [-s {R|G|B}] input_file [output_file]
-       negfix8 [-g G] [-r {2|3|4}] [-s {R|G|B}] -c prof input_file
+Usage: negfix8 [-m] [-g G] [-cs] [-r {2|3|4}] [-u frame_prof] [-s {R|G|B}] input_file [output_file]
+       negfix8 [-m] [-g G] [-cs] [-r {2|3|4}] [-u frame_prof] [-s {R|G|B}] input_file [input_file...]
+       negfix8 -c frame_prof input_file [input_file...]
 
 where: -g    - set image gamma to specified value (default: $GAMMA)
        -cs   - perform contrast stretch operation
        -r    - perform X-fold image size reduction, with binning*
-       -c    - create profile from input file
-       -u    - use created profile
+       -c    - create frame profile from input file or files, then exit
+       -u    - use created frame profile
        -s    - separate given channel to make B&W image
        -m    - mirror image horizontally
 
@@ -87,75 +96,135 @@ Examples:
 	negfix8 -u test_profile -cs -r 3 -m scan002.tif scan002.jpg
 	negfix8 -cs scan003.tif
 	negfig8 -s G scan004.tif
+	negfix8 -c Portra400 roll123/*.tif
+	negfix8 -u Portra400 -cs roll123/*.tif
+
 EOF
+                [ $HAS_POLY -eq 0 ] && echo "Please upgrade ImageMagick to the newest version to speed up the processing."
 		exit 0;;
 	*)      break;;
     esac
 done
 
-if [ ! -f "${1}" ]; then
-    echo "Cannot open: ${1}"
-    exit 99
-fi
-
-F=_t_`basename "$1"`
-F2=`basename "$1"`
-OUTF=P_`basename "$1"`
-OUTF="${2:-$OUTF}"
-
-# IM bug workaround: create a copy without warnings
-convert $MEM "$1[0]" "$F" 2> /dev/null || echo "Not enough disk space."
-
-if [ ! -z $BINNING ]; then
-    set -- `convert $MEM "$F" -format "%[fx: $BINNING*floor(w/$BINNING)] %[fx: $BINNING*floor(h/$BINNING)] %[fx: floor(w/$BINNING)] %[fx: floor(h/$BINNING)]" info:`
-    BINNING="-crop ${1}x${2}+0+0 +repage -scale ${3}x${4}"
+if [ $# -eq 2 -a ! -e "${2}" ]; then
+    WORKLIST[0]="$1"
+    OUTF="$2"
+else
+    WORKLIST=("$@")
+    OUTF=""
 fi
 
 if [ $MAKE_PROF -eq 1 ]; then
     mkdir -p "$PROF_DIR"
-    echo "Creating profile $PROF_NAME..."
-    eval $PROF_CMD > "$PROF_DIR"/"$PROF_NAME"
-    EX=$?
-    cat "$PROF_DIR"/"$PROF_NAME"
+    VALUES=(1 1 1 0 0 0)
+    for i in "${WORKLIST[@]}"; do
+        if [ ! -f "$i" -o ! -r "$i" ]; then
+            echo "Cannot open: $i"
+	    exit 95
+        fi
+	echo "Reading "`basename "$i"`
+	VALUES=(`convert $MEM "${i}[0]" +profile "icc,icm" $CSPACE \
+        -shave 10x10 -blur 3x3 -format "%[fx: min(minima.r?minima.r:${VALUES[0]},${VALUES[0]})] \
+	%[fx: min(minima.g?minima.g:${VALUES[1]},${VALUES[1]})] \
+	%[fx: min(minima.b?minima.b:${VALUES[2]},${VALUES[2]})] \
+	%[fx: max(maxima.r<1?maxima.r:${VALUES[3]},${VALUES[3]})] \
+	%[fx: max(maxima.g<1?maxima.g:${VALUES[4]},${VALUES[4]})] \
+	%[fx: max(maxima.b<1?maxima.b:${VALUES[5]},${VALUES[5]})]" info:`)
+    done
+    if [ "${VALUES[3]}" == "0" ]; then
+        echo "Cannot create the average frame profile"
+        exit 97
+    fi
+    PROF=`convert xc: -format "${VALUES[0]} ${VALUES[1]} ${VALUES[2]} \
+    %[fx: ((${VALUES[0]}/${VALUES[3]})^(1/$GAMMA))*QuantumRange*0.95] \
+    %[fx: log(${VALUES[4]}/${VALUES[1]})/log(${VALUES[3]}/${VALUES[0]})] \
+    %[fx: log(${VALUES[5]}/${VALUES[2]})/log(${VALUES[3]}/${VALUES[0]})]" info:`
+    echo "Profile $PROF_NAME: $PROF"
+    if [ "$PROF_NAME" != "-" ]; then
+        echo "$PROF $GAMMA" > "$PROF_DIR"/"$PROF_NAME"
+        EX=$?
+        if [ $EX -ne 0 ]; then
+            echo "Error saving profile, error $EX"
+        fi
+        exit $EX
+    fi
+else
+    echo "Using frame profile: $PROF_NAME"
+fi
+
+for i in "${WORKLIST[@]}"; do
+    if [ ! -f "$i" -o ! -r "$i" ]; then
+        echo "Cannot open: $i"
+	continue
+    fi
+    
+    F2=`basename "$i"`
+    F=_t_$F2
+    [ -z "$OUTF" ] && OUTF=P_$F2
+
+    # Create a copy with unknown TIF tags and color profiles stripped
+    # and applied user's profiles, if any
+    convert $MEM "$i[0]" +profile "icc,icm" "$F" 2> /dev/null || { echo "Not enough disk space."; exit 98; }
+
+    if [ ! -z $BINNING ]; then
+        set -- `convert $MEM "$F" -format "%[fx: $BINNING*floor(w/$BINNING)] %[fx: $BINNING*floor(h/$BINNING)] %[fx: floor(w/$BINNING)] %[fx: floor(h/$BINNING)]" info:`
+        BINNING_CMD="-crop ${1}x${2}+0+0 +repage -scale ${3}x${4}"
+    fi
+
+    # Read calculated or existing profile...
+    if [ -n "$PROF" -a "$PROF_NAME"=="-" ]; then
+        set -- $PROF
+    else 
+        set -- `cat "$PROF_DIR"/"$PROF_NAME"`
+        GAMMA=${7:-$GAMMA}
+    fi
+
+    # Real work is done below
+    if [ "$5" = "1" -a "$6" = "1" -o ! -z "$SEPARATE" ]; then
+        if [ $HAS_POLY -eq 1 ]; then
+            echo -n "Writing $OUTF (B&W).... "
+            convert $MEM "${F}" $CSPACE $SEPARATE $BINNING_CMD $MIRROR \
+                $SAFE -poly "$1,-1" -gamma $GAMMA -evaluate Subtract $4 \
+                $CS -comment "$COMMENT" $ZIP $SEPARATE "$OUTF"
+            EX=$?
+        else
+            echo -n "Writing $OUTF (B&W)... "
+            convert $MEM "${F}" $CSPACE $SEPARATE $BINNING_CMD $MIRROR \
+                $SAFE -fx "$1/u" -gamma $GAMMA -evaluate Subtract $4 \
+                $CS -comment "$COMMENT" $ZIP $SEPARATE "$OUTF"
+            EX=$?
+        fi
+    else
+        if [ $HAS_POLY -eq 1 ]; then
+            echo -n "Writing $OUTF.... "
+            convert $MEM "${F}" $CSPACE $BINNING_CMD $MIRROR $SAFE -separate -delete 3-5 \
+                \( -clone 0 -poly "$1,-1" \) -swap 0,3 -delete 3 \
+                \( -clone 1 -poly "$2,-1" -gamma $5 \) -swap 1,3 -delete 3 \
+                \( -clone 2 -poly "$3,-1" -gamma $6 \) -swap 2,3 -delete 3 \
+                -combine -type TrueColor +channel -gamma $GAMMA \
+                -evaluate Subtract $4 $CS $SATURATION -comment "$COMMENT" $ZIP "$OUTF"
+            EX=$?
+        else
+            echo -n "Writing $OUTF... "
+            convert $MEM "${F}" $CSPACE $BINNING_CMD $MIRROR $SAFE \
+                -channel R -fx "$1/u" \
+                -channel G -fx "$2/u" -gamma $5 \
+                -channel B -fx "$3/u" -gamma $6 \
+                +channel -gamma $GAMMA -evaluate Subtract $4 \
+                $CS $SATURATION -comment "$COMMENT" $ZIP "$OUTF"
+            EX=$?
+        fi
+    fi 
+
     rm -f "$F"
-    exit $EX
-fi
 
-# Create temporary profile or read existing profile...
-if [ -f "$PROF_DIR"/"$PROF_NAME" ]; then
-    echo "$F2: Profile: $PROF_NAME"
-    set -- `cat "$PROF_DIR"/"$PROF_NAME"`
-else
-    echo -n "$F2: "
-    set -- `eval $PROF_CMD`
-    echo $*
-fi
+    if [ $EX -eq 0 ]; then 
+      echo "Done."
+      OUTF=""
+    else
+      echo "Error!"
+      exit $EX
+    fi
 
-echo -n "Writing $OUTF... "
+done
 
-# Real work is done below
-if [ "$5" = "1" -a "$6" = "1" -o ! -z "$SEPARATE" ]; then
-echo -n "(B&W) "
-    convert $MEM "${F}" $CSPACE $SEPARATE $BINNING $MIRROR \
-        -evaluate Add 1 -poly "$1,-1" -gamma $GAMMA -evaluate Subtract $4 \
-        $CS -comment "$COMMENT" $ZIP $SEPARATE "$OUTF"
-    EX=$?
-else
-    convert $MEM "${F}" $CSPACE $BINNING $MIRROR -separate -delete 3-5 \
-        \( -clone 0 -evaluate Add 1 -poly "$1,-1" \) \
-        \( -clone 1 -evaluate Add 1 -poly "$2,-1" -gamma $5 \) \
-        \( -clone 2 -evaluate Add 1 -poly "$3,-1" -gamma $6 \) \
-        -delete 0-2 -channel RGB,sync -combine -gamma $GAMMA \
-        -evaluate Subtract $4 $CS $SATURATION -comment "$COMMENT" $ZIP "$OUTF"
-    EX=$?
-fi
-
-if [ $EX -eq 0 ]; then
-  echo "Done."
-else
-  echo "Error!"
-fi
-
-rm -f "$F"
-
-exit $EX
