@@ -100,3 +100,6 @@
 [submodule ".vim/bundle/vim-rbenv"]
 	path = .vim/bundle/vim-rbenv
 	url = https://github.com/tpope/vim-rbenv.git
+[submodule ".vim/bundle/ctrlpvim"]
+	path = .vim/bundle/ctrlpvim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
