@@ -153,8 +153,8 @@ function! RunTests(filename)
   if match(a:filename, '\.feature$') != -1
     exec ":!bundle exec cucumber " . a:filename
   elseif match(a:filename, '_test\.rb$') != -1
-    if filereadable("bin/testrb")
-      exec ":!bin/testrb " . a:filename
+    if filereadable("script/testrb")
+      exec ":!script/testrb " . a:filename
     else
       exec ":!ruby -Itest " . a:filename
     end
