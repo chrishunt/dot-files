@@ -59,6 +59,7 @@
 .netbeans
 .netrc
 .nginx/
+.ngrok2
 .npm
 .npmrc
 .pgpass
