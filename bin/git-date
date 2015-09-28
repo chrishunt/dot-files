@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Change the commit date for the most recent commit in git history.
+
+if [[ $# -lt 2 ]] ; then
+  echo "Usage: git date MONTH DAY [YEAR]"
+  exit 0
+fi
+
+GIT_COMMITTER_DATE="$1 $2 14:00 ${3:-$(date +"%Y")} -0900"
+
+git commit --amend --date="$GIT_COMMITTER_DATE"
