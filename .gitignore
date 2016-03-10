@@ -1,4 +1,3 @@
-.rubies
 .CFUserTextEncoding
 .DS_Store
 .JxBrowser
@@ -16,8 +15,8 @@
 .bash_profile
 .bashrc
 .blurb
-.boxen
 .bower
+.boxen
 .cabal
 .cache
 .coffee_history
@@ -72,6 +71,7 @@
 .rdebug_hist
 .ri
 .rnd
+.rubies
 .rvm
 .scala_history
 .sec
@@ -99,6 +99,7 @@
 .zlogin
 .zsh-update
 .zsh_history
+Applications
 Code
 Desktop/
 Development/
@@ -117,4 +118,3 @@ VirtualBoxVMs
 github
 src
 workspace
-Applications
