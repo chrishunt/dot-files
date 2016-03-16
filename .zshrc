@@ -28,9 +28,9 @@ source $ZSH/oh-my-zsh.sh
 # Disable auto-correct
 unsetopt correct_all
 
-# Load up chruby and auto-load ruby version in ruby-version
+# Load up chruby, auto-load ruby version, and set default
 source /usr/local/opt/chruby/share/chruby/chruby.sh
-source /usr/local/opt/chruby/share/chruby/auto.sh
+chruby ruby-2.3
 
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
