@@ -1,6 +1,7 @@
 [user]
   name  = Chris Hunt
   email = c@chrishunt.co
+  signingkey = 93A46E0680FC9987
 [github]
   user = chrishunt
 [credential]
@@ -14,6 +15,8 @@
   autocrlf = input
   safecrlf = true
   excludesfile = /Users/chris/.global_gitignore
+[commit]
+  gpgsign = true
 [advice]
   statusHints = false
 [web]
