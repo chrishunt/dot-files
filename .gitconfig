@@ -17,6 +17,8 @@
   excludesfile = /Users/chris/.global_gitignore
 [commit]
   gpgsign = true
+[gpg]
+  program = /usr/local/MacGPG2/bin/gpg2
 [advice]
   statusHints = false
 [web]
