@@ -35,6 +35,9 @@ chruby ruby-2.3
 # Load up rbenv?
 eval "$(rbenv init -)"
 
+# Load up ssh keys
+ssh-add -A &> /dev/null
+
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
   if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
