@@ -65,6 +65,7 @@
   po      = push origin head
   pr      = "!f() { git fetch origin refs/pull/$1/head:pr/$1 && git co pr/$1; } ; f"
   s       = status -s -b
+  sc      = diff --name-only --diff-filter=U
   sm      = submodule
   smu     = submodule foreach git pull origin master
   summary = "!source ~/.githelpers && weekly_summary"
