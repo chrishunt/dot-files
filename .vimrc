@@ -167,7 +167,9 @@ function! RunTests(filename)
       exec ":!ruby -Itest " . a:filename
     end
   else
-    if filereadable("Gemfile")
+    if filereadable("bin/rspec")
+      exec ":!./bin/rspec --color " . a:filename
+    elseif filereadable("Gemfile")
       exec ":!bundle exec rspec --color " . a:filename
     else
       exec ":!rspec --color " . a:filename
