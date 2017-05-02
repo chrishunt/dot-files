@@ -68,6 +68,7 @@
 .pry_history
 .psql_history
 .python-eggs
+.rbenv
 .rdebug_hist
 .ri
 .rnd
