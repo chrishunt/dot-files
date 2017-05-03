@@ -80,6 +80,11 @@ let g:ctrlp_match_window_reversed = 0
 " use silver searcher for ctrlp
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
+" vimwiki configuration
+let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'path_html': '~/Dropbox/notes/html', 'ext': '.md', 'auto_export': '0', 'syntax': 'markdown'}]
+map <leader>ws :e /Users/chris/Dropbox/notes/Scratch.md<cr>
+map <leader>wu <Plug>VimwikiUISelect
+
 " unmap F1 help
 nmap <F1> <nop>
 imap <F1> <nop>
