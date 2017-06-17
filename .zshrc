@@ -28,10 +28,6 @@ source $ZSH/oh-my-zsh.sh
 # Disable auto-correct
 unsetopt correct_all
 
-# Load up chruby, auto-load ruby version, and set default
-source /usr/local/opt/chruby/share/chruby/chruby.sh
-chruby ruby-2.3
-
 # Load up rbenv?
 eval "$(rbenv init -)"
 
