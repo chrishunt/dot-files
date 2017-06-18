@@ -112,9 +112,8 @@ map <leader>a :Ag!<space>
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
 
-" toggle spell check with <F5>
-map <F5> :setlocal spell! spelllang=en_us<cr>
-imap <F5> <ESC>:setlocal spell! spelllang=en_us<cr>
+" toggle spell check with `
+map ` :setlocal spell! spelllang=en_us<cr>
 
 " add :Plain command for converting text to plaintext
 command! Plain execute "%s/’/'/ge | %s/[“”]/\"/ge | %s/—/-/ge"
