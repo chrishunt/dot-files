@@ -89,8 +89,9 @@ map <leader>wu <Plug>VimwikiUISelect
 nmap <F1> <nop>
 imap <F1> <nop>
 
-" map escape to jj (thanks touchbar)
-imap jj <Esc>
+" map escape to pressing jk at the same time (thanks touchbar)
+inoremap jk <Esc>
+inoremap kj <Esc>
 
 " unmap ex mode: 'Type visual to go into Normal mode.'
 nnoremap Q <nop>
