@@ -109,3 +109,6 @@
 [submodule ".vim/bundle/vim-rhubarb"]
 	path = .vim/bundle/vim-rhubarb
 	url = https://github.com/tpope/vim-rhubarb.git
+[submodule ".vim/bundle/vim-hack"]
+	path = .vim/bundle/vim-hack
+	url = https://github.com/hhvm/vim-hack.git
