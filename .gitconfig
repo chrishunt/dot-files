@@ -1,7 +1,7 @@
 [user]
   name  = Chris Hunt
-  email = huntca@gmail.com
-  signingkey = BE8CE6BB83747CA025268385ADAF50935A769F57
+  email = chris.hunt@coinbase.com
+  signingkey = 4A2E02E521C9263B9EDE993F5E9841992133F409
 [github]
   user = chrishunt
 [credential]
