@@ -91,6 +91,7 @@
 .topsoilrc
 .vim/.netrwhist
 .vimgolf
+.docker
 .viminfo
 .vinevncauth
 .vuescanrc
