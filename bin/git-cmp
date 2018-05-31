@@ -14,11 +14,15 @@ repo_path=$(
 user=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $1 }')
 repo=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $2 }')
 
-url="https://github.com/$user/$repo/compare/$current_branch"
-if [ "$1" == "-h" ]; then
-echo "USAGE: By default compares the current branch with master.\n If you pass a branch name as an argument it will compare\n the current branch versus the specified branch."
-else
+if [ -z "$GITHUB_HOST" ]; then
+  GITHUB_HOST="github.com"
+fi
 
+url="https://$GITHUB_HOST/$user/$repo/compare/$current_branch"
+
+if [ "$1" == "-h" ]; then
+  echo "USAGE: By default compares the current branch with master.\n If you pass a branch name as an argument it will compare\n the current branch versus the specified branch."
+else
 cat - <<COPY_TEXT | pbcopy
 BRANCH: *${current_branch}*
 
@@ -26,5 +30,4 @@ $url
 COPY_TEXT
 
 open $url
-
 fi
