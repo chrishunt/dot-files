@@ -112,3 +112,6 @@
 [submodule ".vim/bundle/vim-hack"]
 	path = .vim/bundle/vim-hack
 	url = https://github.com/hhvm/vim-hack.git
+[submodule ".vim/bundle/vim-editorconfig"]
+	path = .vim/bundle/vim-editorconfig
+	url = https://github.com/editorconfig/editorconfig-vim.git
