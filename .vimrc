@@ -179,12 +179,13 @@ function! RunTests(filename)
       exec ":!ruby -Itest " . a:filename
     end
   else
+    let rspec_options = "--color --format Fuubar "
     if filereadable("bin/rspec")
-      exec ":!./bin/rspec --color " . a:filename
+      exec ":!./bin/rspec " . rspec_options . a:filename
     elseif filereadable("Gemfile")
-      exec ":!bundle exec rspec --color " . a:filename
+      exec ":!bundle exec rspec " . rspec_options . a:filename
     else
-      exec ":!rspec --color " . a:filename
+      exec ":!rspec " . rspec_options . a:filename
     end
   end
 endfunction
