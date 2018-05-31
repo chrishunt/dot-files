@@ -78,6 +78,9 @@ let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_reversed = 0
 map <leader>F :CtrlPClearCache<cr>
 
+" fugitive config
+let g:github_enterprise_urls = ['https://github.cbhq.net']
+
 " use silver searcher for ctrlp
 let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
