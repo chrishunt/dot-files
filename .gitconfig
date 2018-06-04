@@ -62,16 +62,17 @@
   d       = diff
   ds      = diff --staged
   dw      = diff --color-words
+  l       = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short
   po      = push origin head
   pr      = "!f() { git fetch origin refs/pull/$1/head:pr/$1 && git co pr/$1; } ; f"
   s       = status -s -b
   sc      = diff --name-only --diff-filter=U
   sm      = submodule
   smu     = submodule foreach git pull origin master
+  specs   = "!source ~/.githelpers && recently_modified_specs"
   summary = "!source ~/.githelpers && weekly_summary"
   td      = merge --no-ff
   up      = "!git fetch upstream && git rebase upstream/master"
   w       = whatchanged --decorate
   wp      = whatchanged --decorate -p
   wtf     = "!git fetch --multiple production origin && git log production/master..origin/master"
-  l = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short
