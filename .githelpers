@@ -18,6 +18,10 @@ function delete_remote_merged_branches() {
   done
 }
 
+function recently_modified_specs() {
+  git show --name-only | grep _spec | sed -e 's/.*\/.*\///g' | sed -e 's/\(.*\)/`\1`/' | xargs
+}
+
 function weekly_summary() {
   LAST_WEEK=$(date -v-7d +%m/%d)
 
