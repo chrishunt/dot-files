@@ -121,7 +121,7 @@ noremap <C-l> :nohlsearch<CR>
 map ` :setlocal spell! spelllang=en_us<cr>
 
 " add :Plain command for converting text to plaintext
-command! Plain execute "%s/’/'/ge | %s/[“”]/\"/ge | %s/—/-/ge | %s/–/-/ge"
+command! Plain execute "%s/[’‘]/'/ge | %s/[“”]/\"/ge | %s/—/-/ge | %s/–/-/ge"
 
 " hint to keep lines short
 if exists('+colorcolumn')
