@@ -14,7 +14,7 @@
   editor = vim -f
   autocrlf = input
   safecrlf = true
-  excludesfile = /Users/chris/.global_gitignore
+  excludesfile = /Users/chrishunt/.global_gitignore
 [commit]
   gpgsign = true
 [gpg]
