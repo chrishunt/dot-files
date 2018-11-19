@@ -44,6 +44,7 @@
 .heroku
 .hitch*
 .hostname_suffix
+.node_repl_history
 .inputrc
 .irb-history
 .irb_history
