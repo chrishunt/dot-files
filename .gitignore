@@ -125,5 +125,6 @@ VirtualBox VMs
 VirtualBoxVMs
 github
 src
+.yarnrc
 workspace
 Creative Cloud Files
