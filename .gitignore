@@ -125,6 +125,7 @@ VirtualBox VMs
 VirtualBoxVMs
 github
 src
+.node-gyp
 .yarnrc
 workspace
 Creative Cloud Files
