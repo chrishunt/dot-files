@@ -125,6 +125,7 @@ VirtualBox VMs
 VirtualBoxVMs
 github
 src
+.local
 .node-gyp
 .yarnrc
 workspace
