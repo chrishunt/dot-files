@@ -79,9 +79,6 @@
 [submodule ".vim/bundle/mustache"]
 	path = .vim/bundle/mustache
 	url = git://github.com/mustache/vim-mustache-handlebars.git
-[submodule ".vim/bundle/ember"]
-	path = .vim/bundle/ember
-	url = https://github.com/dsawardekar/ember.vim.git
 [submodule ".vim/bundle/vim-clojure-static"]
 	path = .vim/bundle/vim-clojure-static
 	url = https://github.com/guns/vim-clojure-static.git
