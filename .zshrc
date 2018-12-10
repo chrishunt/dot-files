@@ -5,8 +5,8 @@
 # Show color
 export CLICOLOR=1
 
-# Use VIM as default text editor
-export EDITOR='mvim -v'
+# Use neo-vim as default text editor
+export EDITOR='nvim'
 
 # PATH for MySQL
 export PATH=/usr/local/mysql/bin:$PATH
