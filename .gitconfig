@@ -11,7 +11,7 @@
 [core]
   pager = less -FRSX
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-  editor = vim -f
+  editor = nvim
   autocrlf = input
   safecrlf = true
   excludesfile = /Users/chrishunt/.global_gitignore
