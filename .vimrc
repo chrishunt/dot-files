@@ -146,14 +146,6 @@ endfunction
 inoremap <tab> <c-r>=InsertTabWrapper()<cr>
 inoremap <s-tab> <c-n>
 
-" run a specific GitHub test using the GitHub test runner
-function! RunGitHubTest()
-  let filename = expand('%')
-  let testregex = input('Test regex: ', )
-  exec ':map ,r :!clear && ./bin/testrb ' . filename . ' -n /' . testregex . '/<cr>'
-endfunction
-map <leader>e :call RunGitHubTest()<cr>
-
 " rename current file, via Gary Bernhardt
 function! RenameFile()
   let old_name = expand('%')
