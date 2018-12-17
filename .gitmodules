@@ -76,9 +76,6 @@
 [submodule ".vim/bundle/vim-clojure-static"]
 	path = .vim/bundle/vim-clojure-static
 	url = https://github.com/guns/vim-clojure-static.git
-[submodule ".vim/bundle/html5-syntax"]
-	path = .vim/bundle/html5-syntax
-	url = git://github.com/othree/html5-syntax.vim.git
 [submodule ".vim/bundle/unite"]
 	path = .vim/bundle/unite
 	url = https://github.com/Shougo/unite.vim.git
