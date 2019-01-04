@@ -40,9 +40,6 @@
 [submodule ".vim/bundle/vim-abolish"]
 	path = .vim/bundle/vim-abolish
 	url = git@github.com:tpope/vim-abolish.git
-[submodule ".vim/bundle/vim-unimpaired"]
-	path = .vim/bundle/vim-unimpaired
-	url = https://github.com/tpope/vim-unimpaired.git
 [submodule ".vim/bundle/ctrlpvim"]
 	path = .vim/bundle/ctrlpvim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
