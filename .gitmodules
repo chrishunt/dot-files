@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/vim-polyglot"]
 	path = .vim/bundle/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
+[submodule ".vim/bundle/gruvbox"]
+	path = .vim/bundle/gruvbox
+	url = https://github.com/morhetz/gruvbox.git
