@@ -22,9 +22,6 @@
 [submodule ".vim/bundle/ag-vim"]
 	path = .vim/bundle/ag-vim
 	url = git://github.com/epmatsw/ag.vim.git
-[submodule ".vim/bundle/xterm-color-table"]
-	path = .vim/bundle/xterm-color-table
-	url = git@github.com:chrishunt/xterm-color-table.vim.git
 [submodule ".vim/bundle/webapi-vim"]
 	path = .vim/bundle/webapi-vim
 	url = git@github.com:mattn/webapi-vim.git
