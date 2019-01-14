@@ -21,15 +21,12 @@ DISABLE_AUTO_TITLE="true"
 #
 # Example format:
 #   plugins=(rails git textmate ruby)
-plugins=(git)
+plugins=(git rbenv)
 
 source $ZSH/oh-my-zsh.sh
 
 # Disable auto-correct
 unsetopt correct_all
-
-# Load up rbenv?
-eval "$(rbenv init -)"
 
 # Load up ssh keys
 ssh-add -A &> /dev/null
