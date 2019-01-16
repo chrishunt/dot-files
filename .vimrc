@@ -92,8 +92,8 @@ map <leader>m :!open -a "Marked 2" "%"<cr><cr>
 
 " map git commands
 map <leader>b :Gblame<cr>
-map <leader>l :!clear && git log -p %<cr>
-map <leader>d :!clear && git diff %<cr>
+map <leader>l :terminal git log -p %<cr>
+map <leader>d :terminal git diff %<cr>
 
 " map Silver Searcher
 map <leader>a :Ag!<space>
@@ -145,23 +145,22 @@ map <leader>n :call RenameFile()<cr>
 function! RunTests(filename)
   " Write the file and run tests for the given filename
   :w
-  :silent !clear
   if match(a:filename, '\.feature$') != -1
-    exec ":!bundle exec cucumber " . a:filename
+    exec ":terminal bundle exec cucumber " . a:filename
   elseif match(a:filename, '_test\.rb$') != -1
     if filereadable("script/testrb")
-      exec ":!script/testrb " . a:filename
+      exec ":terminal script/testrb " . a:filename
     else
-      exec ":!ruby -Itest " . a:filename
+      exec ":terminal ruby -Itest " . a:filename
     end
   else
     let rspec_options = "--color --format Fuubar "
     if filereadable("bin/rspec")
-      exec ":!./bin/rspec " . rspec_options . a:filename
+      exec ":terminal ./bin/rspec " . rspec_options . a:filename
     elseif filereadable("Gemfile")
-      exec ":!bundle exec rspec " . rspec_options . a:filename
+      exec ":terminal bundle exec rspec " . rspec_options . a:filename
     else
-      exec ":!rspec " . rspec_options . a:filename
+      exec ":terminal rspec " . rspec_options . a:filename
     end
   end
 endfunction
