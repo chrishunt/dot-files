@@ -15,13 +15,6 @@ cd ~
 echo "  > Updating homebrew..."
 brew update &> /dev/null
 
-echo "  > Installing reattach-to-user-namespace..."
-if command -v reattach-to-user-namespace >/dev/null 2>&1; then
-  echo "    > (Skipping) Already installed."
-else
-  brew install reattach-to-user-namespace &> /dev/null
-fi
-
 echo "  > Pulling latest dot-files..."
 git pull &> /dev/null
 
