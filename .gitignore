@@ -6,7 +6,8 @@
 .bash_history
 .bundle
 .cache
-.config
+.config/configstore
+.config/yarn
 .cups
 .docker
 .dropbox

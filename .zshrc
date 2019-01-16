@@ -36,7 +36,7 @@ alias ls='ls -h'
 alias lt='ls -ltr'
 alias tmux-pbcopy="tmux saveb -|pbcopy"
 alias tmux="TERM=screen-256color-bce tmux"
-alias vim='mvim -v'
+alias vim='nvim'
 alias vi=vim
 
 # Ruby
