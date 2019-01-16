@@ -92,8 +92,8 @@ map <leader>m :!open -a "Marked 2" "%"<cr><cr>
 
 " map git commands
 map <leader>b :Gblame<cr>
-map <leader>l :terminal git log -p %<cr>
-map <leader>d :terminal git diff %<cr>
+map <leader>l :split \| terminal git log -p %<cr>
+map <leader>d :split \| terminal git diff %<cr>
 
 " map Silver Searcher
 map <leader>a :Ag!<space>
@@ -146,21 +146,21 @@ function! RunTests(filename)
   " Write the file and run tests for the given filename
   :w
   if match(a:filename, '\.feature$') != -1
-    exec ":terminal bundle exec cucumber " . a:filename
+    exec ":split | terminal bundle exec cucumber " . a:filename
   elseif match(a:filename, '_test\.rb$') != -1
     if filereadable("script/testrb")
-      exec ":terminal script/testrb " . a:filename
+      exec ":split | terminal script/testrb " . a:filename
     else
-      exec ":terminal ruby -Itest " . a:filename
+      exec ":split | terminal ruby -Itest " . a:filename
     end
   else
     let rspec_options = "--color --format Fuubar "
     if filereadable("bin/rspec")
-      exec ":terminal ./bin/rspec " . rspec_options . a:filename
+      exec ":split | terminal ./bin/rspec " . rspec_options . a:filename
     elseif filereadable("Gemfile")
-      exec ":terminal bundle exec rspec " . rspec_options . a:filename
+      exec ":split | terminal bundle exec rspec " . rspec_options . a:filename
     else
-      exec ":terminal rspec " . rspec_options . a:filename
+      exec ":split | terminal rspec " . rspec_options . a:filename
     end
   end
 endfunction
