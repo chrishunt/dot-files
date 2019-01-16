@@ -10,6 +10,7 @@ filetype plugin indent on
 set autoindent                    " set auto indent
 set ts=2                          " set indent to 2 spaces
 set shiftwidth=2
+set termguicolors                 " show me all the colors please
 set expandtab                     " use spaces, not tab characters
 set nocompatible                  " don't need to be compatible with old vim
 set relativenumber                " show relative line numbers
