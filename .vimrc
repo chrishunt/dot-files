@@ -36,6 +36,7 @@ runtime macros/matchit.vim        " use % to jump between start/end of methods
 set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
 " setup color scheme
+set background=dark
 colorscheme gruvbox
 
 " highlight trailing spaces in annoying red
