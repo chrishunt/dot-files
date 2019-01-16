@@ -78,8 +78,11 @@ bindkey -v
 # EXE
 # ##########################################################################
 
-# Load up correct ruby version
-eval "$(rbenv init -)"
+# Lazy load rbenv because I can't stand how long this command takes
+rbenv() {
+  eval "$(command rbenv init -)"
+  rbenv "$@"
+}
 
 # Load up ssh keys
 # ssh-add -A &> /dev/null
