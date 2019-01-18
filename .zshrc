@@ -81,11 +81,8 @@ bindkey -v
 # EXE
 # ##########################################################################
 
-# Lazy load rbenv because I can't stand how long this command takes
-rbenv() {
-  eval "$(command rbenv init -)"
-  rbenv "$@"
-}
+# Load up rbenv - this takes forever unfortunately
+eval "$(rbenv init -)"
 
 # Load up ssh keys
 # ssh-add -A &> /dev/null
