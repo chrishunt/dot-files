@@ -23,6 +23,9 @@ export PATH=/usr/local/share/npm/bin:$PATH
 # Add home dir scripts to the path
 export PATH=~/bin:$PATH
 
+# Use GitHub Enterprise
+export GITHUB_HOST="github.cbhq.net"
+
 # ##########################################################################
 # ALIAS
 # ##########################################################################
