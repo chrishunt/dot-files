@@ -17,6 +17,7 @@
 .inputrc
 .lesshst
 .local
+.netlify
 .netrc
 .node-gyp
 .node_repl_history
