@@ -56,7 +56,7 @@ let g:ctrlp_map = '<leader>f'
 let g:ctrlp_max_height = 30
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_match_window_reversed = 0
-map <leader>F :CtrlPClearCache<cr>
+nmap <leader>F :CtrlPClearCache<cr>
 
 " fugitive config
 let g:github_enterprise_urls = ['https://github.cbhq.net']
@@ -66,12 +66,16 @@ let g:ctrlp_user_command = 'ag %s -l -g ""'
 
 " vimwiki configuration
 let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'path_html': '~/Dropbox/notes/html', 'ext': '.md', 'auto_export': '0', 'syntax': 'markdown'}]
-map <leader>ws :e /Users/chris/Dropbox/notes/Scratch.md<cr>
-map <leader>wu <Plug>VimwikiUISelect
+nmap <leader>ws :e /Users/chris/Dropbox/notes/Scratch.md<cr>
+nmap <leader>wu <Plug>VimwikiUISelect
 
 " unmap F1 help
 nmap <F1> <nop>
 imap <F1> <nop>
+
+" map test runner
+nmap <silent> <leader>t :TestFile<cr>
+nmap <silent> <leader>T :TestNearest<cr>
 
 " map jk to escape (thanks touchbar)
 inoremap jk <Esc>
@@ -88,21 +92,21 @@ nnoremap Q <nop>
 vnoremap . :norm.<cr>
 
 " map markdown preview
-map <leader>m :!open -a "Marked 2" "%"<cr><cr>
+nmap <leader>m :!open -a "Marked 2" "%"<cr><cr>
 
 " map git commands
-map <leader>b :Gblame<cr>
-map <leader>l :split \| terminal git log -p %<cr>
-map <leader>d :split \| terminal git diff %<cr>
+nmap <leader>b :Gblame<cr>
+nmap <leader>l :split \| terminal git log -p %<cr>
+nmap <leader>d :split \| terminal git diff %<cr>
 
 " map Silver Searcher
-map <leader>a :Ag!<space>
+nmap <leader>a :Ag!<space>
 
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
 
 " toggle spell check with `
-map ` :setlocal spell! spelllang=en_us<cr>
+nmap ` :setlocal spell! spelllang=en_us<cr>
 
 " add :Plain command for converting text to plaintext
 command! Plain execute "%s/[’‘]/'/ge | %s/[“”]/\"/ge | %s/—/-/ge | %s/–/-/ge"
@@ -140,58 +144,4 @@ function! RenameFile()
     redraw!
   endif
 endfunction
-map <leader>n :call RenameFile()<cr>
-
-function! RunTests(filename)
-  " Write the file and run tests for the given filename
-  :w
-  if match(a:filename, '\.feature$') != -1
-    exec ":split | terminal bundle exec cucumber " . a:filename
-  elseif match(a:filename, '_test\.rb$') != -1
-    if filereadable("script/testrb")
-      exec ":split | terminal script/testrb " . a:filename
-    else
-      exec ":split | terminal ruby -Itest " . a:filename
-    end
-  else
-    let rspec_options = "--color --format Fuubar "
-    if filereadable("bin/rspec")
-      exec ":split | terminal ./bin/rspec " . rspec_options . a:filename
-    elseif filereadable("Gemfile")
-      exec ":split | terminal bundle exec rspec " . rspec_options . a:filename
-    else
-      exec ":split | terminal rspec " . rspec_options . a:filename
-    end
-  end
-endfunction
-
-function! SetTestFile()
-  " set the spec file that tests will be run for.
-  let t:grb_test_file=@%
-endfunction
-
-function! RunTestFile(...)
-  if a:0
-    let command_suffix = a:1
-  else
-    let command_suffix = ""
-  endif
-
-  " run the tests for the previously-marked file.
-  let in_test_file = match(expand("%"), '\(.feature\|_spec.rb\|_test.rb\)$') != -1
-  if in_test_file
-    call SetTestFile()
-  elseif !exists("t:grb_test_file")
-    return
-  end
-  call RunTests(t:grb_test_file . command_suffix)
-endfunction
-
-function! RunNearestTest()
-  let spec_line_number = line('.')
-  call RunTestFile(":" . spec_line_number . " -b")
-endfunction
-
-" run test runner
-map <leader>t :call RunTestFile()<cr>
-map <leader>T :call RunNearestTest()<cr>
+nmap <leader>n :call RenameFile()<cr>
