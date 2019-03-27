@@ -26,6 +26,7 @@
 .pry_history
 .psql_history
 .rbenv
+.selenium
 .ssh
 .subversion
 .tsh
