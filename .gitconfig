@@ -1,24 +1,22 @@
 [user]
   name  = Chris Hunt
-  email = chris.hunt@coinbase.com
-  signingkey = 4A2E02E521C9263B9EDE993F5E9841992133F409
+  email = huntca@gmail.com
+  signingkey = 62A7999A3E684E43
 [github]
   user = chrishunt
-[credential]
-  helper = osxkeychain
-[hub]
-  protocol = https
 [core]
   pager = less -FRSX
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   editor = nvim
   autocrlf = input
   safecrlf = true
-  excludesfile = /Users/chrishunt/.global_gitignore
+  excludesfile = /home/huntca/.global_gitignore
+[credential]
+  helper = cache --timeout=3600
 [commit]
   gpgsign = true
 [gpg]
-  program = /usr/local/MacGPG2/bin/gpg2
+  program = gpg
 [advice]
   statusHints = false
 [web]
@@ -63,7 +61,7 @@
   ds      = diff --staged
   dw      = diff --color-words
   l       = log --pretty='format:%C(yellow)%h %C(blue)%ad %C(reset)%s%C(red)%d %C(green)%an%C(reset), %C(cyan)%ar' --date=short
-  po      = push origin head
+  po      = push origin HEAD
   pr      = "!f() { git fetch origin refs/pull/$1/head:pr/$1 && git co pr/$1; } ; f"
   s       = status -s -b
   sc      = diff --name-only --diff-filter=U
