@@ -8,23 +8,11 @@ export CLICOLOR=1
 # Use neo-vim as default text editor
 export EDITOR='nvim'
 
-# PATH for MySQL
-export PATH=/usr/local/mysql/bin:$PATH
-
-# PATH for MongoDB
-export PATH=/Applications/mongodb-osx-x86_64-2.0.0/bin:$PATH
-
-# PATH for QT5.5 libraries (needed for Capybara gem)
-export PATH=/usr/local/opt/qt@5.5/bin:$PATH
-
-# Add node binaries to path
-export PATH=/usr/local/share/npm/bin:$PATH
-
 # Add home dir scripts to the path
 export PATH=~/bin:$PATH
 
-# Use GitHub Enterprise
-export GITHUB_HOST="github.cbhq.net"
+# Show password prompt in terminal for GPG
+export GPG_TTY=$(tty)
 
 # ##########################################################################
 # ALIAS
@@ -37,8 +25,6 @@ alias la='ls -a'
 alias ll='ls -l'
 alias ls='ls -h'
 alias lt='ls -ltr'
-alias tmux-pbcopy="tmux saveb -|pbcopy"
-alias tmux="TERM=screen-256color-bce tmux"
 alias vim='nvim'
 alias vi=vim
 
@@ -65,6 +51,7 @@ alias gcm='git commit -m'
 unsetopt correct_all
 
 # Show pure prompt
+fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
 autoload -U promptinit; promptinit
 prompt pure
 
@@ -81,11 +68,8 @@ bindkey -v
 # EXE
 # ##########################################################################
 
-# Load up rbenv - this takes forever unfortunately
-eval "$(rbenv init -)"
-
-# Load up ssh keys
-# ssh-add -A &> /dev/null
+# Start up SSH Agent to avoid constant password prompts
+eval $(ssh-agent) &>/dev/null
 
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
