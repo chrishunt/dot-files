@@ -1,0 +1,13 @@
+.bash_logout
+.bashrc
+.cache
+.gnupg
+.lesshst
+.local
+.npm
+.ssh
+.sudo_as_admin_successful
+.vim/plugged
+.viminfo
+.wget-hsts
+.zcompdump
