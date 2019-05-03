@@ -1,9 +1,5 @@
 #!/bin/bash
 
-function delete_local_merged_branches() {
-  git branch --merged master | grep -v master | xargs git branch -d
-}
-
 function delete_remote_merged_branches() {
   git fetch origin
   git remote prune origin

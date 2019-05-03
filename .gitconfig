@@ -53,7 +53,6 @@
   aa      = add --all :/
   ap      = add -u -p
   b       = browse
-  bam     = "!source ~/.githelpers && delete_local_merged_branches"
   bamr    = "!source ~/.githelpers && delete_remote_merged_branches"
   c       = commit -v
   co      = checkout
