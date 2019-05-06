@@ -71,6 +71,10 @@ bindkey -v
 # Start up SSH Agent to avoid constant password prompts
 eval $(ssh-agent) &>/dev/null
 
+# Load up correct ruby version
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
+
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
   if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
