@@ -5,6 +5,8 @@
 .lesshst
 .local
 .npm
+.rubies
+.ruby-version
 .ssh
 .sudo_as_admin_successful
 .vim/plugged
