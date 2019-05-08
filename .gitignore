@@ -1,6 +1,7 @@
 .bash_logout
 .bashrc
 .cache
+.gem
 .gnupg
 .lesshst
 .local
