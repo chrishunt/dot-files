@@ -54,6 +54,9 @@ unsetopt correct_all
 fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
 autoload -U promptinit; promptinit
 prompt pure
+PURE_PROMPT_SYMBOL='»'
+PURE_GIT_DOWN_ARROW='↓'
+PURE_GIT_UP_ARROW='↑'
 
 # Key bindings, for all options see docs:
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
