@@ -8,7 +8,7 @@ $ git clone https://github.com/chrishunt/dot-files.git .
 $ ./script/setup
 ```
 
-### Terminal Color Scheme
+### Color Scheme
 
 | Color          | RGB           |
 |----------------|---------------|
