@@ -12,14 +12,7 @@ echo ""
 echo "==> Here we go..."
 cd ~
 
-echo "  > Updating homebrew..."
-brew update &> /dev/null
-
 echo "  > Pulling latest dot-files..."
 git pull &> /dev/null
-
-echo "  > Updating all git submodules..."
-git submodule init &> /dev/null
-git submodule update &> /dev/null
 
 echo "==> Done with setup."

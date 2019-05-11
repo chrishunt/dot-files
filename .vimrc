@@ -1,9 +1,25 @@
 " .vimrc
 set encoding=utf-8
 
-" load up pathogen and all bundles
-call pathogen#infect()
-call pathogen#helptags()
+"Load up vim-plug
+call plug#begin('~/.vim/plugged')
+  Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'epmatsw/ag.vim'
+  Plug 'epmatsw/ag.vim'
+  Plug 'godlygeek/tabular'
+  Plug 'janko/vim-test'
+  Plug 'kchmck/vim-coffee-script'
+  Plug 'mattn/webapi-vim'
+  Plug 'morhetz/gruvbox'
+  Plug 'sheerun/vim-polyglot'
+  Plug 'tpope/vim-abolish'
+  Plug 'tpope/vim-commentary'
+  Plug 'tpope/vim-endwise'
+  Plug 'tpope/vim-fugitive'
+  Plug 'tpope/vim-rhubarb'
+  Plug 'tpope/vim-surround'
+  Plug 'vimwiki/vimwiki'
+call plug#end()
 
 syntax on                         " show syntax highlighting
 filetype plugin indent on
