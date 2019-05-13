@@ -2,6 +2,9 @@
 # EXPORT
 # ##########################################################################
 
+# Set timezone
+export TZ=/usr/share/zoneinfo/US/Pacific
+
 # Show color
 export CLICOLOR=1
 
