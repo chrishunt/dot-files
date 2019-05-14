@@ -54,12 +54,12 @@ alias gcm='git commit -m'
 unsetopt correct_all
 
 # Show pure prompt
-fpath+=('/usr/local/lib/node_modules/pure-prompt/functions')
-autoload -U promptinit; promptinit
-prompt pure
 PURE_PROMPT_SYMBOL='»'
 PURE_GIT_DOWN_ARROW='↓'
 PURE_GIT_UP_ARROW='↑'
+fpath+=('/home/huntca/.npm-global/lib/node_modules/pure-prompt/functions')
+autoload -U promptinit; promptinit
+prompt pure
 
 # Key bindings, for all options see docs:
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
