@@ -16,6 +16,7 @@
 .ruby-version
 .ssh
 .sudo_as_admin_successful
+.vim/.netrwhist
 .vim/plugged
 .viminfo
 .wget-hsts
