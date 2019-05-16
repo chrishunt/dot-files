@@ -15,4 +15,13 @@ cd ~
 echo "  > Pulling latest dot-files..."
 git pull &> /dev/null
 
+echo "  > Installing Neovim, Silver Searcher, Build Essential, NPM..."
+sudo apt-get install neovim silversearcher-ag build-essential npm
+
+echo "  > Installing Pure prompt..."
+npm install --global pure-prompt
+
+echo "  > Installing vim plugins..."
+vim +PlugInstall +qall
+
 echo "==> Done with setup."
