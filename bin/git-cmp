@@ -18,4 +18,4 @@ if [ -z "$GITHUB_HOST" ]; then
   GITHUB_HOST="github.com"
 fi
 
-explorer.exe "https://$GITHUB_HOST/$user/$repo/compare/$current_branch"
+echo "https://$GITHUB_HOST/$user/$repo/compare/$current_branch"
