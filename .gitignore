@@ -5,6 +5,7 @@
 .config/configstore
 .gem
 .gnupg
+.hex
 .lesshst
 .local
 .node_repl_history
