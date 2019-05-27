@@ -5,7 +5,6 @@ set encoding=utf-8
 call plug#begin('~/.vim/plugged')
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'epmatsw/ag.vim'
-  Plug 'epmatsw/ag.vim'
   Plug 'godlygeek/tabular'
   Plug 'janko/vim-test'
   Plug 'kchmck/vim-coffee-script'
