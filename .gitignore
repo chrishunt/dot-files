@@ -8,6 +8,7 @@
 .hex
 .lesshst
 .local
+.mix
 .node_repl_history
 .npm
 .npm-global
