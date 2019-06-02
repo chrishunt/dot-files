@@ -2,11 +2,16 @@
 .bashrc
 .bundle
 .cache
+.config/configstore
 .gem
 .gnupg
 .lesshst
 .local
+.node_repl_history
 .npm
+.npm-global
+.npmrc
+.nvm
 .rubies
 .ruby-version
 .ssh
