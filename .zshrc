@@ -3,7 +3,7 @@
 # ##########################################################################
 
 # Set timezone
-export TZ=/usr/share/zoneinfo/US/Pacific
+export TZ=/usr/share/zoneinfo/US/Mountain
 
 # Show color
 export CLICOLOR=1
