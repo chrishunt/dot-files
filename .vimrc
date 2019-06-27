@@ -1,7 +1,7 @@
 " .vimrc
 set encoding=utf-8
 
-"Load up vim-plug
+" Load up vim-plug
 call plug#begin('~/.vim/plugged')
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'epmatsw/ag.vim'
