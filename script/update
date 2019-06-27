@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -e
+
+echo "      _       _         __ _ _"
+echo "   __| | ___ | |_      / _(_) | ___  ___"
+echo "  / _\` |/ _ \| __|____| |_| | |/ _ \/ __|"
+echo " | (_| | (_) | ||_____|  _| | |  __/\__ \\"
+echo "  \__,_|\___/ \__|    |_| |_|_|\___||___/"
+echo ""
+
+echo "==> Here we go..."
+cd ~
+
+echo "  > Pulling latest dot-files..."
+git pull &> /dev/null
+
+echo "  > Updating vim plugins..."
+vim +PlugUpdate +qall
+
+echo "==> Done with update."
