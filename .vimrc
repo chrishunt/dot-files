@@ -160,3 +160,17 @@ function! RenameFile()
   endif
 endfunction
 nmap <leader>n :call RenameFile()<cr>
+
+" vim-test extensions
+function! ElixirUmbrellaTransform(cmd) abort
+  if match(a:cmd, 'apps/') != -1
+    " return substitute(a:cmd, 'mix test apps/\([^/]*/\)', 'cd apps/\1 \&\& mix test ', '')
+    return substitute(a:cmd, 'mix test apps/\([^/]*/\)', 'mix test ', '')
+  else
+    return a:cmd
+  end
+endfunction
+
+let g:test#custom_transformations = {'elixir_umbrella': function('ElixirUmbrellaTransform')}
+let g:test#transformation = 'elixir_umbrella'
+let g:test#preserve_screen = 0
