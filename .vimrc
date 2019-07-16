@@ -111,8 +111,6 @@ let g:ctrlp_user_command = 'ag %s -l -g ""'
 
 " vimwiki configuration
 let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'path_html': '~/Dropbox/notes/html', 'ext': '.md', 'auto_export': 0, 'syntax': 'markdown'}]
-nmap <leader>ws :e /Users/chris/Dropbox/notes/Scratch.md<cr>
-nmap <leader>wu <Plug>VimwikiUISelect
 
 " unmap F1 help
 nmap <F1> <nop>
