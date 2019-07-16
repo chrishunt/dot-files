@@ -14,6 +14,13 @@ export EDITOR='nvim'
 # Add home dir scripts to the path
 export PATH=~/bin:$PATH
 
+# Add NPM stuff to path
+export PATH=$PATH:~/.npm-global/bin
+
+# Add GO to path
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:~/go/bin
+
 # Show password prompt in terminal for GPG
 export GPG_TTY=$(tty)
 
@@ -80,6 +87,7 @@ eval $(ssh-agent) &>/dev/null
 # Load up correct ruby version
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
+chruby ruby-2.6.3
 
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
