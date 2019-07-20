@@ -1,9 +1,10 @@
 .bash_logout
-.omg
 .bashrc
 .bundle
 .cache
 .config/configstore
+.dropbox
+.dropbox-dist
 .gem
 .gnupg
 .hex
@@ -15,6 +16,7 @@
 .npm-global
 .npmrc
 .nvm
+.omg
 .rubies
 .ruby-version
 .ssh
@@ -24,4 +26,5 @@
 .viminfo
 .wget-hsts
 .zcompdump
+Dropbox
 src
