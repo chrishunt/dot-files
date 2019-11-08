@@ -21,6 +21,9 @@ export PATH=$PATH:~/.npm-global/bin
 export PATH=$PATH:/usr/local/go/bin
 export PATH=$PATH:~/go/bin
 
+# Add Snap to path
+export PATH=$PATH:/snap/bin
+
 # Show password prompt in terminal for GPG
 export GPG_TTY=$(tty)
 
@@ -84,10 +87,9 @@ bindkey -v
 # Start up SSH Agent to avoid constant password prompts
 eval $(ssh-agent) &>/dev/null
 
-# Load up correct ruby version
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
-chruby ruby-2.6.3
+# Load up ASDF
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
 
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
