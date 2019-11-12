@@ -10,6 +10,7 @@ call plug#begin('~/.vim/plugged')
   Plug 'kchmck/vim-coffee-script'
   Plug 'mattn/webapi-vim'
   Plug 'morhetz/gruvbox'
+  Plug 'scrooloose/nerdtree'
   Plug 'sheerun/vim-polyglot'
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary'
