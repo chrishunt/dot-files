@@ -14,6 +14,7 @@
 .local
 .mix
 .netrc
+.node-gyp/
 .node_repl_history
 .npm
 .npm-global
@@ -21,10 +22,12 @@
 .nvm
 .omg
 .pry_history
+.psql_history
 .rubies
 .ruby-version
 .ssh
 .sudo_as_admin_successful
+.tool-versions
 .vim/.netrwhist
 .vim/plugged
 .viminfo
@@ -32,6 +35,7 @@
 .yarnrc
 .zcompdump
 Dropbox
+bin/dropbox
 config.exs
 config_watcher.exs
 go
