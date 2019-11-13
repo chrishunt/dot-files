@@ -4,6 +4,7 @@
 .bundle
 .cache
 .config/configstore
+.config/gatsby
 .dropbox
 .dropbox-dist
 .gem
