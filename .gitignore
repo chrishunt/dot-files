@@ -31,6 +31,8 @@
 .yarnrc
 .zcompdump
 Dropbox
+config.exs
+config_watcher.exs
 go
 snap
 src
