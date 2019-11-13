@@ -13,6 +13,7 @@
 .lesshst
 .local
 .mix
+.netrc
 .node_repl_history
 .npm
 .npm-global
