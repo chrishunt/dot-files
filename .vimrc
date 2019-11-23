@@ -124,6 +124,11 @@ imap <F1> <nop>
 nmap <silent> <leader>t :TestFile<cr>
 nmap <silent> <leader>T :TestNearest<cr>
 
+" if using nvim terminal, re-map normal mode
+if has('nvim')
+  tmap <C-o> <C-\><C-n>
+endif
+
 " map jk to escape (thanks touchbar)
 inoremap jk <Esc>
 inoremap kj <Esc>
