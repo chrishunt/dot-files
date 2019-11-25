@@ -3,6 +3,7 @@ set encoding=utf-8
 
 " Load up vim-plug
 call plug#begin('~/.vim/plugged')
+  Plug 'ap/vim-css-color'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'epmatsw/ag.vim'
   Plug 'godlygeek/tabular'
