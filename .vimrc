@@ -107,6 +107,7 @@ nmap <leader>F :CtrlPClearCache<cr>
 
 " NERDTree config
 nmap <leader>g :NERDTreeToggle<cr>
+nmap <leader>G :NERDTreeRefreshRoot<cr>
 
 " fugitive config
 let g:github_enterprise_urls = ['https://github.cbhq.net']
