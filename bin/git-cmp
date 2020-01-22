@@ -11,7 +11,7 @@ repo=$(
   grep 'remote.origin.url'
 )
 
-repo_path=$(
+path=$(
   echo $repo | \
   egrep -o '[^\/:]+\/[^\/]+$' | \
   sed -e 's/\(.*\).git$/\1/'
@@ -24,7 +24,13 @@ host=$(
   sed -e 's/=\(.*\):/\1/'
 )
 
-user=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $1 }')
-repo=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $2 }')
+user=$(echo $path | awk 'BEGIN { FS="/" } ; { print $1 }')
+repo=$(echo $path | awk 'BEGIN { FS="/" } ; { print $2 }')
 
-echo "https://$host/$user/$repo/compare/$current_branch"
+url="https://$host/$user/$repo/compare/$current_branch"
+
+echo $url
+
+if [ -x "$(command -v open)" ]; then
+  open $url
+fi
