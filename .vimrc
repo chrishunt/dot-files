@@ -4,10 +4,10 @@ set encoding=utf-8
 " Load up vim-plug
 call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'epmatsw/ag.vim'
   Plug 'godlygeek/tabular'
   Plug 'janko/vim-test'
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
+  Plug 'junegunn/fzf.vim'
   Plug 'kchmck/vim-coffee-script'
   Plug 'mattn/webapi-vim'
   Plug 'morhetz/gruvbox'
@@ -98,25 +98,18 @@ autocmd BufWinLeave * call clearmatches()
 " set leader key to comma
 let mapleader = ","
 
-" ctrlp config
-let g:ctrlp_map = '<leader>f'
-let g:ctrlp_max_height = 30
-let g:ctrlp_working_path_mode = 0
-let g:ctrlp_match_window_reversed = 0
-nmap <leader>F :CtrlPClearCache<cr>
-
 " NERDTree config
 nmap <leader>g :NERDTreeToggle<cr>
 nmap <leader>G :NERDTreeRefreshRoot<cr>
 
 " fugitive config
-let g:github_enterprise_urls = ['https://github.cbhq.net']
-
-" use silver searcher for ctrlp
-let g:ctrlp_user_command = 'ag %s -l -g ""'
+let g:github_enterprise_urls = ['https://git.corp.stripe.com/']
 
 " vimwiki configuration
 let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'path_html': '~/Dropbox/notes/html', 'ext': '.md', 'auto_export': 0, 'syntax': 'markdown'}]
+
+" FZF config
+nmap <Leader>f :Files<CR>
 
 " unmap F1 help
 nmap <F1> <nop>
@@ -153,8 +146,8 @@ nmap <leader>b :Gblame<cr>
 nmap <leader>l :split \| terminal git log -p %<cr>
 nmap <leader>d :split \| terminal git diff %<cr>
 
-" map Silver Searcher
-nmap <leader>a :Ag!<space>
+" map file search
+nmap <leader>a :Rg<space>
 
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
