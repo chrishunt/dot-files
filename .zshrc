@@ -67,7 +67,7 @@ unsetopt correct_all
 PURE_PROMPT_SYMBOL='»'
 PURE_GIT_DOWN_ARROW='↓'
 PURE_GIT_UP_ARROW='↑'
-fpath+=('/home/huntca/.npm-global/lib/node_modules/pure-prompt/functions')
+fpath+=('~/.npm-global/lib/node_modules/pure-prompt/functions')
 autoload -U promptinit; promptinit
 prompt pure
 
@@ -86,10 +86,6 @@ bindkey -v
 
 # Start up SSH Agent to avoid constant password prompts
 eval $(ssh-agent) &>/dev/null
-
-# Load up ASDF
-source $HOME/.asdf/asdf.sh
-source $HOME/.asdf/completions/asdf.bash
 
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
