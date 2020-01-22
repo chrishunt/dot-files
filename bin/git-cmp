@@ -5,17 +5,26 @@
 
 current_branch=$(git branch | grep '* ' | awk '{print $2}')
 compare_to=${1:-"master"}
-repo_path=$(
+
+repo=$(
   git config -l | \
-  grep 'remote.origin.url' | \
+  grep 'remote.origin.url'
+)
+
+repo_path=$(
+  echo $repo | \
   egrep -o '[^\/:]+\/[^\/]+$' | \
   sed -e 's/\(.*\).git$/\1/'
 )
+
+host=$(
+  echo $repo | \
+  egrep -o '=.*:' | \
+  sed -e 's/git@//' | \
+  sed -e 's/=\(.*\):/\1/'
+)
+
 user=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $1 }')
 repo=$(echo $repo_path | awk 'BEGIN { FS="/" } ; { print $2 }')
 
-if [ -z "$GITHUB_HOST" ]; then
-  GITHUB_HOST="github.com"
-fi
-
-echo "https://$GITHUB_HOST/$user/$repo/compare/$current_branch"
+echo "https://$host/$user/$repo/compare/$current_branch"
