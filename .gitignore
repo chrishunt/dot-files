@@ -34,10 +34,19 @@
 .wget-hsts
 .yarnrc
 .zcompdump
+Applications
+Creative Cloud Files
+Downloads
 Dropbox
+Google Drive File Stream
+Library
+Movies
+Music
+Pictures
 bin/dropbox
 config.exs
 config_watcher.exs
 go
 snap
 src
+stripe
