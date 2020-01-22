@@ -1,16 +1,16 @@
 [user]
   name  = Chris Hunt
   email = huntca@gmail.com
-  signingkey = 62A7999A3E684E43
+  signingkey = CFE425B2310417E6
 [github]
   user = chrishunt
 [core]
   pager = less -FRSX
   whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
   editor = nvim
-  autocrlf = input
+  autocrlf = false
   safecrlf = true
-  excludesfile = /home/huntca/.global_gitignore
+  excludesfile = ~/.global_gitignore
 [credential]
   helper = cache --timeout=3600
 [commit]
