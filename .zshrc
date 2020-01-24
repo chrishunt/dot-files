@@ -1,4 +1,12 @@
 # ##########################################################################
+# BASH
+# ##########################################################################
+
+# Load up bash config if it's around
+[ -f ~/.bash_profile ] && source ~/.bash_profile
+[ -f ~/.bashrc ] && source ~/.bashrc
+
+# ##########################################################################
 # EXPORT
 # ##########################################################################
 
@@ -86,6 +94,9 @@ bindkey -v
 
 # Start up SSH Agent to avoid constant password prompts
 eval $(ssh-agent) &>/dev/null
+
+# Load our fzf config
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
