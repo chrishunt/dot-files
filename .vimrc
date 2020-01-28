@@ -3,23 +3,23 @@ set encoding=utf-8
 
 " Load up vim-plug
 call plug#begin('~/.vim/plugged')
-  Plug 'ap/vim-css-color'
-  Plug 'godlygeek/tabular'
-  Plug 'janko/vim-test'
+  Plug 'ap/vim-css-color'  " highlight hex values with their color
+  Plug 'benmills/vimux'    " control tmux from vim, used for tests
+  Plug 'godlygeek/tabular' " align stuff... like these vim comments
+  Plug 'janko/vim-test'    " run tests inside vim
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
-  Plug 'junegunn/fzf.vim'
-  Plug 'kchmck/vim-coffee-script'
+  Plug 'junegunn/fzf.vim'     " fuzzy search for files
   Plug 'mattn/webapi-vim'
-  Plug 'morhetz/gruvbox'
-  Plug 'scrooloose/nerdtree'
-  Plug 'sheerun/vim-polyglot'
+  Plug 'morhetz/gruvbox'      " current colorscheme
+  Plug 'scrooloose/nerdtree'  " file browser
+  Plug 'sheerun/vim-polyglot' " syntax highlighting for many languages
   Plug 'tpope/vim-abolish'
-  Plug 'tpope/vim-commentary'
-  Plug 'tpope/vim-endwise'
-  Plug 'tpope/vim-fugitive'
-  Plug 'tpope/vim-rhubarb'
-  Plug 'tpope/vim-surround'
-  Plug 'vimwiki/vimwiki'
+  Plug 'tpope/vim-commentary' " comment stuff out, like these comments
+  Plug 'tpope/vim-endwise'    " match do/end, brackets, etc
+  Plug 'tpope/vim-fugitive'   " git wrapper
+  Plug 'tpope/vim-rhubarb'    " git(hub) wrapper - open on GitHub
+  Plug 'tpope/vim-surround'   " change and add surrounds, []()
+  Plug 'vimwiki/vimwiki'      " my own personal wiki
 call plug#end()
 
 syntax on                         " show syntax highlighting
@@ -102,9 +102,6 @@ let mapleader = ","
 nmap <leader>g :NERDTreeToggle<cr>
 nmap <leader>G :NERDTreeRefreshRoot<cr>
 
-" fugitive config
-let g:github_enterprise_urls = ['https://git.corp.stripe.com/']
-
 " vimwiki configuration
 let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'path_html': '~/Dropbox/notes/html', 'ext': '.md', 'auto_export': 0, 'syntax': 'markdown'}]
 
@@ -116,7 +113,9 @@ nmap <Leader>f :Files<CR>
 nmap <F1> <nop>
 imap <F1> <nop>
 
-" map test runner
+" vim test config
+let g:test#preserve_screen = 1
+let test#strategy = 'vimux'
 nmap <silent> <leader>t :TestFile<cr>
 nmap <silent> <leader>T :TestNearest<cr>
 
@@ -193,5 +192,3 @@ function! RenameFile()
   endif
 endfunction
 nmap <leader>n :call RenameFile()<cr>
-
-let g:test#preserve_screen = 0
