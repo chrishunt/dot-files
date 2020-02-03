@@ -4,7 +4,6 @@ set encoding=utf-8
 " Load up vim-plug
 call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'  " highlight hex values with their color
-  Plug 'benmills/vimux'    " control tmux from vim, used for tests
   Plug 'godlygeek/tabular' " align stuff... like these vim comments
   Plug 'janko/vim-test'    " run tests inside vim
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
@@ -115,7 +114,6 @@ imap <F1> <nop>
 
 " vim test config
 let g:test#preserve_screen = 1
-let test#strategy = 'vimux'
 nmap <silent> <leader>t :TestFile<cr>
 nmap <silent> <leader>T :TestNearest<cr>
 
