@@ -16,7 +16,7 @@ echo "  > Pulling latest dot-files..."
 git pull &> /dev/null
 
 echo "  > Installing Neovim, ripgrep, NPM..."
-brew install neovim rg npm
+brew install neovim rg npm zsh-syntax-highlighting
 
 echo "  > Installing Pure prompt..."
 npm install --global pure-prompt
