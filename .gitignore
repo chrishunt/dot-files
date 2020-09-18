@@ -8,6 +8,8 @@
 .config/gatsby
 .dropbox
 .dropbox-dist
+.fzf
+.fzf.zsh
 .gem
 .gnupg
 .hex
