@@ -13,6 +13,7 @@
 .gem
 .gnupg
 .hex
+.irb_history
 .lesshst
 .local
 .mix
