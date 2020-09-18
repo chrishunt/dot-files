@@ -101,6 +101,9 @@ eval $(ssh-agent) &>/dev/null
 # Activate ZSH syntax highlighting
 source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
+# Activate rbenv
+eval "$(rbenv init -)"
+
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
   if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
