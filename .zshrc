@@ -72,12 +72,9 @@ alias gcm='git commit -m'
 unsetopt correct_all
 
 # Show pure prompt
-PURE_PROMPT_SYMBOL='»'
-PURE_GIT_DOWN_ARROW='↓'
-PURE_GIT_UP_ARROW='↑'
 fpath+=('~/.npm-global/lib/node_modules/pure-prompt/functions')
 autoload -U promptinit; promptinit
-prompt pure
+prompt bart
 
 # Key bindings, for all options see docs:
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html
