@@ -72,9 +72,12 @@ alias gcm='git commit -m'
 unsetopt correct_all
 
 # Show pure prompt
-fpath+=('~/.npm-global/lib/node_modules/pure-prompt/functions')
+#
+# Follow "git" install instructions in README:
+#   https://github.com/sindresorhus/pure
+fpath+=$HOME/.zsh/pure
 autoload -U promptinit; promptinit
-prompt bart
+prompt pure
 
 # Key bindings, for all options see docs:
 # http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html

@@ -19,7 +19,7 @@ echo "  > Installing Neovim, ripgrep, NPM..."
 brew install neovim rg npm zsh-syntax-highlighting
 
 echo "  > Installing Pure prompt..."
-npm install --global pure-prompt
+git clone git@github.com:sindresorhus/pure.git .zsh/pure
 
 echo "  > Installing vim plugins..."
 vim +PlugInstall +qall
