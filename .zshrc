@@ -45,7 +45,6 @@ alias l='ls -CF'
 alias la='ls -a'
 alias ll='ls -l'
 alias ls='ls -h'
-alias lt='ls -ltr'
 alias vim='nvim'
 alias vi=vim
 
