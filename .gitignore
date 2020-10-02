@@ -27,6 +27,7 @@
 .omg
 .pry_history
 .psql_history
+.rbenv
 .rubies
 .ruby-version
 .ssh
