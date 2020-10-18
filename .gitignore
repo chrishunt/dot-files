@@ -6,6 +6,8 @@
 .cache
 .config/configstore
 .config/gatsby
+.config/wslu/
+.cpan/
 .dropbox
 .dropbox-dist
 .fzf
@@ -18,6 +20,7 @@
 .local
 .mix
 .netrc
+.ngrok2/
 .node-gyp/
 .node_repl_history
 .npm
@@ -53,6 +56,8 @@ bin/dropbox
 config.exs
 config_watcher.exs
 go
+node_modules
+package-lock.json
 snap
 src
 stripe
