@@ -1,3 +1,4 @@
+.CFUserTextEncoding
 .asdf
 .bash_logout
 .bash_profile
@@ -8,6 +9,7 @@
 .config/gatsby
 .config/wslu/
 .cpan/
+.cups/
 .dropbox
 .dropbox-dist
 .fzf
@@ -15,6 +17,7 @@
 .gem
 .gnupg
 .hex
+.hyper_plugins/
 .irb_history
 .lesshst
 .local
@@ -43,8 +46,11 @@
 .yarnrc
 .zcompdump
 .zsh/pure
+.zsh_history
 Applications
 Creative Cloud Files
+Desktop/
+Documents/
 Downloads
 Dropbox
 Google Drive File Stream
@@ -52,6 +58,7 @@ Library
 Movies
 Music
 Pictures
+Public/
 bin/dropbox
 config.exs
 config_watcher.exs
