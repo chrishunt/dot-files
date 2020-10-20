@@ -98,7 +98,7 @@ eval $(ssh-agent) &>/dev/null
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Activate ZSH syntax highlighting
-source /home/linuxbrew/.linuxbrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Activate rbenv
 eval "$(rbenv init -)"
