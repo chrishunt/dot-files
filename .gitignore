@@ -32,6 +32,7 @@
 .npmrc
 .nvm
 .omg
+.oracle_jre_usage
 .pry_history
 .psql_history
 .rbenv
