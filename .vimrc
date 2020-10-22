@@ -3,10 +3,10 @@ set encoding=utf-8
 
 " Load up vim-plug
 call plug#begin('~/.vim/plugged')
-  Plug 'ap/vim-css-color'  " highlight hex values with their color
+  Plug 'ap/vim-css-color'     " highlight hex values with their color
   Plug 'dense-analysis/ale'   " asynchronous linting
-  Plug 'godlygeek/tabular' " align stuff... like these vim comments
-  Plug 'janko/vim-test'    " run tests inside vim
+  Plug 'godlygeek/tabular'    " align stuff... like these vim comments
+  Plug 'janko/vim-test'       " run tests inside vim
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
   Plug 'junegunn/fzf.vim'     " fuzzy search for files
   Plug 'mattn/webapi-vim'
