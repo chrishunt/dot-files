@@ -4,6 +4,7 @@ set encoding=utf-8
 " Load up vim-plug
 call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'  " highlight hex values with their color
+  Plug 'dense-analysis/ale'   " asynchronous linting
   Plug 'godlygeek/tabular' " align stuff... like these vim comments
   Plug 'janko/vim-test'    " run tests inside vim
   Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
@@ -100,6 +101,9 @@ let mapleader = ","
 " NERDTree config
 nmap <leader>g :NERDTreeToggle<cr>
 nmap <leader>G :NERDTreeRefreshRoot<cr>
+
+" Ale configuation
+let g:ale_set_highlights=0
 
 " vimwiki configuration
 let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'path_html': '~/Dropbox/notes/html', 'ext': '.md', 'auto_export': 0, 'syntax': 'markdown'}]
