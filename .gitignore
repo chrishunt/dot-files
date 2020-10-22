@@ -10,6 +10,7 @@
 .config/wslu/
 .cpan/
 .cups/
+.docker
 .dropbox
 .dropbox-dist
 .fzf
