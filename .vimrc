@@ -121,6 +121,13 @@ let g:test#preserve_screen = 1
 nmap <silent> <leader>t :TestFile<cr>
 nmap <silent> <leader>T :TestNearest<cr>
 
+function! DockerTransform(cmd) abort
+  return "docker-compose exec web " . a:cmd
+endfunction
+let g:test#custom_transformations = {'docker': function('DockerTransform')}
+" Enbale to run tests inside docker-compose
+" let g:test#transformation = 'docker'
+
 " if using nvim terminal, re-map normal mode
 if has('nvim')
   tmap <C-o> <C-\><C-n>
