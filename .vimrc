@@ -125,7 +125,8 @@ function! DockerTransform(cmd) abort
   return "docker-compose exec web " . a:cmd
 endfunction
 let g:test#custom_transformations = {'docker': function('DockerTransform')}
-" Enbale to run tests inside docker-compose
+
+" Add the line below to a project's .vimrc to enable docker-compose
 " let g:test#transformation = 'docker'
 
 " if using nvim terminal, re-map normal mode
