@@ -19,7 +19,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'tpope/vim-fugitive'   " git wrapper
   Plug 'tpope/vim-rhubarb'    " git(hub) wrapper - open on GitHub
   Plug 'tpope/vim-surround'   " change and add surrounds, []()
-  Plug 'vimwiki/vimwiki'      " my own personal wiki
 call plug#end()
 
 syntax on                         " show syntax highlighting
@@ -104,9 +103,6 @@ nmap <leader>G :NERDTreeRefreshRoot<cr>
 
 " Ale configuation
 let g:ale_set_highlights=0
-
-" vimwiki configuration
-let g:vimwiki_list = [{'path': '~/Dropbox/notes', 'path_html': '~/Dropbox/notes/html', 'ext': '.md', 'auto_export': 0, 'syntax': 'markdown'}]
 
 " FZF config
 let $FZF_DEFAULT_COMMAND = 'rg --files'
