@@ -14,7 +14,7 @@ used daily by me on Linux, Mac OS X, and Windows 10.
 - [Tmux](https://github.com/tmux/tmux) window/session management
 - [Git](https://git-scm.com/) version control
 - [Ruby](https://www.ruby-lang.org/en/) programming language
-- [Alacritty](https://github.com/alacritty/alacritty) terminal on Mac OS
+- [iTerm2](https://iterm2.com/) terminal on Mac OS
 - [Windows Terminal](https://github.com/microsoft/terminal) / [WSL](https://docs.microsoft.com/en-us/windows/wsl/install-win10) on Windows 10
 
 ## Installation
