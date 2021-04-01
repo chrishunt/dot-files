@@ -29,10 +29,6 @@ export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH
 # Add NPM stuff to path
 export PATH=$PATH:~/.npm-global/bin
 
-# Add GO to path
-export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:~/go/bin
-
 # Add Snap to path
 export PATH=$PATH:/snap/bin
 
