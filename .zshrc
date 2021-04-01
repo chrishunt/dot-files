@@ -47,6 +47,7 @@ alias ll='ls -l'
 alias ls='ls -h'
 alias vim='nvim'
 alias vi=vim
+alias cat=bat
 
 # Ruby
 alias be='bundle exec'

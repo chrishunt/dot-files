@@ -15,8 +15,8 @@ cd ~
 echo "  > Pulling latest dot-files..."
 git pull &> /dev/null
 
-echo "  > Installing Neovim, ripgrep, NPM, GitHub..."
-brew install neovim rg npm zsh-syntax-highlighting gh rbenv tmux
+echo "  > Installing Neovim, ripgrep, NPM, GitHub, Bat..."
+brew install bat neovim rg npm zsh-syntax-highlighting gh rbenv tmux
 
 echo "  > Installing Pure prompt..."
 git clone git@github.com:sindresorhus/pure.git .zsh/pure
