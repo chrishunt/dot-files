@@ -22,6 +22,9 @@ export EDITOR='nvim'
 # Add home dir scripts to the path
 export PATH=~/bin:$PATH
 
+# Add Homebrew to path
+export PATH=/opt/homebrew/bin:$PATH
+
 # Add NPM stuff to path
 export PATH=$PATH:~/.npm-global/bin
 
