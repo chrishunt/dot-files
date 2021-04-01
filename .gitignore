@@ -6,8 +6,10 @@
 .bashrc
 .bundle
 .cache
+.config/coc/
 .config/configstore
 .config/gatsby
+.config/iterm2/AppSupport
 .config/wslu/
 .cpan/
 .cups/
