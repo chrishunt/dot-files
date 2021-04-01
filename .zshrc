@@ -23,7 +23,8 @@ export EDITOR='nvim'
 export PATH=~/bin:$PATH
 
 # Add Homebrew to path
-export PATH=/opt/homebrew/bin:$PATH
+export HOMEBREW_PREFIX=/opt/homebrew
+export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH
 
 # Add NPM stuff to path
 export PATH=$PATH:~/.npm-global/bin
@@ -102,7 +103,7 @@ eval $(ssh-agent) &>/dev/null
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Activate ZSH syntax highlighting
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Activate rbenv
 eval "$(rbenv init -)"
