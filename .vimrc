@@ -211,7 +211,7 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 " load up all the extensions we'd like to use
-let g:coc_global_extensions = ['coc-solargraph']
+let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " END COC CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
