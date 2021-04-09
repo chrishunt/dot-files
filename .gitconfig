@@ -73,3 +73,5 @@
   w       = whatchanged --decorate
   wp      = whatchanged --decorate -p
   wtf     = "!git fetch --multiple production origin && git log production/master..origin/master"
+[init]
+	defaultBranch = main
