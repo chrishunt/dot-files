@@ -32,6 +32,9 @@ export PATH=$PATH:~/.npm-global/bin
 # Add Snap to path
 export PATH=$PATH:/snap/bin
 
+# Add Python binaries to path
+export PATH=$PATH:~/Library/Python/3.8/bin
+
 # Show password prompt in terminal for GPG
 export GPG_TTY=$(tty)
 
