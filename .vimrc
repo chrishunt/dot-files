@@ -253,6 +253,29 @@ set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 set background=dark
 colorscheme gruvbox
 
+" set leader key to comma
+let mapleader = ","
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" BEGIN VIM-TEST CONFIG
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:test#preserve_screen = 1
+nmap <silent> <leader>t :TestFile<cr>
+nmap <silent> <leader>T :TestNearest<cr>
+
+function! DockerTransform(cmd) abort
+  return "docker-compose exec web " . a:cmd
+endfunction
+let g:test#custom_transformations = {'docker': function('DockerTransform')}
+
+let g:test#javascript#jest#executable = 'yarn test'
+
+" Add the line below to a project's .vimrc to enable docker-compose
+" let g:test#transformation = 'docker'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" END VIM-TEST CONFIG
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " highlight trailing spaces in annoying red
 highlight ExtraWhitespace ctermbg=1 guibg=red
 match ExtraWhitespace /\s\+$/
@@ -260,9 +283,6 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
-
-" set leader key to comma
-let mapleader = ","
 
 " NERDTree config
 nmap <leader>g :NERDTreeToggle<cr>
@@ -278,19 +298,6 @@ nmap <Leader>f :Files<CR>
 " unmap F1 help
 nmap <F1> <nop>
 imap <F1> <nop>
-
-" vim test config
-let g:test#preserve_screen = 1
-nmap <silent> <leader>t :TestFile<cr>
-nmap <silent> <leader>T :TestNearest<cr>
-
-function! DockerTransform(cmd) abort
-  return "docker-compose exec web " . a:cmd
-endfunction
-let g:test#custom_transformations = {'docker': function('DockerTransform')}
-
-" Add the line below to a project's .vimrc to enable docker-compose
-" let g:test#transformation = 'docker'
 
 " if using nvim terminal, re-map normal mode
 if has('nvim')
