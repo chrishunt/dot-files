@@ -26,6 +26,10 @@ export PATH=~/bin:$PATH
 export HOMEBREW_PREFIX=/opt/homebrew
 export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH
 
+# Add Volta to path
+export VOLTA_HOME="$HOME/.volta"
+export PATH="$VOLTA_HOME/bin:$PATH"
+
 # Add NPM stuff to path
 export PATH=$PATH:~/.npm-global/bin
 
@@ -92,6 +96,16 @@ bindkey '^l' clear-screen
 bindkey -v
 
 # ##########################################################################
+# GOOGLE CLOUD SDK
+# ##########################################################################
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/huntca/Applications/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/huntca/Applications/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/huntca/Applications/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/huntca/Applications/google-cloud-sdk/completion.zsh.inc'; fi
+
+# ##########################################################################
 # EXE
 # ##########################################################################
 
@@ -107,12 +121,10 @@ source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Activate rbenv
 eval "$(rbenv init -)"
 
-# Activate nodenv
-eval "$(nodenv init -)"
-
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then
   if [ $TERM != "screen-256color" ] && [  $TERM != "screen" ]; then
     tmux attach -t hack || tmux new -s hack; exit
   fi
 fi
+
