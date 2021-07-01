@@ -47,6 +47,7 @@
 .vim/.netrwhist
 .vim/plugged
 .viminfo
+.volta
 .wget-hsts
 .yarnrc
 .zcompdump
