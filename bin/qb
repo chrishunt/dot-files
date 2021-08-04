@@ -32,7 +32,7 @@ fi
 
 function sync {
   echo "Syncing: $1"
-  rsync --delete-before -ra --info=progress2 $music_location $1
+  rsync --delete-before -ra --info=progress2 --exclude="*- PGGB*" $music_location $1
 }
 
 # Sync music with backup locations
