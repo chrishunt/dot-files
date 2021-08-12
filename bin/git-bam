@@ -1,8 +1,16 @@
 #!/bin/sh
 
-# Deletes all local branches that have been merged into master... BAM!
+# Deletes all local branches that have been merged into master/main... BAM!
 
-branches=$(git branch --merged master | grep -v master | tr '\n', ' ')
+root='master'
+has_main=$(git branch --list main)
+
+if [ ! -z "$has_main" ]
+then
+  root='main'
+fi
+
+branches=$(git branch --merged $root | grep -v $root | tr '\n', ' ')
 
 if [ ! -z "$branches" ]
 then
