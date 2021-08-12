@@ -75,3 +75,8 @@
   wtf     = "!git fetch --multiple production origin && git log production/master..origin/master"
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
