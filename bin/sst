@@ -1,0 +1,25 @@
+#!/bin/sh
+set -e
+
+# Connect to remote Tmux session via SSH
+function echoUsage {
+  echo "usage: sst ssh_server [session_name]"
+}
+
+if [ -z "$1" ]
+then
+  echoUsage
+  exit 1
+else
+  ssh_server="$1"
+fi
+
+if [ -z "$2" ]
+then
+  session_name="$(whoami)"
+else
+  session_name="$2"
+fi
+
+echo "Connecting to tmux session '$session_name' on '$ssh_server'"
+ssh $ssh_server -t "tmux attach -t $session_name || tmux new -s $session_name"
