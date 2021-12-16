@@ -1,16 +1,23 @@
 .CFUserTextEncoding
+.Stages Sync.config
+.Stages Sync/
 .adobe
 .asdf
 .bash_logout
 .bash_profile
 .bashrc
+.boto
 .bundle
 .cache
 .config/coc/
 .config/configstore
 .config/gatsby
+.config/gcloud/
+.config/gh/
 .config/iterm2/AppSupport
+.config/qobuz-dl/
 .config/wslu/
+.config/yarn/
 .cpan/
 .cups/
 .docker
@@ -21,6 +28,7 @@
 .gem
 .gnupg
 .hex
+.hqplayer/
 .hyper_plugins/
 .irb_history
 .lesshst
@@ -36,11 +44,16 @@
 .nvm
 .omg
 .oracle_jre_usage
+.profile
 .pry_history
 .psql_history
+.pulumi/
 .rbenv
+.rediscli_history
+.rmembid
 .rubies
 .ruby-version
+.solargraph/
 .ssh
 .sudo_as_admin_successful
 .tool-versions
@@ -49,10 +62,12 @@
 .viminfo
 .volta
 .wget-hsts
+.yarn/
 .yarnrc
 .zcompdump
 .zsh/pure
 .zsh_history
+.zsh_sessions
 Applications
 Creative Cloud Files
 Desktop/
@@ -64,6 +79,7 @@ Library
 Movies
 Music
 Pictures
+Plugins
 Public/
 bin/dropbox
 config.exs
