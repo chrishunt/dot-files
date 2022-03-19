@@ -51,6 +51,9 @@ runtime macros/matchit.vim        " use % to jump between start/end of methods
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BEGIN COC CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" TextEdit might fail if hidden is not set.
+set hidden
+
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -67,7 +70,7 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-if has("patch-8.1.1564")
+if has("nvim-0.5.0") || has("patch-8.1.1564")
   " Recently vim can merge signcolumn and number column into one
   set signcolumn=number
 else
@@ -266,12 +269,21 @@ nmap <silent> <leader>T :TestNearest<cr>
 function! DockerTransform(cmd) abort
   return "docker-compose exec web " . a:cmd
 endfunction
-let g:test#custom_transformations = {'docker': function('DockerTransform')}
 
-let g:test#javascript#jest#executable = 'yarn test'
+function! TypeScriptTransform(cmd) abort
+  return substitute(
+    substitute(a:cmd, '\vsrc/(\S+)\.ts', 'dist/backend/\1.js')
+    'jest', 'yarn test'
+  )
+endfunction
 
-" Add the line below to a project's .vimrc to enable docker-compose
-" let g:test#transformation = 'docker'
+let g:test#custom_transformations = {
+  \'docker': function('DockerTransform'),
+  \'typescript': function('TypeScriptTransform')
+\}
+
+" Add the line below to a project's .vimrc to enable a transformation
+" let g:test#transformation = 'typescript'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " END VIM-TEST CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -322,7 +334,7 @@ vnoremap . :norm.<cr>
 nmap <leader>m :!open -a "Marked 2" "%"<cr><cr>
 
 " map git commands
-nmap <leader>b :Gblame<cr>
+nmap <leader>b :Git blame<cr>
 nmap <leader>l :split \| terminal git log -p %<cr>
 nmap <leader>d :split \| terminal git diff %<cr>
 
