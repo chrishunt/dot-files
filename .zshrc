@@ -127,4 +127,3 @@ if which tmux 2>&1 >/dev/null; then
     tmux attach -t hack || tmux new -s hack; exit
   fi
 fi
-
