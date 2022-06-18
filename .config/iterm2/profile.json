@@ -1,5 +1,5 @@
 {
-  "Guid" : "FC1EAB47-AE83-4576-8C2D-7490E1A422A9",
+  "Guid" : "52E8C1BF-1409-456B-8338-CDBB3F12C455",
   "Tags" : [
 
   ],
@@ -293,7 +293,7 @@
       "Action" : 10
     }
   },
-  "Window Type" : 0,
+  "Window Type" : 12,
   "Cursor Boost" : 0,
   "Cursor Type" : 2,
   "Background Image Location" : "",
