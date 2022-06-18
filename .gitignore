@@ -85,6 +85,7 @@ bin/dropbox
 config.exs
 config_watcher.exs
 go
+google-cloud-sdk
 node_modules
 package-lock.json
 snap
