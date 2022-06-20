@@ -33,6 +33,7 @@
 .irb_history
 .lesshst
 .local
+.logseq
 .mix
 .netrc
 .ngrok2/
@@ -45,6 +46,7 @@
 .omg
 .oracle_jre_usage
 .profile
+.proxyman
 .pry_history
 .psql_history
 .pulumi/
