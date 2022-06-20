@@ -1,0 +1,17 @@
+{
+  "title": "Change media play/pause",
+  "rules": [
+    {
+      "description": "Toggle Music play/pause with f8.",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": { "key_code": "f8" },
+          "to": [{
+            "shell_command": "osascript -e 'tell application \"Music\" to playpause'"
+          }]
+        }
+      ]
+    }
+  ]
+}
