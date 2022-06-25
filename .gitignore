@@ -58,6 +58,7 @@
 .solargraph/
 .ssh
 .sudo_as_admin_successful
+.suitecloud-sdk
 .tool-versions
 .vim/.netrwhist
 .vim/plugged
