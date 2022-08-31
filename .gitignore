@@ -59,6 +59,7 @@
 .ssh
 .sudo_as_admin_successful
 .suitecloud-sdk
+.tidal-dl.token.json
 .tool-versions
 .vim/.netrwhist
 .vim/plugged
