@@ -26,7 +26,7 @@ done
 
 # Download album from Tidal if URL is provided
 echo "Download: $download_url"
-tidal-dl --quality 'HiFi' --link "$download_url" --output "$download_location/"
+tidal-dl --link "$download_url" --output "$download_location/"
 
 # Copy music to other locations
 for location in "${copy_locations[@]}"; do
