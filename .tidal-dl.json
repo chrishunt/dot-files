@@ -1,7 +1,7 @@
 {
   "albumFolderFormat": "{ArtistName} - {AlbumTitle} ({AlbumYear}) [{AlbumID}]",
   "apiKeyIndex": 4,
-  "audioQuality": "HiFi",
+  "audioQuality": "Master",
   "checkExist": true,
   "downloadPath": "/Users/huntca/Downloads/Music/",
   "includeEP": true,
@@ -11,7 +11,7 @@
   "saveAlbumInfo": true,
   "saveCovers": true,
   "showProgress": true,
-  "showTrackInfo": false,
+  "showTrackInfo": true,
   "trackFileFormat": "{TrackNumber}. {TrackTitle}",
   "usePlaylistFolder": true,
   "videoFileFormat": "{VideoNumber}. {VideoTitle}",
