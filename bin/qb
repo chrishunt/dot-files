@@ -4,6 +4,9 @@ set -e
 source music_common
 init
 
-qobuz-dl dl "$download_url"
+qobuz-dl dl \
+  --directory "$download_location/" \
+  --quality 27 \
+  "$download_url"
 
-copy_and_cleanup
+copy_download_to_other_locations
