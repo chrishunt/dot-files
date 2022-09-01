@@ -1,0 +1,61 @@
+#!/bin/sh
+set -e
+
+download_url="$1"
+download_location="/Users/huntca/Downloads/Music"
+copy_locations=(
+  "/Volumes/External/Dropbox/Music Library"
+  "/Volumes/Backup/Music Library"
+  "/Users/huntca/Documents/Roon Music Library"
+)
+
+function exit_if_album_url_missing() {
+  if [ -z "$download_url" ]
+  then
+    echo "Download: no album provided"
+    exit 1
+  else
+    echo "Download URL: $download_url"
+  fi
+}
+
+function exit_if_download_location_missing() {
+  echo "Download location: $download_location"
+  result=$(ls "$download_location")
+}
+
+function exit_if_copy_locations_missing() {
+  echo "Copy locations"
+  for copy_location in "${copy_locations[@]}"; do
+    echo "  $copy_location"
+    result=$(ls "$copy_location")
+  done
+}
+
+function copy_download_to_other_locations() {
+  echo "Copying..."
+  for copy_location in "${copy_locations[@]}"; do
+    echo "  $copy_location"
+    cp -r "$download_location/" "$copy_location/"
+  done
+}
+
+function delete_everything_in_download_location(){
+  echo "Deleting: \n  $(ls $download_location)"
+  rm -ir "$download_location"/*
+}
+
+function init() {
+  exit_if_album_url_missing
+  exit_if_download_location_missing
+  echo
+  exit_if_copy_locations_missing
+  echo
+}
+
+function copy_and_cleanup(){
+  echo
+  copy_download_to_other_locations
+  echo
+  delete_everything_in_download_location
+}

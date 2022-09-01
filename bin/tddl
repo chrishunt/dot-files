@@ -1,38 +1,9 @@
 #!/bin/sh
 set -e
 
-# Usage:
-#   $ tddl url_to_album
-if [ -z "$1" ]
-then
-  echo "Download: no album provided"
-  exit 1
-fi
-download_url="$1"
-download_location="/Users/huntca/Downloads/Music"
-copy_locations=(
-  "/Volumes/External/Dropbox/Music Library"
-  "/Volumes/Backup/Music Library"
-  "/Users/huntca/Documents/Roon Music Library"
-)
+source music_common
+init
 
-# Check that our download location exists
-result=$(ls "$download_location")
-
-# Check that all our copy locations exist
-for location in "${copy_locations[@]}"; do
-  result=$(ls "$location")
-done
-
-# Download album from Tidal if URL is provided
-echo "Download: $download_url"
 tidal-dl --link "$download_url" --output "$download_location/"
 
-# Copy music to other locations
-for location in "${copy_locations[@]}"; do
-  echo "Copy: $location"
-  cp -r "$download_location/" "$location/"
-done
-
-echo "Deleting: \n$(ls $download_location)"
-rm -r "$download_location"/*
+copy_and_cleanup
