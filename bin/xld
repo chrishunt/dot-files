@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Edit this line to define a path to XLD.app
+XLD_APP="/Applications/XLD.app"
+
+if [ ! -d "${XLD_APP}" ] ; then
+	echo "XLD.app not found"
+	exit;
+fi
+
+"${XLD_APP}/Contents/MacOS/XLD" --cmdline "$@"

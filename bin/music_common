@@ -5,7 +5,7 @@ download_url="$1"
 download_location="/Volumes/External/Dropbox/Music Library"
 copy_locations=(
   "/Volumes/Backup/Music Library"
-  "/Users/huntca/Documents/Roon Music Library"
+  "/Volumes/Data/Storage/InternalStorage"
 )
 
 function exit_if_album_url_missing() {
@@ -31,11 +31,24 @@ function exit_if_copy_locations_missing() {
   done
 }
 
-function copy_download_to_other_locations() {
+function convert_flac_to_alac() {
+  echo "Converting flac to alac..."
+  find "$download_location" -name "*.flac" | while read flac_file
+  do
+    echo "$flac_file"
+    alac_file=${flac_file%.flac}.m4a
+    xld -f alac -o "$alac_file" "$flac_file"
+    rm "$flac_file"
+  done
+}
+
+function copy_to_other_locations() {
   echo "Copying..."
   for copy_location in "${copy_locations[@]}"; do
     echo "$copy_location"
-    rsync --delete-during -ra --info=progress2 "$download_location" "$copy_location"
+    rsync -aPzh --delete-during \
+      --no-perms --no-owner --no-group \
+      "$download_location/" "$copy_location"
   done
 }
 
@@ -45,4 +58,9 @@ function init() {
   echo
   exit_if_copy_locations_missing
   echo
+}
+
+function finish() {
+  convert_flac_to_alac
+  copy_to_other_locations
 }

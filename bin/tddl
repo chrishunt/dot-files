@@ -6,4 +6,4 @@ init
 
 tidal-dl --link "$download_url" --output "$download_location/"
 
-copy_download_to_other_locations
+finish

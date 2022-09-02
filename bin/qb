@@ -9,4 +9,4 @@ qobuz-dl dl \
   --quality 27 \
   "$download_url"
 
-copy_download_to_other_locations
+finish
