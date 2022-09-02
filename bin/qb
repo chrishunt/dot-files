@@ -4,9 +4,14 @@ set -e
 source music_common
 init
 
-qobuz-dl dl \
-  --directory "$download_location/" \
-  --quality 27 \
-  "$download_url"
+if [ -z "$download_url" ]
+then
+  echo "Skipping download"
+else
+  qobuz-dl dl \
+    --directory "$download_location/" \
+    --quality 27 \
+    "$download_url"
+fi
 
 finish

@@ -8,11 +8,10 @@ copy_locations=(
   "/Volumes/Data/Storage/InternalStorage"
 )
 
-function exit_if_album_url_missing() {
+function warn_if_album_url_missing() {
   if [ -z "$download_url" ]
   then
     echo "Download: no album provided"
-    exit 1
   else
     echo "Download URL: $download_url"
   fi
@@ -53,7 +52,7 @@ function copy_to_other_locations() {
 }
 
 function init() {
-  exit_if_album_url_missing
+  warn_if_album_url_missing
   exit_if_download_location_missing
   echo
   exit_if_copy_locations_missing
