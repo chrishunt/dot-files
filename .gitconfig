@@ -31,6 +31,8 @@
   autosquash = true
 [merge]
   summary = true
+[diff]
+  colorMoved = true
 [color]
   diff = auto
   status = auto
