@@ -11,7 +11,6 @@ call plug#begin('~/.vim/plugged')
   Plug 'mattn/webapi-vim'
   Plug 'morhetz/gruvbox'      " current colorscheme
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " needed for TypeScript
-  Plug 'scrooloose/nerdtree'  " file browser
   Plug 'sheerun/vim-polyglot' " syntax highlighting for many languages
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary' " comment stuff out, like these comments
