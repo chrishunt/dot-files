@@ -31,6 +31,8 @@
   autosquash = true
 [merge]
   summary = true
+  tool = vimdiff
+  conflictstyle = zdiff3
 [diff]
   colorMoved = true
 [color]
