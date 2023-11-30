@@ -22,9 +22,10 @@ export EDITOR='nvim'
 # Add home dir scripts to the path
 export PATH=~/bin:$PATH
 
-# Add Homebrew to path
+# Add Homebrew to path and disable emoji
 export HOMEBREW_PREFIX=/opt/homebrew
 export PATH=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH
+export HOMEBREW_NO_EMOJI=1
 
 # Add Volta to path
 export VOLTA_HOME="$HOME/.volta"
