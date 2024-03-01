@@ -22,7 +22,7 @@ call plug#end()
 syntax on                         " show syntax highlighting
 filetype plugin indent on
 set autoindent                    " set auto indent
-set ts=2                          " set indent to 2 spaces
+set ts=4 sw=4                     " set indent to 4 spaces
 set shiftwidth=2
 set termguicolors                 " show me all the colors please
 set expandtab                     " use spaces, not tab characters
@@ -221,8 +221,6 @@ let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver', 'coc-eslint']
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " BEGIN WINDOWS CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-behave mswin
-
 if has("clipboard")
   " CTRL-X and SHIFT-Del are Cut
   vnoremap <C-X> "+x
