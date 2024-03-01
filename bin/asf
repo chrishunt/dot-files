@@ -1,0 +1,130 @@
+#!/bin/sh
+#
+# asf v0.1
+#
+# "Anrok SFDC"
+#
+# Search SFDC by seller, ae, se.
+# This relies on the SalesForce CLI. For more information, see:
+#
+# https://developer.salesforce.com/tools/salesforcecli
+#
+# Step 1: Install CSVKit with "$ brew install csvkit"
+# Step 2: Install SF with "$ brew install --cask sf"
+# Step 3: Login to SF via WEB with "$ sf login"
+# Step 4: Set $SFDC_EMAIL with your SF email "EXPORT SFDC_EMAIL=..."
+set -e
+
+echoUsage () {
+  echo "USAGE"
+  echo "  $ asf [COMMAND] [SEARCH_TERM]"
+  echo
+  echo "COMMANDS"
+  echo "  seller  (default) Search Opps/Accounts for seller name matching [SEARCH_TERM]"
+  echo "  se      Search Opps/Accounts for SE name matching [SEARCH_TERM]"
+  echo "  ae      Search Opps/Accounts for AE name matching [SEARCH_TERM]"
+}
+
+if [ -z ${SFDC_EMAIL+x} ]
+then
+  echo '$SFDC_EMAIL is not set.'
+  exit 1
+fi
+
+if ! command -v csvlook &> /dev/null
+then
+  echo "CSVKit tools required, but not found. Install with:"
+  echo
+  echo "brew install csvkit"
+  exit 1
+fi
+
+if ! command -v sf &> /dev/null
+then
+  echo "SalesForce CLI required, but not found. Install with:"
+  echo
+  echo "brew install --cask sf"
+  exit 1
+fi
+
+if [ -z "$1" ];
+then
+  echoUsage
+  exit 1
+else
+  command="$1"
+fi
+
+if [ -z "$2" ]
+then
+  search_term="$command"
+  command="seller"
+else
+  search_term="$2"
+fi
+
+select="
+SELECT
+  Name,
+  Account.Name,
+  CloseDate,
+  Account.Type,
+  Account.Tier__c,
+  Account.Owner.Name,
+  Account.Solutions_Engineer__r.Name,
+  Integrations__c,
+  StageName,
+  NextStep
+FROM
+  Opportunity
+"
+
+if [ "$command" = "seller" ]
+then
+  query="$select WHERE Name LIKE '%$search_term%' OR Account.Name LIKE '%$search_term%'"
+elif [ "$command" = "se" ]
+then
+  query="$select WHERE Account.Solutions_Engineer__r.Name LIKE '%$search_term%'"
+elif [ "$command" = "ae" ]
+then
+  query="$select WHERE Account.Owner.Name LIKE '%$search_term%'"
+else
+  echoUsage
+  exit 1
+fi
+
+results=$(sf data query \
+  --query "$query" \
+  --target-org $SFDC_EMAIL \
+  --result-format=csv
+)
+
+if [ -z "$results" ]
+then
+  echo "No results."
+  exit 1
+fi
+
+# Print tabular summary
+echo
+echo "$results" \
+  | csvsort -c 'Account.Type','Account.Name' \
+  | csvcut -c 'Account.Name','Account.Type','CloseDate','StageName','Account.Tier__c','Integrations__c','Account.Owner.Name','Account.Solutions_Engineer__r.Name','Name' \
+  | sed -e 's/,Account.Type/,Type/' \
+  | sed -e 's/,CloseDate/,Close Date/' \
+  | sed -e 's/,Integrations__c/,Integrations/' \
+  | sed -e 's/,Account.Solutions_Engineer__r.Name/,Solutions Engineer/' \
+  | sed -e 's/,Account.Owner.Name/,Owner/' \
+  | sed -e 's/,Account.Tier__c/,Tier/' \
+  | sed -e 's/Account.Name/Account Name/' \
+  | sed -e 's/,StageName/,Stage/' \
+  | sed -e 's/,Name/,Opportunity Name/' \
+  | csvlook --max-column-width 50
+
+# Print next steps
+echo
+echo "$results" \
+  | csvcut -c 'Account.Name','NextStep' \
+  | sed -e 's/Account.Name/Account Name/' \
+  | sed -e 's/,NextStep/,Next Step/' \
+  | csvlook --max-column-width 170
