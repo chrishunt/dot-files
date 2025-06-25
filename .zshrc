@@ -40,8 +40,14 @@ export PATH=$PATH:/snap/bin
 # Add Python binaries to path
 export PATH=$PATH:~/Library/Python/3.8/bin
 
+# Add GO binaries to path
+export PATH=$PATH:~/go/bin
+
 # Show password prompt in terminal for GPG
 export GPG_TTY=$(tty)
+
+# Add QGIS to path
+export PATH=$PATH:/Applications/QGIS.app/Contents/MacOS/bin
 
 # ##########################################################################
 # ALIAS
@@ -121,6 +127,9 @@ source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 
 # Activate rbenv
 eval "$(rbenv init -)"
+
+# Activate pyenv
+eval "$(pyenv init --path)"
 
 # Always work in a tmux session if tmux is installed
 if which tmux 2>&1 >/dev/null; then

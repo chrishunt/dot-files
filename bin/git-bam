@@ -1,4 +1,5 @@
 #!/bin/sh
+set -e
 
 # Deletes all local branches that have been merged into master/main... BAM!
 
@@ -23,6 +24,21 @@ then
   then
     git branch -d $branches
   fi
-else
-  echo 'No branches to delete.'
+fi
+
+squashed_and_merged_branches () {
+  if [ "$1" = "confirm" ]; then
+    git checkout -q $root && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base $root $branch) && [[ $(git cherry $root $(git commit-tree $(git rev-parse "$branch^{tree}") -p $mergeBase -m _)) == "-"* ]] && git branch -D $branch; done
+  else
+    git checkout -q $root && git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base $root $branch) && [[ $(git cherry $root $(git commit-tree $(git rev-parse "$branch^{tree}") -p $mergeBase -m _)) == "-"* ]] && echo "$branch is merged into $root and can be deleted"; done
+  fi
+}
+
+squashed_and_merged_branches
+
+read -p "Are you sure? " -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]
+then
+  squashed_and_merged_branches 'confirm'
 fi

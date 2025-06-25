@@ -5,7 +5,8 @@ download_url="$1"
 download_location="/Volumes/External/Dropbox/Music Library"
 copy_locations=(
   "/Volumes/Backup/Music Library"
-  "/Volumes/Data/Storage/InternalStorage"
+  # Uncomment if we add a dedicated Roon box again in the future
+  # "/Volumes/Data/Storage/InternalStorage"
 )
 
 function warn_if_album_url_missing() {
