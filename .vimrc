@@ -5,18 +5,28 @@ set encoding=utf-8
 call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'     " highlight hex values with their color
   Plug 'godlygeek/tabular'    " align stuff... like these vim comments
-  Plug 'janko/vim-test'       " run tests inside vim
   Plug 'mattn/webapi-vim'
-  Plug 'nvim-lua/plenary.nvim' " needed for telescope.nvim
-  Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
   Plug 'morhetz/gruvbox'      " current colorscheme
-  Plug 'neoclide/coc.nvim', {'branch': 'release'} " needed for TypeScript
-  Plug 'sheerun/vim-polyglot' " syntax highlighting for many languages
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary' " comment stuff out, like these comments
   Plug 'tpope/vim-fugitive'   " git wrapper
   Plug 'tpope/vim-rhubarb'    " git(hub) wrapper - open on GitHub
   Plug 'tpope/vim-surround'   " change and add surrounds, []()
+
+  " File (fuzzy) search
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim', {'branch': '0.1.x'}
+  Plug 'nvim-treesitter/nvim-treesitter', {'branch': 'master', 'do': 'TSUpdate'}
+
+  " LSP configuration and plugins
+  Plug 'neovim/nvim-lspconfig' " default LSP settings
+  Plug 'williamboman/mason.nvim'
+  Plug 'williamboman/mason-lspconfig.nvim'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
 call plug#end()
 
 syntax on                         " show syntax highlighting
@@ -48,174 +58,89 @@ set wildmode=list:longest,full
 runtime macros/matchit.vim        " use % to jump between start/end of methods
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" BEGIN COC CONFIG
+" BEGIN LSP SERVER CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" TextEdit might fail if hidden is not set.
-set hidden
+lua << EOF
+-- Mason: LSP installer UI
+require("mason").setup()
 
-" Some servers have issues with backup files, see #649.
-set nobackup
-set nowritebackup
+-- nvim-cmp capabilities for better autocomplete integration
+local capabilities = vim.tbl_deep_extend(
+  "force",
+  vim.lsp.protocol.make_client_capabilities(),
+  require("cmp_nvim_lsp").default_capabilities()
+)
 
-" Give more space for displaying messages.
-set cmdheight=2
+-- Mason-LSPConfig: just install, don't configure
+require("mason-lspconfig").setup {
+  ensure_installed = { "ts_ls" },
+  automatic_installation = true,  -- optional: ensure it's installed
+  handlers = {
+    -- Default handler for all servers
+    function(server_name)
+      if server_name == "ts_ls" then
+        require("lspconfig")[server_name].setup {
+          capabilities = capabilities,
+        }
+      end
+    end,
+  }
+}
 
-" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
-" delays and poor user experience.
-set updatetime=300
+-- nvim-cmp autocompletion setup
+local cmp = require("cmp")
+cmp.setup {
+  snippet = {
+    expand = function(args)
+      -- you can plug LuaSnip or VSCode-style snippets here
+      vim.fn["vsnip#anonymous"](args.body)
+    end,
+  },
+  mapping = cmp.mapping.preset.insert({
+    ["<C-Space>"] = cmp.mapping.complete(),
+    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  }),
+  sources = {
+    { name = "nvim_lsp" },
+    { name = "buffer" },
+    { name = "path" },
+  },
+}
 
-" Don't pass messages to |ins-completion-menu|.
-set shortmess+=c
+-- Set up completion for `/` and `?` (search)
+cmp.setup.cmdline({ '/', '?' }, {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = {
+    { name = 'buffer' }
+  }
+})
 
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
-if has("nvim-0.5.0") || has("patch-8.1.1564")
-  " Recently vim can merge signcolumn and number column into one
-  set signcolumn=number
-else
-  set signcolumn=yes
-endif
+-- Set up completion for `:` (command line)
+cmp.setup.cmdline(':', {
+  mapping = cmp.mapping.preset.cmdline(),
+  sources = cmp.config.sources({
+    { name = 'path' }
+  }, {
+    { name = 'cmdline' }
+  })
+})
 
-" Use tab for trigger completion with characters ahead and navigate.
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config.
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+-- Keybindings
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {})
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, {})
+vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
 
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" Use <c-space> to trigger completion.
-if has('nvim')
-  inoremap <silent><expr> <c-space> coc#refresh()
-else
-  inoremap <silent><expr> <c-@> coc#refresh()
-endif
-
-" Make <CR> auto-select the first completion item and notify coc.nvim to
-" format on enter, <cr> could be remapped by other vim plugin
-inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-" Use `[g` and `]g` to navigate diagnostics
-" Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
-
-" GoTo code navigation.
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-
-" Use K to show documentation in preview window.
-nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" Highlight the symbol and its references when holding the cursor.
-autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
-
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
-augroup mygroup
-  autocmd!
-  " Setup formatexpr specified filetype(s).
-  autocmd FileType typescript,json setl formatexpr=CocAction('formatSelected')
-  " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
-augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-if has('nvim-0.4.0') || has('patch-8.2.0750')
-  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-endif
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-nmap <silent> <C-s> <Plug>(coc-range-select)
-xmap <silent> <C-s> <Plug>(coc-range-select)
-
-" Add `:Format` command to format current buffer.
-command! -nargs=0 Format :call CocAction('format')
-
-" Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
-
-" Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
-
-" Add (Neo)Vim's native statusline support.
-" NOTE: Please see `:h coc-status` for integrations with external plugins that
-" provide custom statusline: lightline.vim, vim-airline.
-set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
-
-" Mappings for CoCList
-" Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
-" Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
-" Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
-" Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
-" Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
-" Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
-" Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
-" Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
-
-" load up all the extensions we'd like to use
-let g:coc_global_extensions = ['coc-solargraph', 'coc-tsserver', 'coc-eslint']
+-- Adjust diagnostics
+vim.diagnostic.config({
+  virtual_text = false,
+  virtual_lines = true,
+})
+EOF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" END COC CONFIG
+" END LSP SERVER CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -256,34 +181,8 @@ colorscheme gruvbox
 " set leader key to comma
 let mapleader = ","
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" BEGIN VIM-TEST CONFIG
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:test#preserve_screen = 1
-nmap <silent> <leader>t :TestFile<cr>
-nmap <silent> <leader>T :TestNearest<cr>
-
-function! DockerTransform(cmd) abort
-  return "docker-compose exec web " . a:cmd
-endfunction
-
-function! TypeScriptTransform(cmd) abort
-  return substitute(
-    substitute(a:cmd, '\vsrc/(\S+)\.ts', 'dist/backend/\1.js')
-    'jest', 'yarn test'
-  )
-endfunction
-
-let g:test#custom_transformations = {
-  \'docker': function('DockerTransform'),
-  \'typescript': function('TypeScriptTransform')
-\}
-
-" Add the line below to a project's .vimrc to enable a transformation
-" let g:test#transformation = 'typescript'
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" END VIM-TEST CONFIG
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" set the size of the quick-fix window
+autocmd FileType qf wincmd J | resize 10
 
 " highlight trailing spaces in annoying red
 highlight ExtraWhitespace ctermbg=1 guibg=red

@@ -17,7 +17,8 @@ git pull &> /dev/null
 
 echo "  > Installing Neovim, ripgrep, NPM, GitHub, Bat, Rsync..."
 brew install \
-  bat neovim rg npm zsh-syntax-highlighting fd gh rsync rbenv tmux gpg nodenv node-build
+  bat neovim rg npm zsh-syntax-highlighting fd gh rsync rbenv tmux gpg nodenv \
+  node-build typescript typescript-language-server
 
 echo "  > Installing Rectangle window manager..."
 brew install --cask rectangle
