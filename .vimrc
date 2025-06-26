@@ -6,9 +6,9 @@ call plug#begin('~/.vim/plugged')
   Plug 'ap/vim-css-color'     " highlight hex values with their color
   Plug 'godlygeek/tabular'    " align stuff... like these vim comments
   Plug 'janko/vim-test'       " run tests inside vim
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --no-bash' }
-  Plug 'junegunn/fzf.vim'     " fuzzy search for files
   Plug 'mattn/webapi-vim'
+  Plug 'nvim-lua/plenary.nvim' " needed for telescope.nvim
+  Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
   Plug 'morhetz/gruvbox'      " current colorscheme
   Plug 'neoclide/coc.nvim', {'branch': 'release'} " needed for TypeScript
   Plug 'sheerun/vim-polyglot' " syntax highlighting for many languages
@@ -300,9 +300,11 @@ nmap <leader>G :NERDTreeRefreshRoot<cr>
 " Ale configuation
 let g:ale_set_highlights=0
 
-" FZF config
-let $FZF_DEFAULT_COMMAND = 'rg --files'
-nmap <Leader>f :Files<CR>
+" Telescope.nvim
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " unmap F1 help
 nmap <F1> <nop>
@@ -334,9 +336,6 @@ nmap <leader>m :!open -a "Marked 2" "%"<cr><cr>
 nmap <leader>b :Git blame<cr>
 nmap <leader>l :split \| terminal git log -p %<cr>
 nmap <leader>d :split \| terminal git diff %<cr>
-
-" map file search
-nmap <leader>a :Rg<space>
 
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
