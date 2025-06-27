@@ -125,6 +125,11 @@ cmp.setup.cmdline(':', {
   })
 })
 
+-- Add language syntax parsers for all
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all",
+}
+
 -- Keybindings
 vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, {})
@@ -232,9 +237,9 @@ vnoremap . :norm.<cr>
 nmap <leader>m :!open -a "Marked 2" "%"<cr><cr>
 
 " map git commands
-nmap <leader>b :Git blame<cr>
-nmap <leader>l :split \| terminal git log -p %<cr>
-nmap <leader>d :split \| terminal git diff %<cr>
+noremap <leader>b :Git blame<cr>
+noremap <leader>l :split \| terminal git log -p %<cr>
+noremap <leader>d :split \| terminal git diff %<cr>
 
 " clear the command line and search highlighting
 noremap <C-l> :nohlsearch<CR>
