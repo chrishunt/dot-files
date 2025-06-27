@@ -9,9 +9,17 @@ call plug#begin('~/.vim/plugged')
   Plug 'morhetz/gruvbox'      " current colorscheme
   Plug 'tpope/vim-abolish'
   Plug 'tpope/vim-commentary' " comment stuff out, like these comments
-  Plug 'tpope/vim-fugitive'   " git wrapper
-  Plug 'tpope/vim-rhubarb'    " git(hub) wrapper - open on GitHub
   Plug 'tpope/vim-surround'   " change and add surrounds, []()
+  Plug 'windwp/nvim-autopairs' " auto pair quotes, brackets, etc
+
+  " Git integration
+  Plug 'lewis6991/gitsigns.nvim'
+  Plug 'tpope/vim-fugitive' " needed for rhubarb
+  Plug 'tpope/vim-rhubarb'  " git(hub) wrapper - open on GitHub
+
+  " Status line
+  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'nvim-tree/nvim-web-devicons'
 
   " File (fuzzy) search
   Plug 'nvim-lua/plenary.nvim'
@@ -58,11 +66,22 @@ set wildmode=list:longest,full
 runtime macros/matchit.vim        " use % to jump between start/end of methods
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" BEGIN LSP SERVER CONFIG
+" BEGIN LUA CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 lua << EOF
 -- Mason: LSP installer UI
 require("mason").setup()
+
+-- Turn on auto-pairs
+require("nvim-autopairs").setup {}
+
+-- Status line
+require'nvim-web-devicons'.setup {}
+require("lualine").setup({
+  options = {
+    theme = 'gruvbox',
+  }
+})
 
 -- nvim-cmp capabilities for better autocomplete integration
 local capabilities = vim.tbl_deep_extend(
@@ -128,6 +147,7 @@ cmp.setup.cmdline(':', {
 -- Add language syntax parsers for all
 require'nvim-treesitter.configs'.setup {
   ensure_installed = "all",
+  ignore_install = { 'ipkg' },
 }
 
 -- Keybindings
@@ -145,7 +165,7 @@ vim.diagnostic.config({
 })
 EOF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" END LSP SERVER CONFIG
+" END LUA CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -175,9 +195,6 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " END WINDOWS CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" put git status, column/row number, total lines, and percentage in status
-set statusline=%F%m%r%h%w\ %{fugitive#statusline()}\ [%l,%c]\ [%L,%p%%]
 
 " setup color scheme
 set background=dark
@@ -237,7 +254,8 @@ vnoremap . :norm.<cr>
 nmap <leader>m :!open -a "Marked 2" "%"<cr><cr>
 
 " map git commands
-noremap <leader>b :Git blame<cr>
+noremap <leader>b :Gitsigns blame<cr>
+noremap <leader>B :Gitsigns blame_line<cr>
 noremap <leader>l :split \| terminal git log -p %<cr>
 noremap <leader>d :split \| terminal git diff %<cr>
 
