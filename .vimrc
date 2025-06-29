@@ -69,8 +69,25 @@ runtime macros/matchit.vim        " use % to jump between start/end of methods
 " BEGIN LUA CONFIG
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 lua << EOF
--- Mason: LSP installer UI
+-- Mason - install language servers and set default configuration.
 require("mason").setup()
+local capabilities = vim.tbl_deep_extend(
+  "force",
+  vim.lsp.protocol.make_client_capabilities(),
+  require("cmp_nvim_lsp").default_capabilities()
+)
+require("mason-lspconfig").setup {
+  ensure_installed = { "ts_ls", "solargraph" },  -- Added solargraph for Ruby
+  automatic_installation = true,
+  handlers = {
+    -- Default handler for all servers
+    function(server_name)
+      require("lspconfig")[server_name].setup {
+        capabilities = capabilities,
+      }
+    end,
+  }
+}
 
 -- Turn on auto-pairs
 require("nvim-autopairs").setup {}
@@ -82,29 +99,6 @@ require("lualine").setup({
     theme = 'gruvbox',
   }
 })
-
--- nvim-cmp capabilities for better autocomplete integration
-local capabilities = vim.tbl_deep_extend(
-  "force",
-  vim.lsp.protocol.make_client_capabilities(),
-  require("cmp_nvim_lsp").default_capabilities()
-)
-
--- Mason-LSPConfig: just install, don't configure
-require("mason-lspconfig").setup {
-  ensure_installed = { "ts_ls" },
-  automatic_installation = true,  -- optional: ensure it's installed
-  handlers = {
-    -- Default handler for all servers
-    function(server_name)
-      if server_name == "ts_ls" then
-        require("lspconfig")[server_name].setup {
-          capabilities = capabilities,
-        }
-      end
-    end,
-  }
-}
 
 -- nvim-cmp autocompletion setup
 local cmp = require("cmp")
