@@ -41,7 +41,7 @@ syntax on                         " show syntax highlighting
 filetype plugin indent on
 set autoindent                    " set auto indent
 set ts=4 sw=4                     " set indent to 4 spaces
-set shiftwidth=2
+set shiftwidth=4
 set termguicolors                 " show me all the colors please
 set expandtab                     " use spaces, not tab characters
 set nocompatible                  " don't need to be compatible with old vim
@@ -154,8 +154,8 @@ vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, {})
 
 -- Adjust diagnostics
 vim.diagnostic.config({
-  virtual_text = false,
-  virtual_lines = true,
+  virtual_text = true,
+  virtual_lines = false,
 })
 EOF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
