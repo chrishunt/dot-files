@@ -1,8 +1,3 @@
-[general]
-import = [
-    "~/.config/alacritty/base16/colors/base16-tomorrow-night.toml"
-]
-
 [font]
 size = 16.0
 
@@ -17,3 +12,55 @@ style = "Bold"
 [font.italic]
 family = "JetBrainsMono Nerd Font"
 style = "Italic"
+
+[colors.primary]
+background = "#282828"
+foreground = "#d5c4a1"
+
+[colors.cursor]
+text = "#282828"
+cursor = "#d5c4a1"
+
+[colors.normal]
+black = "#282828"
+red = "#fb4934"
+green = "#b8bb26"
+yellow = "#fabd2f"
+blue = "#83a598"
+magenta = "#d3869b"
+cyan = "#8ec07c"
+white = "#d5c4a1"
+
+[colors.bright]
+black = "#665c54"
+red = "#fb4934"
+green = "#b8bb26"
+yellow = "#fabd2f"
+blue = "#83a598"
+magenta = "#d3869b"
+cyan = "#8ec07c"
+white = "#fbf1c7"
+
+[[colors.indexed_colors]]
+index = 16
+color = "#fe8019"
+
+[[colors.indexed_colors]]
+index = 17
+color = "#d65d0e"
+
+[[colors.indexed_colors]]
+index = 18
+color = "#3c3836"
+
+[[colors.indexed_colors]]
+index = 19
+color = "#504945"
+
+[[colors.indexed_colors]]
+index = 20
+color = "#bdae93"
+
+[[colors.indexed_colors]]
+index = 21
+color = "#ebdbb2"
