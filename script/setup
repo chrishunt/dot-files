@@ -20,9 +20,6 @@ brew install \
   bat neovim rg npm zsh-syntax-highlighting fd gh rsync rbenv tmux gpg nodenv \
   node-build typescript typescript-language-server
 
-echo "  > Installing Rectangle window manager..."
-brew install --cask rectangle
-
 echo "  > Installing Pure prompt..."
 git clone git@github.com:sindresorhus/pure.git .zsh/pure
 
