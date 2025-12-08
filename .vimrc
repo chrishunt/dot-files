@@ -157,6 +157,12 @@ vim.diagnostic.config({
   virtual_text = true,
   virtual_lines = false,
 })
+
+-- Neovide (GUI) config
+if vim.g.neovide then
+    vim.o.guifont = "JetBrainsMono Nerd Font:h18"
+end
+
 EOF
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " END LUA CONFIG
