@@ -13,54 +13,31 @@ style = "Bold"
 family = "JetBrainsMono Nerd Font"
 style = "Italic"
 
+# Gruvbox Dark (medium contrast) - matches gruvbox.vim terminal colors
 [colors.primary]
 background = "#282828"
-foreground = "#d5c4a1"
+foreground = "#ebdbb2"
 
 [colors.cursor]
 text = "#282828"
-cursor = "#d5c4a1"
+cursor = "#ebdbb2"
 
 [colors.normal]
-black = "#282828"
-red = "#fb4934"
-green = "#b8bb26"
-yellow = "#fabd2f"
-blue = "#83a598"
-magenta = "#d3869b"
-cyan = "#8ec07c"
-white = "#d5c4a1"
+black   = "#282828"
+red     = "#cc241d"
+green   = "#98971a"
+yellow  = "#d79921"
+blue    = "#458588"
+magenta = "#b16286"
+cyan    = "#689d6a"
+white   = "#a89984"
 
 [colors.bright]
-black = "#665c54"
-red = "#fb4934"
-green = "#b8bb26"
-yellow = "#fabd2f"
-blue = "#83a598"
+black   = "#928374"
+red     = "#fb4934"
+green   = "#b8bb26"
+yellow  = "#fabd2f"
+blue    = "#83a598"
 magenta = "#d3869b"
-cyan = "#8ec07c"
-white = "#fbf1c7"
-
-[[colors.indexed_colors]]
-index = 16
-color = "#fe8019"
-
-[[colors.indexed_colors]]
-index = 17
-color = "#d65d0e"
-
-[[colors.indexed_colors]]
-index = 18
-color = "#3c3836"
-
-[[colors.indexed_colors]]
-index = 19
-color = "#504945"
-
-[[colors.indexed_colors]]
-index = 20
-color = "#bdae93"
-
-[[colors.indexed_colors]]
-index = 21
-color = "#ebdbb2"
+cyan    = "#8ec07c"
+white   = "#ebdbb2"
