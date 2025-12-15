@@ -3,19 +3,27 @@
 .Stages Sync/
 .adobe
 .asdf
+.bash_history
 .bash_logout
 .bash_profile
 .bashrc
 .boto
+.bun
 .bundle
 .cache
+.claude.json*
+.claude/
+.cocoapods
 .config/coc/
 .config/configstore
 .config/gatsby
 .config/gcloud/
 .config/gh/
 .config/iterm2/AppSupport
+.config/karabiner/automatic_backups/*
+.config/op/
 .config/qobuz-dl/
+.config/temporalio/
 .config/wslu/
 .config/yarn/
 .cpan/
@@ -50,12 +58,16 @@
 .pry_history
 .psql_history
 .pulumi/
+.pyenv/
+.python_history
 .rbenv
 .rediscli_history
 .rmembid
 .rubies
 .ruby-version
+.sfdx/
 .solargraph/
+.sparrow/
 .ssh
 .sudo_as_admin_successful
 .suitecloud-sdk
@@ -78,6 +90,7 @@ Desktop/
 Documents/
 Downloads
 Dropbox
+Google Drive
 Google Drive File Stream
 Library
 Movies
