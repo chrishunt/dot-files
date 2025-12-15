@@ -161,6 +161,7 @@ vim.diagnostic.config({
 -- Neovide (GUI) config
 if vim.g.neovide then
     vim.o.guifont = "JetBrainsMono Nerd Font:h18"
+    vim.g.neovide_cursor_animation_length = 0
 end
 
 EOF
