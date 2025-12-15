@@ -16,7 +16,7 @@ echo "  > Pulling latest dot-files..."
 git pull &> /dev/null
 
 echo "  > Updating vim plugins..."
-vim +PlugUpdate +qall
+nvim +PlugUpdate +qall
 
 echo "  > Updating homebrew..."
 brew update && brew upgrade
