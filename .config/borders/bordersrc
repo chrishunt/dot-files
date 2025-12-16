@@ -1,0 +1,12 @@
+#!/bin/bash
+
+options=(
+    style=round
+    width=5
+    hidpi=on
+    active_color=0xffebdbb2
+    inactive_color=0xff1d2021
+    blacklist="Adobe Photoshop 2026,System Settings"
+)
+
+borders "${options[@]}"
