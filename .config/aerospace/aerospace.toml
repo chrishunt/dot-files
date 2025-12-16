@@ -245,9 +245,6 @@ run = 'move-node-to-workspace M'
 
 # Workspace U: Utilities
 [[on-window-detected]]
-if.app-id = 'com.1password.1password'
-run = 'move-node-to-workspace U'
-[[on-window-detected]]
 if.app-id = 'com.mr-brightside.myParcel'
 run = 'move-node-to-workspace U'
 
@@ -260,4 +257,7 @@ if.app-id = 'md.obsidian'
 run = 'move-node-to-workspace W'
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace W'
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
 run = 'move-node-to-workspace W'
