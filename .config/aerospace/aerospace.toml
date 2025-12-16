@@ -221,9 +221,15 @@ on-mode-changed = []
     alt-shift-k = ['join-with up', 'mode main']
     alt-shift-l = ['join-with right', 'mode main']
 
+# Worspaces Config. To get app-ids for this config, run:
+#     $ aerospace list-apps
+
 # Workspace P: Photography
 [[on-window-detected]]
 if.app-id = 'com.adobe.Photoshop'
+run = 'move-node-to-workspace P'
+[[on-window-detected]]
+if.app-id = 'com.adobe.LightroomClassicCC7'
 run = 'move-node-to-workspace P'
 
 # Workspace M: Messages
@@ -240,6 +246,9 @@ run = 'move-node-to-workspace M'
 # Workspace U: Utilities
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
+run = 'move-node-to-workspace U'
+[[on-window-detected]]
+if.app-id = 'com.mr-brightside.myParcel'
 run = 'move-node-to-workspace U'
 
 # Workspace W: Work
