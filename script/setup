@@ -29,6 +29,9 @@ brew install --cask neovide
 echo "  > Installing Aerospace..."
 brew install --cask nikitabobko/tap/aerospace
 
+echo "  > Installing Janky Borders..."
+brew install FelixKratz/formulae/borders
+
 echo "  > Installing vim plugins..."
 vim +PlugInstall +qall
 
