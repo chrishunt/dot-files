@@ -2,9 +2,9 @@
 
 options=(
     style=round
-    width=3
+    width=5
     hidpi=on
-    active_color=0xffcc241d
+    active_color=0xeeeeeeee
     background_color=0x00000000
     blacklist="System Settings"
 )
