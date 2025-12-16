@@ -120,7 +120,7 @@ if [ -f '/Users/huntca/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/hu
 eval $(ssh-agent) &>/dev/null
 
 # Load our fzf config
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source <(fzf --zsh)
 
 # Activate ZSH syntax highlighting
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
