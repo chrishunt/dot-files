@@ -2,11 +2,11 @@
 
 options=(
     style=round
-    width=5
+    width=3
     hidpi=on
-    active_color=0xffebdbb2
-    inactive_color=0xff1d2021
-    blacklist="Adobe Photoshop 2026,System Settings"
+    active_color=0xffcc241d
+    background_color=0x00000000
+    blacklist="System Settings"
 )
 
 borders "${options[@]}"
