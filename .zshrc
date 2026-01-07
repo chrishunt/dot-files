@@ -49,6 +49,9 @@ export GPG_TTY=$(tty)
 # Add QGIS to path
 export PATH=$PATH:/Applications/QGIS.app/Contents/MacOS/bin
 
+# Local bin gets priority
+export PATH="$HOME/.local/bin:$PATH"
+
 # ##########################################################################
 # ALIAS
 # ##########################################################################
