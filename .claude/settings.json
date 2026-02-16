@@ -1,0 +1,20 @@
+{
+    "model": "opus",
+    "enabledPlugins": {
+        "typescript-lsp@claude-plugins-official": true
+    },
+    "alwaysThinkingEnabled": true,
+    "permissions": {
+        "allow": [
+            "Bash(npm run *)",
+            "Bash(git commit *)",
+            "Bash(git diff *)",
+            "Bash(git status)",
+            "Edit",
+            "Read"
+        ],
+        "deny": [
+            "Bash(git push *)"
+        ]
+    }
+}
