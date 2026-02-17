@@ -10,8 +10,11 @@
             "Bash(git commit *)",
             "Bash(git diff *)",
             "Bash(git status)",
+            "Bash(ls *)",
             "Edit",
-            "Read"
+            "Read",
+            "WebSearch",
+            "WebFetch"
         ],
         "deny": [
             "Bash(git push *)"
