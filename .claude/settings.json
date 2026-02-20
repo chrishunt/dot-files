@@ -1,23 +1,35 @@
 {
-    "model": "opus",
-    "enabledPlugins": {
-        "typescript-lsp@claude-plugins-official": true
-    },
-    "alwaysThinkingEnabled": true,
-    "permissions": {
-        "allow": [
-            "Bash(npm run *)",
-            "Bash(git commit *)",
-            "Bash(git diff *)",
-            "Bash(git status)",
-            "Bash(ls *)",
-            "Edit",
-            "Read",
-            "WebSearch",
-            "WebFetch"
-        ],
-        "deny": [
-            "Bash(git push *)"
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(git commit *)",
+      "Bash(git diff *)",
+      "Bash(git status)",
+      "Bash(ls *)",
+      "Edit",
+      "Read",
+      "WebSearch",
+      "WebFetch"
+    ],
+    "deny": [
+      "Bash(git push *)"
+    ]
+  },
+  "model": "opus",
+  "enabledPlugins": {
+    "typescript-lsp@claude-plugins-official": true
+  },
+  "alwaysThinkingEnabled": true,
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/update-tmux-title.sh"
+          }
         ]
-    }
+      }
+    ]
+  }
 }
